@@ -1,0 +1,16 @@
+.git
+.gitignore
+.next
+.vercel
+.sanity
+node_modules
+coverage
+certs
+.env
+.env.*
+!.env.example
+!.env.docker.example
+*.log
+.DS_Store
+docs
+tests
