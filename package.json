@@ -1,0 +1,39 @@
+{
+  "name": "maykit-psicologia",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "packageManager": "yarn@1.22.22",
+  "scripts": {
+    "dev": "next dev --hostname localhost --experimental-https --experimental-https-key certs/local/localhost-key.pem --experimental-https-cert certs/local/localhost.pem",
+    "dev:container": "next dev --hostname 0.0.0.0 --experimental-https --experimental-https-key certs/local/localhost-key.pem --experimental-https-cert certs/local/localhost.pem",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@sanity/image-url": "2.1.1",
+    "@sanity/client": "7.26.0",
+    "next": "16.2.12",
+    "next-sanity": "13.2.3",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "resend": "6.18.1",
+    "sanity": "6.8.0",
+    "styled-components": "6.4.4",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.2.12",
+    "postcss": "8.5.25",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3",
+    "vite": "8.2.0",
+    "vitest": "4.1.10"
+  }
+}
