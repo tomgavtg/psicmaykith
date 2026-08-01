@@ -10,11 +10,11 @@
 | Servicios | 3–4 nombres y descripciones | psicóloga | verificar alcance |
 | Servicios | modalidad/duración/honorarios | psicóloga | opcionales |
 | Servicios | imagen editorial | psicóloga + diseño | permiso requerido |
-| Agendar | WhatsApp y mensaje | psicóloga | `[POR DEFINIR]` |
+| Agendar | WhatsApp y mensaje | psicóloga | número confirmado `+52 56 3955 1234`; mensaje inicial sujeto a aprobación final |
 | Agendar | correo y SLA | operación | `[POR DEFINIR]` |
 | Agendar | opciones de modalidad/horario | psicóloga | `[POR DEFINIR]` |
 | Global | aviso de no-emergencia | psicóloga + legal | revisar |
-| Privacidad | aviso integral | asesoría legal | borrador pendiente |
+| Privacidad | avisos de sitio/contacto y psicoterapia | asesoría legal | borradores `v0.1` en `docs/legal/privacy-notices/`; no publicar |
 | SEO | título, descripción, OG | contenido | tras definir oferta |
 | Datos estructurados | negocio, zona y horario | psicóloga | sólo datos reales |
 | Consentimiento | banner y política | legal + marketing | `[POR DEFINIR]` |

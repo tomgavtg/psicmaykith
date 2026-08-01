@@ -86,8 +86,8 @@ export default async function HomePage() {
       </a>
       {content.isPlaceholder || isPreview ? (
         <div className="demo-banner" role="status">
-          Versión de demostración: el contenido profesional y los datos de contacto
-          están pendientes de aprobación.
+          Versión de demostración: el contenido profesional y legal está pendiente de
+          aprobación.
         </div>
       ) : null}
       <Header name={siteSettings.headerName} contactSettings={contactSettings} />

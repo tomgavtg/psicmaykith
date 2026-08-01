@@ -6,9 +6,11 @@ Configurar WhatsApp como ruta principal de contacto sin solicitar información c
 ni crear automatizaciones innecesarias. La Fase 2 está autorizada; el alta y vinculación
 requieren aprobación de la titular y accesos nominales.
 
-El número, propietario, nombre comercial y accesos están
-`[POR DEFINIR: confirmar con la psicóloga]`. No se deben registrar aquí números,
-códigos de verificación, contraseñas, QR ni datos personales reales.
+El número empresarial confirmado es `+52 56 3955 1234`; para enlaces y configuración
+se usa `525639551234`. El titular operativo, nombre comercial y accesos siguen
+`[POR DEFINIR: confirmar con la psicóloga]`. El correo empresarial aprobado es
+`contacto@psicologamayumikitahara.com`. No se deben registrar aquí códigos de
+verificación, contraseñas, QR ni secretos de recuperación.
 
 ## Alcance de v1
 
@@ -25,8 +27,8 @@ operación.
 
 ## Prerrequisitos
 
-- número bajo control legítimo de la profesional o consultorio
-  `[POR DEFINIR: número y titular]`;
+- número confirmado `+52 56 3955 1234`, bajo control legítimo de la profesional o
+  consultorio `[POR DEFINIR: confirmar titular operativo]`;
 - dispositivo y respaldo gestionados por su responsable;
 - nombre comercial y categoría reales y aprobados;
 - correo y sitio oficiales, si se mostrarán;
@@ -90,6 +92,19 @@ Formato esperado del número:
 [CODIGO_PAIS][NUMERO_NACIONAL]
 ```
 
+Para la configuración confirmada:
+
+```text
+phoneDisplay: +52 56 3955 1234
+whatsappNumber: 525639551234
+whatsappMessage: Hola, me gustaría solicitar información para agendar una primera sesión.
+```
+
+México usa `52` seguido de los 10 dígitos del número nacional. El antiguo prefijo móvil
+internacional `1` no debe almacenarse ni publicarse. Por compatibilidad, la aplicación
+normaliza una entrada como `+52 1 56 3955 1234` a `525639551234` antes de construir el
+enlace.
+
 La validación debe aceptar sólo dígitos y una longitud internacional razonable, pero el
 valor debe comprobarse manualmente con el país y número reales. No debe publicarse el
 CTA si el número está ausente o no fue verificado.
@@ -103,6 +118,12 @@ Hola, me gustaría solicitar información para agendar una primera sesión.
 La aplicación debe aplicar codificación URL con una API estándar, no concatenar texto
 sin escapar. El mensaje debe ser genérico: no debe incluir servicio sensible, nombre,
 correo, teléfono, síntomas, diagnósticos, UTMs ni texto del formulario.
+
+La implementación valida nuevamente el número al construir cada enlace: después de
+retirar espacios y signos debe contener entre 10 y 15 dígitos. Si falta o no cumple el
+formato, se ocultan los CTA de WhatsApp y permanecen disponibles el correo y el
+formulario. Un servicio seleccionado no se añade al mensaje preconfigurado para evitar
+exponer preferencias en la URL.
 
 ## Presentación y medición
 
@@ -161,3 +182,8 @@ Mensualmente, o tras cambios de campaña, conviene revisar número, mensaje, hor
 dispositivos vinculados, roles de Meta y funcionamiento de enlaces. La persona
 responsable debe revisar también la retención de conversaciones y coherencia con el
 aviso de privacidad.
+
+## Referencias de marcación
+
+- [IFT: marcación internacional hacia México con `+52` y diez dígitos](https://www.ift.org.mx/conocenos/pleno/entrevistas/otros-funcionarios/entrevista-rafael-eslava-titular-de-la-unidad-de-concesiones-y-servicios-del-ift-en-radio-formula-0)
+- [Plan de numeración de México publicado por la UIT](https://www.itu.int/dms_pub/itu-t/oth/02/02/T020200008A0004PDFE.pdf)

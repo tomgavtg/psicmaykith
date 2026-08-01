@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-function contentSecurityPolicy(nonce, isAdmin, isDevelopment) {
+export function contentSecurityPolicy(nonce, isAdmin, isDevelopment) {
   const scriptSources = [
     "'self'",
     `'nonce-${nonce}'`,
@@ -16,13 +16,33 @@ function contentSecurityPolicy(nonce, isAdmin, isDevelopment) {
     scriptSources.push("https://*.sanity.io");
   }
 
+  const connectSources = [
+    "'self'",
+    "https://*.sanity.io",
+    "wss://*.sanity.io",
+    "https://challenges.cloudflare.com",
+    "https://www.google-analytics.com",
+    "https://region1.google-analytics.com",
+    "https://www.facebook.com",
+    "https://analytics.tiktok.com",
+  ];
+
+  if (isAdmin) {
+    // Sanity Studio consulta su CDN de módulos para comprobar actualizaciones.
+    // Se limita a /admin para no ampliar la política del sitio público.
+    connectSources.push(
+      "https://sanity-cdn.com",
+      "https://*.sanity-cdn.com",
+    );
+  }
+
   const directives = [
     "default-src 'self'",
     `script-src ${scriptSources.join(" ")}`,
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob: https://cdn.sanity.io",
     "font-src 'self' data:",
-    "connect-src 'self' https://*.sanity.io wss://*.sanity.io https://challenges.cloudflare.com https://www.google-analytics.com https://region1.google-analytics.com https://www.facebook.com https://analytics.tiktok.com",
+    `connect-src ${connectSources.join(" ")}`,
     "frame-src https://challenges.cloudflare.com",
     "worker-src 'self' blob:",
     "media-src 'none'",

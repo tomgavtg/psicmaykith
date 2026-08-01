@@ -1,7 +1,11 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { trackEvent } from "../../lib/analytics/events";
+import {
+  APPOINTMENT_SERVICE_EVENT,
+  getTodayInMexico,
+} from "../../lib/contact/appointment";
 import { TurnstileWidget } from "./TurnstileWidget";
 
 const initialValues = {
@@ -10,6 +14,7 @@ const initialValues = {
   phone: "",
   service: "",
   modality: "",
+  preferredDate: "",
   preferredSchedule: "",
   message: "",
   privacyAccepted: false,
@@ -30,11 +35,37 @@ export function ContactForm({
   const [status, setStatus] = useState("idle");
   const [feedback, setFeedback] = useState("");
   const [started, setStarted] = useState(false);
+  const [selectionAnnouncement, setSelectionAnnouncement] = useState("");
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
+  const minimumDate = getTodayInMexico();
 
   const onToken = useCallback((token) => {
     setTurnstileToken(token);
   }, []);
+
+  useEffect(() => {
+    function selectRequestedService(event) {
+      const service = services.find(
+        (item) => item.slug === event.detail?.serviceSlug,
+      );
+
+      if (!service) {
+        return;
+      }
+
+      setValues((current) => ({ ...current, service: service.slug }));
+      setSelectionAnnouncement(
+        `Se seleccionó ${service.name}. Completa tus preferencias para solicitar la cita.`,
+      );
+    }
+
+    window.addEventListener(APPOINTMENT_SERVICE_EVENT, selectRequestedService);
+    return () =>
+      window.removeEventListener(
+        APPOINTMENT_SERVICE_EVENT,
+        selectRequestedService,
+      );
+  }, [services]);
 
   function markStarted() {
     if (!started) {
@@ -94,6 +125,10 @@ export function ContactForm({
       onFocus={markStarted}
       noValidate={false}
     >
+      <p className="sr-only" role="status" aria-live="polite">
+        {selectionAnnouncement}
+      </p>
+
       <div className="form-row">
         <label>
           Nombre
@@ -171,22 +206,37 @@ export function ContactForm({
           </select>
         </label>
         <label>
-          Día u horario preferido
-          <select
-            name="preferredSchedule"
-            value={values.preferredSchedule}
+          Fecha preferida <span className="optional">(opcional)</span>
+          <input
+            type="date"
+            name="preferredDate"
+            value={values.preferredDate}
             onChange={updateField}
-            required
-          >
-            <option value="">Selecciona una opción</option>
-            {scheduleOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
+            min={minimumDate}
+            aria-describedby="preferred-date-help"
+          />
+          <span id="preferred-date-help" className="field-help">
+            La fecha se confirmará después de revisar disponibilidad.
+          </span>
         </label>
       </div>
+
+      <label>
+        Horario preferido
+        <select
+          name="preferredSchedule"
+          value={values.preferredSchedule}
+          onChange={updateField}
+          required
+        >
+          <option value="">Selecciona una opción</option>
+          {scheduleOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </label>
 
       <label>
         Mensaje <span className="optional">(opcional)</span>
@@ -242,7 +292,7 @@ export function ContactForm({
         type="submit"
         disabled={status === "submitting" || !siteKey || !turnstileToken}
       >
-        {status === "submitting" ? "Enviando…" : "Enviar solicitud"}
+        {status === "submitting" ? "Enviando…" : "Solicitar cita"}
       </button>
 
       {feedback ? (

@@ -44,6 +44,23 @@ proveedor o `vercel domains inspect` debe proporcionar los valores exactos.
 Se deben conservar MX, SPF y CNAME de Namecheap Private Email. DKIM, DMARC, CAA y
 verificaciones sólo se agregan con valores confirmados por el proveedor.
 
+## Actualización operativa del 1 de agosto de 2026
+
+El proyecto fue desplegado en Vercel y los destinos específicos quedaron registrados
+en el runbook de dominio. La zona fue creada en Cloudflare y conserva Namecheap Private
+Email. El buzón empresarial confirmado es
+`contacto@psicologamayumikitahara.com`; Gmail se utilizará sólo como cliente IMAP/SMTP,
+sin migrar los MX a Google Workspace.
+
+La consulta pública del 1 de agosto de 2026 confirmó la delegación autoritativa hacia
+Cloudflare, los destinos web de Vercel, HTTPS canónico, redirección `308` y los registros
+MX, SPF, DKIM, DMARC, SRV y autoconfiguración de Private Email. Los registros web se
+encuentran en DNS only; la activación de proxy, Full (strict), DNSSEC y HSTS mantiene el
+orden seguro definido por este ADR y el runbook.
+
+Los valores completos de verificación y DKIM se obtienen de los paneles y no se
+versionan.
+
 ## Consecuencias
 
 - Cada estación necesita crear y confiar su propia CA de desarrollo.

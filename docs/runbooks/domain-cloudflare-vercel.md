@@ -20,30 +20,35 @@ Configuración aprobada para este proyecto:
 No se deben copiar aquí tokens, IDs de cuenta, códigos de transferencia, valores de
 verificación ni llaves privadas.
 
-## Estado público observado el 30 de julio de 2026
+## Estado documentado el 1 de agosto de 2026
 
-Antes de aplicar cambios se observaron estos registros públicos:
+La aplicación está desplegada en Vercel y Cloudflare ya es DNS autoritativo. El
+proyecto Vercel utiliza estos destinos específicos:
 
-| Tipo | Host | Valor observado | Tratamiento |
-| --- | --- | --- | --- |
-| NS | `@` | `dns1.registrar-servers.com` y `dns2.registrar-servers.com` | reemplazar por los dos NS exactos asignados por Cloudflare |
-| A | `@` | `162.255.119.231` | retirar al apuntar el apex al proyecto Vercel |
-| CNAME | `www` | `a4b45797e67e334c.vercel-dns-017.com` | no reutilizar hasta que Vercel confirme que pertenece al proyecto actual |
-| MX | `@` | `mx1.privateemail.com`, prioridad 10 | conservar en Cloudflare, DNS only |
-| MX | `@` | `mx2.privateemail.com`, prioridad 10 | conservar en Cloudflare, DNS only |
-| TXT | `@` | `v=spf1 include:spf.privateemail.com ~all` | conservar en Cloudflare, DNS only |
-| CNAME | `mail` | `privateemail.com` | conservar en Cloudflare, DNS only |
-| CNAME | `autoconfig` | `privateemail.com` | conservar en Cloudflare, DNS only |
-| CNAME | `autodiscover` | `privateemail.com` | conservar en Cloudflare, DNS only |
+```text
+A apex:     216.198.79.1
+CNAME www:  a0acb4f07fdaaf22.vercel-dns-017.com
+```
 
-El certificado presentado por `www.psicologamayumikitahara.com` venció el 20 de enero
-de 2026 y el dominio raíz no respondió por HTTPS durante la inspección. Por eso el
-lanzamiento requiere que Vercel verifique ambos hostnames y emita certificados nuevos
-antes de activar el proxy o anunciar el sitio.
+La verificación pública del 1 de agosto de 2026 confirma:
 
-Este inventario es sólo una fotografía del DNS público. Antes de cambiar nameservers se
-debe exportar o capturar también todo registro visible en Namecheap, incluso si no
-aparece mediante las consultas anteriores.
+- delegación activa hacia los nameservers asignados por Cloudflare;
+- A del apex y CNAME de `www` publicados en modo **DNS only**;
+- redirección HTTPS `308` del apex hacia `www`;
+- respuesta HTTPS `200` de la variante canónica;
+- MX, SPF, DKIM, DMARC, SRV y CNAME de autoconfiguración de Namecheap publicados.
+
+La migración de DNS está terminada. Todavía se debe probar envío/recepción desde
+webmail y Gmail. El proxy web de Cloudflare, Full (strict), DNSSEC y el endurecimiento
+de HSTS conservan el orden de activación y validación descrito abajo.
+
+El buzón empresarial creado es `contacto@psicologamayumikitahara.com`. Namecheap
+Private Email continúa como proveedor; Gmail sólo será cliente IMAP/SMTP. No se deben
+agregar MX de Google mientras se mantenga esta decisión.
+
+El TXT de verificación de Vercel y DKIM deben permanecer en Cloudflare, pero sus valores
+completos no se versionan. Los destinos y nameservers deben verificarse contra sus
+paneles y DNS público antes de cualquier recuperación o nueva migración.
 
 ## Responsables y prerrequisitos
 
@@ -103,14 +108,15 @@ repositorio.
    vercel domains inspect www.psicologamayumikitahara.com
    ```
 
-9. Comparar el CNAME solicitado para `www` con el valor histórico
-   `a4b45797e67e334c.vercel-dns-017.com`. Si difieren, usar el valor nuevo.
+9. Comparar los valores mostrados con `216.198.79.1` y
+   `a0acb4f07fdaaf22.vercel-dns-017.com`. Si difieren, detenerse y usar el inventario
+   nuevo entregado por Vercel.
 10. No continuar hasta tener registrados el A del apex, el CNAME de `www` y cualquier
     TXT de verificación específico.
 
-Vercel publica como valores generales `76.76.21.21` para apex y
-`cname.vercel-dns-0.com` para subdominios, pero un proyecto puede recibir valores
-específicos. La salida del Dashboard o de `vercel domains inspect` es autoritativa.
+Los valores específicos registrados arriba sustituyen los ejemplos generales. La
+salida del Dashboard o de `vercel domains inspect` continúa siendo autoritativa si el
+proveedor los cambia.
 
 La redirección canónica existe en Next.js/Vercel y Cloudflare sólo debe forzar HTTPS;
 duplicar la redirección canónica en Cloudflare puede producir bucles.
@@ -128,38 +134,59 @@ duplicar la redirección canónica en Cloudflare puede producir bucles.
    `nombre.ns.cloudflare.com`, pero sus nombres reales no se pueden predecir.
 8. Todavía no activar DNSSEC ni borrar registros en Namecheap.
 
-### 3. Registros que deben existir en Cloudflare
+### 3. Registros que quedaron configurados en Cloudflare
 
-Agregar los registros web con proxy **DNS only** durante la verificación inicial:
+La zona debe contener 12 registros después de generar DKIM y agregar DMARC. Durante la
+verificación inicial todos deben permanecer **DNS only** —nube gris—:
 
-| Tipo | Nombre | Destino | Proxy | TTL |
-| --- | --- | --- | --- | --- |
-| A | `@` | valor exacto de Vercel; general `76.76.21.21` | DNS only inicialmente | Auto |
-| CNAME | `www` | valor exacto de Vercel; general `cname.vercel-dns-0.com` | DNS only inicialmente | Auto |
-| TXT | el indicado por Vercel | valor exacto de verificación, sólo si lo solicita | DNS only | Auto |
+| Tipo | Nombre | Destino/valor | Prioridad | TTL | Estado inicial |
+| --- | --- | --- | --- | --- | --- |
+| A | `@` | `216.198.79.1` | — | Auto | DNS only |
+| CNAME | `www` | `a0acb4f07fdaaf22.vercel-dns-017.com` | — | Auto | DNS only |
+| TXT | `_vercel` | copiar el valor exacto de Vercel | — | Auto | DNS only |
+| MX | `@` | `mx1.privateemail.com` | 10 | Auto | DNS only |
+| MX | `@` | `mx2.privateemail.com` | 10 | Auto | DNS only |
+| TXT | `@` | `v=spf1 include:spf.privateemail.com ~all` | — | Auto | DNS only |
+| CNAME | `mail` | `privateemail.com` | — | Auto | DNS only |
+| CNAME | `autoconfig` | `privateemail.com` | — | Auto | DNS only |
+| CNAME | `autodiscover` | `privateemail.com` | — | Auto | DNS only |
+| SRV | `_autodiscover._tcp` | peso `0`, puerto `443`, destino `privateemail.com` | 0 | Auto | DNS only |
+| TXT | selector DKIM de Namecheap | clave DKIM completa de Namecheap | — | Auto | DNS only |
+| TXT | `_dmarc` | `v=DMARC1; p=none; rua=mailto:contacto@psicologamayumikitahara.com` | — | Auto | DNS only |
 
-Conservar o recrear los registros de correo observados:
+En el formulario de Cloudflare, el SRV se introduce así:
 
-| Tipo | Nombre | Destino/valor | Prioridad | Proxy |
-| --- | --- | --- | --- | --- |
-| MX | `@` | `mx1.privateemail.com` | 10 | DNS only |
-| MX | `@` | `mx2.privateemail.com` | 10 | DNS only |
-| TXT | `@` | `v=spf1 include:spf.privateemail.com ~all` | — | DNS only |
-| CNAME | `mail` | `privateemail.com` | — | DNS only |
-| CNAME | `autoconfig` | `privateemail.com` | — | DNS only |
-| CNAME | `autodiscover` | `privateemail.com` | — | DNS only |
+```text
+Service:   _autodiscover
+Protocol:  _tcp
+Name:      @
+Priority:  0
+Weight:    0
+Port:      443
+Target:    privateemail.com
+```
 
-No se debe inventar DKIM o DMARC. Si Namecheap Private Email muestra registros
-adicionales en su panel, deben copiarse exactamente. MX, TXT, DKIM y registros de
-verificación siempre permanecen **DNS only**.
+Para DKIM se debe abrir **Namecheap → Private Email → Manage → DKIM → Generate/Show
+DKIM**. El selector suele ser `privateemail._domainkey` para suscripciones nuevas y
+puede ser `default._domainkey` para suscripciones anteriores. El panel de Namecheap es
+autoritativo: se deben copiar selector y contenido completos sin comillas añadidas ni
+dividir la clave. No se debe guardar la clave en este repositorio.
 
-Antes de guardar:
+Antes de guardar o delegar:
 
-1. eliminar el A histórico `@ → 162.255.119.231` sólo cuando el A de Vercel esté listo;
-2. sustituir el CNAME histórico de `www` sólo si Vercel entrega uno diferente;
-3. evitar registros A/AAAA duplicados para `@` o `www`;
+1. confirmar que sólo existe un A para `@` y que apunta a `216.198.79.1`;
+2. confirmar que sólo existe el CNAME actual de `www`;
+3. evitar A/AAAA duplicados y no crear AAAA manualmente;
 4. no crear CNAME en `@`;
-5. no activar proxy en registros de correo o verificación.
+5. mantener MX, CNAME de correo, SRV, TXT, DKIM, DMARC y verificaciones siempre en DNS
+   only;
+6. mantener también `@` y `www` en DNS only hasta que Vercel verifique los dominios y
+   emita los certificados;
+7. confirmar que los valores TXT se guardaron una sola vez; Cloudflare puede mostrarlos
+   entre comillas sin que sea un error.
+
+La configuración detallada del buzón y Gmail está en
+[`namecheap-private-email-gmail.md`](namecheap-private-email-gmail.md).
 
 ### 4. Cambiar los nameservers en Namecheap
 
@@ -219,12 +246,14 @@ resolver la validación y documentar la decisión. Nunca se debe degradar TLS.
 2. En **Edge Certificates**, activar **Always Use HTTPS**.
 3. Confirmar **Automatic HTTPS Rewrites** sólo como defensa adicional; el código no
    debe contener recursos HTTP.
-4. Verificar que Vercel presenta un certificado público vigente al origen.
-5. No usar `Flexible`.
-6. Activar HSTS en Cloudflare sólo después de verificar raíz, `www`, correo web y todos
+4. Establecer **Minimum TLS Version** en `TLS 1.2` o una versión superior que haya sido
+   validada con los navegadores objetivo.
+5. Verificar que Vercel presenta un certificado público vigente al origen.
+6. No usar `Flexible`.
+7. Activar HSTS en Cloudflare sólo después de verificar raíz, `www`, correo web y todos
    los subdominios HTTPS. Comenzar con un `max-age` corto durante observación; aprobar
    por separado `includeSubDomains` y `preload`.
-7. Mantener la cabecera HSTS de la aplicación; no enviar HSTS por HTTP.
+8. Mantener la cabecera HSTS de la aplicación; no enviar HSTS por HTTP.
 
 Cloudflare y Vercel renuevan sus certificados automáticamente. Nunca se exporta ni se
 guarda un certificado de producción en `/certs/` o en Git.
@@ -313,7 +342,9 @@ Registrar evidencia sin tokens ni datos personales:
 - certificado válido en borde y conexión estricta al origen;
 - canonical, Open Graph y sitemap no contienen dominio temporal de Vercel;
 - Cloudflare muestra tráfico proxied y eventos sin bloquear bots verificados;
-- correo del dominio sigue operativo si existía;
+- `contacto@psicologamayumikitahara.com` recibe y envía una prueba sintética mediante
+  Namecheap Private Email y mediante la aplicación Gmail;
+- SPF, DKIM y DMARC publicados responden con un único registro válido por selector;
 - IPv4 e IPv6, móvil y al menos dos resolvedores externos funcionan.
 
 Conviene comprobar también cadenas de redirección, TLS y headers mediante herramientas
@@ -351,8 +382,9 @@ efecto instantáneo.
 ## Asuntos por definir
 
 - titular y responsables operativos;
-- exportación completa de los registros privados/no observables desde Namecheap;
-- proyecto Vercel que debe reclamar el CNAME histórico de `www`;
+- selector y clave DKIM exactos generados por Namecheap;
+- nombres exactos de los dos nameservers asignados por Cloudflare;
+- confirmación final de Vercel para raíz, `www` y ambos certificados;
 - planes de Cloudflare y Vercel;
 - política HSTS final;
 - ventana de migración y criterios de rollback;
@@ -370,3 +402,5 @@ efecto instantáneo.
 - [Cambiar DNS en Namecheap](https://www.namecheap.com/support/knowledgebase/article.aspx/767/10/how-to-change-dns-for-a-domain/)
 - [Host Records en Namecheap](https://www.namecheap.com/support/knowledgebase/article.aspx/434/2237/how-do-i-set-up-host-records-for-a-domain/)
 - [DNSSEC con Custom DNS en Namecheap](https://www.namecheap.com/support/knowledgebase/article.aspx/9722/2232/managing-dnssec-for-domains-pointed-to-custom-dns/)
+- [Private Email con DNS de terceros](https://www.namecheap.com/support/knowledgebase/article.aspx/1340/2176/namecheap-private-email-records-for-domains-with-thirdparty-dns/)
+- [DKIM de Namecheap Private Email](https://www.namecheap.com/support/knowledgebase/article.aspx/10383/2176/how-to-set-up-a-dkim-record-for-private-email/)

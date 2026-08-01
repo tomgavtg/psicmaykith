@@ -2,16 +2,17 @@
 
 import Image from "next/image";
 import { ArrowIcon } from "../icons";
+import { APPOINTMENT_SERVICE_EVENT } from "../../lib/contact/appointment";
 
 export function Services({ services }) {
   function selectService(serviceSlug) {
-    const select = document.querySelector("#service");
     const heading = document.querySelector("#agendar-title");
 
-    if (select) {
-      select.value = serviceSlug;
-      select.dispatchEvent(new Event("change", { bubbles: true }));
-    }
+    window.dispatchEvent(
+      new CustomEvent(APPOINTMENT_SERVICE_EVENT, {
+        detail: { serviceSlug },
+      }),
+    );
 
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",

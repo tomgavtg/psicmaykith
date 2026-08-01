@@ -140,6 +140,8 @@ exponer direcciones en el reporte.
 | FORM-17 | A | Revisar logs de cada status | sólo código, timestamp, request ID y latencia; nunca payload, PII ni token |
 | FORM-18 | M | En móvil, recorrer campos | teclado correcto, `autocomplete`, fuente ≥ 16 px, no zoom forzado y CTA de envío visible |
 | FORM-19 | H | `500/502` controlado y excepción no prevista | no expone stack, proveedor, variables, destinatario ni reglas internas |
+| FORM-20 | H | Fecha vacía, actual, futura, inexistente y pasada | vacía/actual/futura válidas; inexistente/pasada reciben `400`; ninguna respuesta confirma cita |
+| FORM-21 | M | Seleccionar servicio desde una tarjeta | formulario controlado se actualiza y el cambio se anuncia sin enviar ni guardar datos |
 
 Para `FORM-12`, cinco solicitudes por IP durante diez minutos es el máximo perimetral
 especificado. La prueba se ejecuta con una IP autorizada y ventana coordinada para no
@@ -155,6 +157,8 @@ afectar tráfico real. El límite adicional de aplicación queda
 | WA-03 | M | Abrir CTA en Safari iOS y escritorio | no hay página rota, popup bloqueado inesperado ni pérdida de la landing |
 | WA-04 | M | Revisar CTA fijo, flotante y de error | nombre accesible consistente, aviso de datos sensibles cercano y foco visible |
 | WA-05 | M | Probar configuración sin número | CTA no se publica y siguen disponibles formulario/correo conforme a especificación |
+| WA-06 | A | Probar números con menos de 10 o más de 15 dígitos | no se genera ningún enlace ni CTA roto |
+| WA-07 | A | Ingresar `+52 1 56 3955 1234` como valor heredado | se normaliza a `525639551234`; el enlace no conserva el antiguo prefijo móvil `1` |
 | MAIL-01 | M | Activar enlace de correo | destino y evento `click_email` son correctos, sin PII en analítica |
 
 ## Casos de privacidad, consentimiento y analítica

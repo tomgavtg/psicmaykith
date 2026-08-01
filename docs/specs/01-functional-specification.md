@@ -51,9 +51,11 @@ Presenta primero dos alternativas equivalentes:
 Aviso cercano a ambos controles: “Por tu privacidad, evita compartir información
 clínica o sensible por este medio.”
 
-El formulario contiene nombre, correo, teléfono opcional, servicio, modalidad, día u
-horario, mensaje opcional, aceptación obligatoria del aviso de privacidad, honeypot y
-Turnstile. Usa `autocomplete`, tipos de teclado apropiados y campos de 16 px o más.
+El formulario contiene nombre, correo, teléfono opcional, servicio, modalidad, fecha
+preferida opcional, horario preferido, mensaje opcional, aceptación obligatoria del
+aviso de privacidad, honeypot y Turnstile. La fecha sólo solicita una preferencia, no
+representa disponibilidad ni confirma una cita. Usa `autocomplete`, tipos de teclado
+apropiados y campos de 16 px o más.
 
 ## Flujo del formulario
 
@@ -70,8 +72,8 @@ Turnstile. Usa `autocomplete`, tipos de teclado apropiados y campos de 16 px o m
 7. No hay persistencia. Los logs registran código de resultado, timestamp, request ID y
    latencia, nunca payload, correo, teléfono, nombre ni texto.
 8. En éxito se limpia el formulario, se emite `generate_lead` sin PII y se muestra el
-   mensaje editable. En error conserva los campos localmente, ofrece reintentar y
-   WhatsApp como alternativa.
+   mensaje editable aclarando que la cita requiere confirmación. En error conserva los
+   campos sólo en memoria, ofrece reintentar y WhatsApp o correo como alternativa.
 
 Respuestas previstas: `200` éxito, `400` entrada inválida, `403` origen o Turnstile,
 `413` cuerpo excesivo, `415` tipo no admitido, `429` límite excedido, `500/502` fallo

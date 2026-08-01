@@ -21,7 +21,8 @@ export const contactSettings = defineType({
       name: "whatsappNumber",
       title: "Número de WhatsApp",
       type: "string",
-      description: "Sólo dígitos, con código de país, sin +, espacios o guiones.",
+      description:
+        "Sólo dígitos, con código de país, sin +, espacios o guiones. Para México usar 52 + 10 dígitos, sin el antiguo prefijo 1.",
       validation: (Rule) =>
         Rule.required().regex(/^\d{10,15}$/, {
           name: "número internacional",

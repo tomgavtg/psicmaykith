@@ -169,7 +169,7 @@ export async function POST(request) {
       from,
       to: [to],
       replyTo: parsed.data.email,
-      subject: `Solicitud de información: ${parsed.data.service}`,
+      subject: `Solicitud de cita: ${parsed.data.service}`,
       html: buildLeadEmail(parsed.data),
     });
 
@@ -181,7 +181,7 @@ export async function POST(request) {
     }
 
     return json(
-      "Gracias. Tu solicitud fue enviada; recibirás respuesta en el plazo indicado.",
+      "Gracias. Recibimos tu solicitud de cita; la fecha se confirmará después de revisar disponibilidad.",
       200,
     );
   } catch {

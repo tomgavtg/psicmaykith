@@ -58,7 +58,7 @@ persona ni se capturan expedientes.
 | --- | --- | --- |
 | `email` | email | correo público aprobado |
 | `phoneDisplay` | string | formato legible |
-| `whatsappNumber` | string | sólo dígitos, código de país, sin `+` |
+| `whatsappNumber` | string | sólo dígitos y código de país; para México, `52` + 10 dígitos, sin `+` ni el antiguo prefijo `1` |
 | `whatsappMessage` | text | mensaje breve sin datos sensibles |
 | `locationName` | string | zona aprobada, evita domicilio si no es público |
 | `address` | object | opcional, sólo datos publicables |
@@ -68,6 +68,10 @@ persona ni se capturan expedientes.
 | `responseTimeCopy` | string | sólo con SLA operativo |
 | `successMessage` | text | sin confirmar cita |
 | `errorMessage` | text | ofrece alternativa |
+
+La fecha preferida de una solicitud es un dato transitorio del formulario y no forma
+parte del contenido de Sanity. Se valida como fecha actual o futura en la zona horaria
+de Ciudad de México, se incluye sólo en el correo de solicitud y no confirma una cita.
 
 ## `seoSettings` — singleton
 

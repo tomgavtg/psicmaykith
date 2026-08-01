@@ -7,6 +7,7 @@ const validLead = {
   phone: "+52 55 0000 0000",
   service: "servicio-uno",
   modality: "En línea",
+  preferredDate: "2099-08-15",
   preferredSchedule: "Horario flexible",
   message: "Deseo conocer disponibilidad.",
   privacyAccepted: true,
@@ -46,5 +47,22 @@ describe("contactSchema", () => {
         name: "https://spam.example",
       }).success,
     ).toBe(false);
+  });
+
+  it("rechaza fechas inexistentes o pasadas", () => {
+    expect(
+      contactSchema.safeParse({ ...validLead, preferredDate: "2026-02-30" })
+        .success,
+    ).toBe(false);
+    expect(
+      contactSchema.safeParse({ ...validLead, preferredDate: "2020-01-01" })
+        .success,
+    ).toBe(false);
+  });
+
+  it("permite omitir una fecha específica", () => {
+    expect(
+      contactSchema.safeParse({ ...validLead, preferredDate: "" }).success,
+    ).toBe(true);
   });
 });

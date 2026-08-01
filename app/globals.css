@@ -67,6 +67,16 @@ a {
   background: var(--sage-200);
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .page-shell {
   min-height: 100vh;
 }
@@ -592,6 +602,10 @@ a {
 .response-time {
   color: var(--muted);
   font-size: 0.87rem;
+}
+
+.contact-email-link {
+  margin-top: 0.75rem;
 }
 
 .pending-contact,

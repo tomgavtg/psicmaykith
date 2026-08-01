@@ -16,6 +16,8 @@ responsables correspondientes.
   explícitos de publicación.
 - [x] Docker y Docker Compose se aprobaron como rutas adicionales de desarrollo y
   portabilidad; Vercel permanece como destino de Production.
+- [x] La v1 solicita servicio, modalidad, fecha opcional y horario preferido; no simula
+  disponibilidad ni confirma automáticamente una cita.
 
 ## A. Preguntas para la psicóloga
 
@@ -26,9 +28,13 @@ responsables correspondientes.
   ofrece efectivamente sus servicios? ¿Atiende a menores?
 - [ ] ¿Cuáles son los tres o cuatro servicios, modalidades, duración, honorarios,
   horarios y zona/dirección que desea publicar?
-- [ ] ¿Cuál es el número de WhatsApp Business con código de país, sólo dígitos, y quién
-  es su titular? ¿Cuál es el mensaje inicial aprobado?
-- [ ] ¿Qué correo recibirá solicitudes y en qué plazo real se responderán?
+- [x] Número de WhatsApp Business confirmado: `+52 56 3955 1234`; valor técnico
+  `525639551234`, sin el antiguo prefijo móvil mexicano `1`.
+- [ ] Confirmar titular operativo del número y aprobar el mensaje inicial definitivo.
+- [x] Se creó el buzón empresarial público
+  `contacto@psicologamayumikitahara.com` en Namecheap Private Email.
+- [ ] Confirmar si `contacto@psicologamayumikitahara.com` será también
+  `LEADS_TO_EMAIL` y en qué plazo real se responderán las solicitudes.
 - [ ] ¿Quién atiende mensajes que indiquen crisis y cuál es el protocolo operativo sin
   presentar WhatsApp o el sitio como servicio de emergencia?
 - [ ] ¿Qué retrato e imágenes del espacio se usarán? Entregar originales, textos
@@ -37,6 +43,8 @@ responsables correspondientes.
 
 ## B. Producto, contenido y legal
 
+- [x] Crear repositorio documental con borradores separados para sitio/contacto,
+  psicoterapia, aviso simplificado y consentimiento de datos sensibles.
 - [ ] Obtener revisión jurídica vigente en México del aviso de privacidad, cookies,
   finalidades, derechos, transferencias, incidentes, menores y datos sensibles
   accidentales.
@@ -45,6 +53,8 @@ responsables correspondientes.
 - [ ] Definir si se conserva el campo de mensaje libre o se sustituye por una pregunta
   más acotada para reducir datos clínicos accidentales.
 - [ ] Definir cómo acreditar versión/aceptación del aviso sin crear una base de leads.
+- [ ] Completar y aprobar los campos bloqueantes inventariados en
+  `docs/legal/privacy-notices/` antes de convertir los borradores `v0.1` en `v1.0`.
 - [ ] Definir retención y borrado en Resend, buzón receptor, logs y analítica; revisar
   contratos/DPA, subencargados y transferencias de todos los proveedores.
 - [ ] Elegir solución, categorías, texto, plazo y revocación del consentimiento.
@@ -59,8 +69,16 @@ responsables correspondientes.
   `psicologamayumikitahara.com` como dominio y
   `https://www.psicologamayumikitahara.com` como URL canónica.
 - [ ] Confirmar titular, responsables y ventana de cambio del dominio.
-- [ ] Reclamar ambos hostnames en el proyecto Vercel actual y reemplazar el certificado
-  vencido de `www`; el apex aún apunta a un A histórico de Namecheap.
+- [x] La aplicación se desplegó en Vercel y se obtuvieron los destinos específicos del
+  proyecto para apex y `www`.
+- [x] Completar la delegación hacia Cloudflare y publicar A/CNAME web, MX, SPF, DKIM,
+  DMARC, SRV y CNAME de autoconfiguración; la consulta pública confirma HTTPS y
+  redirección canónica.
+- [x] Confirmar públicamente los nameservers asignados por Cloudflare; los valores
+  completos se conservan fuera del repositorio.
+- [ ] Probar recepción y envío del buzón desde webmail y desde Gmail por IMAP/SMTP.
+- [ ] Decidir y probar la activación de proxy web de Cloudflare con Full (strict), sin
+  afectar certificados, Vercel ni correo.
 - [ ] Confirmar planes de Cloudflare, Vercel, Sanity y Resend antes de diseñar controles
   dependientes del plan.
 - [ ] Resolver el rate limit solicitado: Cloudflare Business admite la ventana de diez

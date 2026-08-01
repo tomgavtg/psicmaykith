@@ -1,10 +1,19 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { buildLeadEmail, escapeHtml } from "../lib/contact/email";
 import {
+  formatPreferredDate,
+  getTodayInMexico,
+  isCurrentOrFuturePreferredDate,
+  isValidPreferredDate,
+} from "../lib/contact/appointment";
+import {
   clearRateLimitsForTests,
   consumeRateLimit,
 } from "../lib/contact/rate-limit";
-import { buildWhatsAppUrl } from "../lib/contact/whatsapp";
+import {
+  buildWhatsAppUrl,
+  normalizeWhatsAppNumber,
+} from "../lib/contact/whatsapp";
 
 describe("buildWhatsAppUrl", () => {
   it("normaliza el número y codifica el mensaje", () => {
@@ -13,8 +22,41 @@ describe("buildWhatsAppUrl", () => {
     );
   });
 
+  it("elimina el antiguo prefijo móvil 1 de México", () => {
+    expect(normalizeWhatsAppNumber("+52 1 56 3955 1234")).toBe(
+      "525639551234",
+    );
+    expect(buildWhatsAppUrl("+52 1 56 3955 1234", "Hola")).toBe(
+      "https://wa.me/525639551234?text=Hola",
+    );
+  });
+
   it("no crea enlace cuando falta el número", () => {
     expect(buildWhatsAppUrl("", "Hola")).toBe("");
+  });
+
+  it("rechaza números demasiado cortos y omite text cuando falta mensaje", () => {
+    expect(buildWhatsAppUrl("12345", "Hola")).toBe("");
+    expect(buildWhatsAppUrl("525512345678", "")).toBe(
+      "https://wa.me/525512345678",
+    );
+  });
+});
+
+describe("preferencia de fecha", () => {
+  it("valida fechas reales y evita fechas anteriores en México", () => {
+    const now = new Date("2026-08-02T03:00:00.000Z");
+
+    expect(getTodayInMexico(now)).toBe("2026-08-01");
+    expect(isValidPreferredDate("2026-02-29")).toBe(false);
+    expect(isValidPreferredDate("2028-02-29")).toBe(true);
+    expect(isCurrentOrFuturePreferredDate("2026-08-01", now)).toBe(true);
+    expect(isCurrentOrFuturePreferredDate("2026-07-31", now)).toBe(false);
+  });
+
+  it("presenta la fecha sin cambiarla de día", () => {
+    expect(formatPreferredDate("2026-08-15")).toContain("15");
+    expect(formatPreferredDate("")).toBe("Sin fecha específica");
   });
 });
 
@@ -30,11 +72,13 @@ describe("correo seguro", () => {
       phone: "",
       service: "servicio-uno",
       modality: "En línea",
+      preferredDate: "2026-08-15",
       preferredSchedule: "Horario flexible",
       message: "<img src=x onerror=alert(1)>",
     });
 
     expect(html).toContain("&lt;b&gt;Nombre&lt;/b&gt;");
+    expect(html).toContain("15 de agosto de 2026");
     expect(html).not.toContain("<img src=x");
   });
 });

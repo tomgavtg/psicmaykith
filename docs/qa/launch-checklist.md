@@ -87,6 +87,10 @@ tokens, cookies, direcciones personales ni payloads de formulario.
   WhatsApp.
 - [ ] Logs de todos los status sólo contienen metadatos permitidos, nunca payload o PII.
 - [ ] Éxito limpia campos y emite un solo `generate_lead` sin PII; error no lo emite.
+- [ ] Fecha preferida vacía/actual/futura funciona; fecha inexistente o pasada se
+  rechaza y ningún mensaje presenta la cita como confirmada.
+- [ ] Seleccionar un servicio desde su tarjeta actualiza el formulario y anuncia el
+  cambio a tecnologías de asistencia.
 
 ## WhatsApp
 
@@ -96,6 +100,9 @@ tokens, cookies, direcciones personales ni payloads de formulario.
 - [ ] Apertura aprobada en escritorio sin romper ni perder la landing.
 - [ ] CTA fijo/flotante/de error tiene nombre accesible, foco visible y no tapa controles.
 - [ ] Sin número configurado, el CTA no se publica y queda otra vía válida.
+- [ ] Números con menos de 10 o más de 15 dígitos tampoco publican un CTA.
+- [ ] El número visible es `+52 56 3955 1234` y todos los enlaces resuelven a
+  `https://wa.me/525639551234`, sin el antiguo prefijo móvil mexicano `1`.
 
 ## Privacidad, consentimiento y analítica
 

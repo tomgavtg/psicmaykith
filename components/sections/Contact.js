@@ -23,12 +23,12 @@ export function Contact({
         <div className="contact-heading">
           <p className="section-kicker">Agendar</p>
           <h2 id="agendar-title" className="section-title" tabIndex={-1}>
-            Elige la forma más cómoda de iniciar
+            Solicita una primera cita
           </h2>
           <p className="section-intro">
-            Solicita información sobre disponibilidad por WhatsApp o mediante el
-            formulario. No necesitas explicar el motivo de consulta en este primer
-            contacto.
+            Comparte sólo tus preferencias de servicio, modalidad, fecha y horario.
+            La cita se confirma personalmente después de revisar disponibilidad; no
+            necesitas explicar el motivo de consulta en este primer contacto.
           </p>
         </div>
 
@@ -40,8 +40,8 @@ export function Contact({
             <p className="section-kicker">Ruta directa</p>
             <h3 id="whatsapp-title">WhatsApp Business</h3>
             <p>
-              Envía un mensaje breve para preguntar por servicios, modalidades y
-              disponibilidad.
+              Envía un mensaje breve para solicitar una cita o preguntar por servicios,
+              modalidades y disponibilidad.
             </p>
             {whatsappUrl ? (
               <TrackedLink
@@ -60,6 +60,16 @@ export function Contact({
                 [POR DEFINIR: número de WhatsApp Business]
               </p>
             )}
+            {contactSettings.email ? (
+              <TrackedLink
+                className="button button-secondary contact-email-link"
+                href={`mailto:${contactSettings.email}`}
+                eventName="click_email"
+                eventParameters={{ location: "contact" }}
+              >
+                Escribir por correo
+              </TrackedLink>
+            ) : null}
             <p className="privacy-reminder">
               Por tu privacidad, evita compartir información clínica o sensible por
               este medio.
@@ -72,10 +82,11 @@ export function Contact({
           </aside>
 
           <div className="form-panel">
-            <h3>Formulario de contacto</h3>
+            <h3>Solicitud de cita</h3>
             <p>
-              Los datos se utilizan únicamente para responder tu solicitud. El sitio
-              no crea un expediente ni almacena leads en una base de datos.
+              Indica una fecha y horario preferidos. Los datos se utilizan únicamente
+              para responder; enviar el formulario no confirma la cita ni crea un
+              expediente.
             </p>
             <ContactForm
               services={services}

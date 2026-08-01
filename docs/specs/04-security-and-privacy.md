@@ -39,7 +39,7 @@ una persona especialista en privacidad en México.
 | nombre | identificar la solicitud | correo a la profesional | transitoria en la app; copia en proveedores de correo |
 | correo | responder y `replyTo` | Resend y buzón de destino | según retención aprobada |
 | teléfono opcional | canal alternativo solicitado | cuerpo del correo | según retención aprobada |
-| servicio, modalidad y horario | contextualizar disponibilidad | cuerpo del correo | según retención aprobada |
+| servicio, modalidad, fecha opcional y horario | contextualizar disponibilidad sin confirmar cita | cuerpo del correo | según retención aprobada |
 | mensaje opcional | duda breve no clínica | cuerpo del correo | según retención aprobada |
 | aceptación y versión del aviso | acreditar el flujo presentado | correo o metadato mínimo `[POR DEFINIR: mecanismo legal y técnico]` | `[POR DEFINIR: plazo]` |
 | token Turnstile | reducir abuso | Cloudflare Siteverify | vida técnica del proveedor |
@@ -275,7 +275,7 @@ El log de aplicación sólo puede contener:
 - versión de despliegue.
 
 No puede contener IP, `Origin` completo arbitrario, query string, cookies, cabeceras,
-token Turnstile, payload, nombre, correo, teléfono, servicio, horario o mensaje. Los
+token Turnstile, payload, nombre, correo, teléfono, servicio, fecha, horario o mensaje. Los
 SDK de errores deben desactivar request bodies, breadcrumbs de campos y captura de
 datos por defecto. Los logs de plataforma y seguridad deben revisarse por separado,
 pues Cloudflare/Vercel pueden conservar IP y metadatos.
