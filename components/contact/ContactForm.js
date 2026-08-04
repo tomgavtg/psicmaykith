@@ -6,6 +6,7 @@ import {
   APPOINTMENT_SERVICE_EVENT,
   formatTimeRange,
 } from "../../lib/contact/appointment";
+import { EMPTY_OPTIONS, safeOptions } from "../../lib/content/options";
 import { TurnstileWidget } from "./TurnstileWidget";
 
 const emptySchedulePreferences = () =>
@@ -24,14 +25,18 @@ const initialValues = {
 };
 
 export function ContactForm({
-  services,
-  modalities,
-  availableWeekdays,
-  availableStartTimes,
-  successMessage,
-  errorMessage,
+  services = EMPTY_OPTIONS,
+  modalities = EMPTY_OPTIONS,
+  availableWeekdays = EMPTY_OPTIONS,
+  availableStartTimes = EMPTY_OPTIONS,
+  successMessage = "Recibimos tu solicitud; la cita se confirmará personalmente.",
+  errorMessage = "No pudimos enviar tu solicitud. Intenta nuevamente.",
   hasWhatsApp,
 }) {
+  const serviceOptions = safeOptions(services);
+  const modalityOptions = safeOptions(modalities);
+  const weekdayOptions = safeOptions(availableWeekdays);
+  const startTimeOptions = safeOptions(availableStartTimes);
   const [values, setValues] = useState(initialValues);
   const [turnstileToken, setTurnstileToken] = useState("");
   const [resetKey, setResetKey] = useState(0);
@@ -40,7 +45,7 @@ export function ContactForm({
   const [started, setStarted] = useState(false);
   const [selectionAnnouncement, setSelectionAnnouncement] = useState("");
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
-  const selectedService = services.find(
+  const selectedService = serviceOptions.find(
     (service) => service.slug === values.service,
   );
   const selectedDuration = selectedService?.durationMinutes || 50;
@@ -51,7 +56,7 @@ export function ContactForm({
 
   useEffect(() => {
     function selectRequestedService(event) {
-      const service = services.find(
+      const service = serviceOptions.find(
         (item) => item.slug === event.detail?.serviceSlug,
       );
 
@@ -71,7 +76,7 @@ export function ContactForm({
         APPOINTMENT_SERVICE_EVENT,
         selectRequestedService,
       );
-  }, [services]);
+  }, [serviceOptions]);
 
   function markStarted() {
     if (!started) {
@@ -207,7 +212,7 @@ export function ContactForm({
             required
           >
             <option value="">Selecciona una opción</option>
-            {services.map((service) => (
+            {serviceOptions.map((service) => (
               <option key={service.slug} value={service.slug}>
                 {service.name}
               </option>
@@ -226,7 +231,7 @@ export function ContactForm({
             required
           >
             <option value="">Selecciona una opción</option>
-            {modalities.map((modality) => (
+            {modalityOptions.map((modality) => (
               <option key={modality} value={modality}>
                 {modality}
               </option>
@@ -257,7 +262,7 @@ export function ContactForm({
                   required
                 >
                   <option value="">Selecciona un día</option>
-                  {availableWeekdays.map((day) => (
+                  {weekdayOptions.map((day) => (
                     <option key={day} value={day}>
                       {day}
                     </option>
@@ -279,7 +284,7 @@ export function ContactForm({
                       ? "Selecciona un horario"
                       : "Selecciona primero un servicio"}
                   </option>
-                  {availableStartTimes.map((startTime) => (
+                  {startTimeOptions.map((startTime) => (
                     <option key={startTime} value={startTime}>
                       {formatTimeRange(startTime, selectedDuration)}
                     </option>

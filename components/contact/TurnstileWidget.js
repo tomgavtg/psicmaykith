@@ -8,6 +8,19 @@ export function TurnstileWidget({ siteKey, onToken, resetKey }) {
   const widgetIdRef = useRef(null);
   const [verificationMessage, setVerificationMessage] = useState("");
 
+  const removeWidget = useCallback(() => {
+    const widgetId = widgetIdRef.current;
+    widgetIdRef.current = null;
+
+    if (widgetId !== null && window.turnstile) {
+      try {
+        window.turnstile.remove(widgetId);
+      } catch {
+        // El widget puede haber sido retirado previamente por Fast Refresh.
+      }
+    }
+  }, []);
+
   const renderWidget = useCallback(() => {
     if (
       !siteKey ||
@@ -44,15 +57,21 @@ export function TurnstileWidget({ siteKey, onToken, resetKey }) {
 
   useEffect(() => {
     renderWidget();
-  }, [renderWidget]);
+    return removeWidget;
+  }, [removeWidget, renderWidget]);
 
   useEffect(() => {
-    if (widgetIdRef.current !== null && window.turnstile) {
-      window.turnstile.reset(widgetIdRef.current);
+    if (resetKey === 0) return undefined;
+
+    removeWidget();
+    const renderTimer = window.setTimeout(() => {
       setVerificationMessage("");
       onToken("");
-    }
-  }, [onToken, resetKey]);
+      renderWidget();
+    }, 0);
+
+    return () => window.clearTimeout(renderTimer);
+  }, [onToken, removeWidget, renderWidget, resetKey]);
 
   if (!siteKey) {
     return (

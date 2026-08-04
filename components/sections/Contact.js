@@ -83,9 +83,9 @@ export function Contact({
           <div className="form-panel">
             <h3>Solicitud de cita</h3>
             <p>
-              Indica una fecha y horario preferidos. Los datos se utilizan únicamente
-              para responder; enviar el formulario no confirma la cita ni crea un
-              expediente.
+              Indica tres combinaciones de día y horario. Los datos se utilizan
+              únicamente para responder; enviar el formulario no confirma la cita ni
+              crea un expediente.
             </p>
             <ContactForm
               services={services}
