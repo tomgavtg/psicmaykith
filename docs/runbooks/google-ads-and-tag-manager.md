@@ -1,38 +1,117 @@
-# Runbook: Google Ads y Tag Manager
+# Runbook: GA4, Google Ads y Google Tag Manager
 
-## Precondiciones
+## Estado implementado
 
-Cuenta empresarial con acceso de mínimo privilegio, contenedor GTM y cuenta Google Ads
-`[POR DEFINIR]`, aviso de privacidad aprobado, consentimiento implementado y dominio
-verificado. No colocar IDs reales en documentos ni código; usar variables de Vercel.
+La aplicación implementa consentimiento básico: no descarga Google Tag Manager ni
+envía eventos mientras la persona no acepte analítica o marketing. La preferencia se
+guarda por categorías durante 180 días, se puede cambiar desde el enlace del pie de
+página y mantiene `ad_personalization=denied` aun al aceptar marketing.
 
-## Configuración
+La capa de datos sólo admite estos eventos y parámetros:
 
-1. Crear espacios de trabajo separados y registrar propietario.
-2. Configurar `NEXT_PUBLIC_GTM_ID` sólo en el entorno correspondiente.
-3. Mantener el loader bloqueado hasta consentimiento analítico/marketing afirmativo.
-4. Crear variables de capa de datos con lista permitida; nunca habilitar payload del
-   formulario ni DOM scraping.
-5. Mapear `generate_lead` como conversión principal y `click_whatsapp` como secundaria
-   mientras se valida calidad.
-6. Definir nombres UTM y plantillas de seguimiento sin PII ni términos clínicos.
-7. Probar Preview/Tag Assistant con datos ficticios y publicar una versión documentada.
+| Evento | Parámetros disponibles |
+| --- | --- |
+| `view_landing` | `path`, `referrer_class`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_content` |
+| `click_whatsapp` | `location` |
+| `form_start` | ninguno |
+| `generate_lead` | `method` |
+| `click_email` | `location` |
 
-## Eventos permitidos
+No se envían campos del formulario, identificadores de clic almacenados manualmente,
+`utm_term`, URL de referencia completa ni servicio solicitado.
 
-`view_landing`, `click_whatsapp`, `form_start`, `generate_lead`, `click_email`, con los
-parámetros enumerados en `05-marketing-analytics-and-seo.md`.
+## 1. Crear los activos
 
-## Prohibiciones
+1. Crear una propiedad GA4 empresarial y un flujo web para
+   `https://www.psicologamayumikitahara.com`.
+2. Crear un contenedor web de Google Tag Manager exclusivo para Production.
+3. Crear otro contenedor para Preview sólo si realmente se medirá ese ambiente.
+4. Vincular Google Ads con GA4 usando cuentas nominales, MFA y mínimo privilegio.
+5. Registrar propietario, suplente y propósito de cada activo fuera del repositorio.
+6. No configurar Enhanced Conversions, User-ID, Google Signals, remarketing ni
+   audiencias relacionadas con salud sin una evaluación legal y de políticas separada.
 
-No enviar nombre, correo, teléfono, mensaje, diagnóstico, síntomas o datos de salud. No
-activar Enhanced Conversions con datos del formulario. No cargar etiquetas antes de
-consentimiento ni usar URLs/UTMs que codifiquen información sensible.
+## 2. Configurar Vercel
 
-## Validación
+1. Abrir **Vercel → Project → Settings → Environment Variables**.
+2. Crear `NEXT_PUBLIC_GTM_ID` con el valor `GTM-...` del contenedor.
+3. Marcar únicamente **Production** para el contenedor productivo.
+4. Si existe un contenedor de prueba, crear un valor distinto con alcance **Preview**.
+5. No crear una variable para GA4 en la aplicación: el ID `G-...` vive en GTM.
+6. Guardar y generar un deployment nuevo; las variables públicas se incorporan durante
+   el build.
 
-En una sesión nueva y antes de consentir, Network debe mostrar cero solicitudes a
-Google Analytics/Ads/Tag Manager. Tras rechazar, permanece en cero. Tras aceptar, cada
-evento se dispara una vez y no contiene PII. Preview nunca contamina producción.
+Si `NEXT_PUBLIC_GTM_ID` está vacío o no tiene formato `GTM-...`, la aplicación no carga
+GTM. Nunca colocar el ID directamente en un componente.
 
-Revisar políticas y configuración nuevamente antes de lanzar campañas.
+## 3. Configurar GTM
+
+1. Crear variables de capa de datos para cada parámetro permitido de la tabla anterior.
+2. Crear disparadores **Custom Event** con coincidencia exacta para los cinco eventos.
+3. Crear una etiqueta **Google tag** con el ID `G-...` de GA4.
+4. Desactivar medición automática que capture formularios, búsquedas o clics no
+   aprobados. No habilitar DOM scraping.
+5. Crear etiquetas de evento GA4 para los cinco eventos y mapear sólo los parámetros
+   que corresponden a cada uno.
+6. En **Consent Settings**, exigir `analytics_storage` para GA4.
+7. Crear en Google Ads una acción de conversión web para `generate_lead`; usarla como
+   conversión principal sólo después de validar que representa envíos exitosos.
+8. Crear opcionalmente una conversión secundaria para `click_whatsapp`.
+9. En las etiquetas de Google Ads exigir `ad_storage` y `ad_user_data`. Mantener
+   personalización y remarketing deshabilitados.
+10. No crear variables de nombre, correo, teléfono, mensaje, selección de servicio ni
+    elementos del DOM.
+
+## 4. Convención de campañas
+
+Usar únicamente valores normalizados sin información de una persona o condición:
+
+```text
+utm_source:  google | bing | facebook | instagram | meta | tiktok | linkedin | newsletter | direct
+utm_medium:  cpc | paid_social | organic | referral | email | social
+utm_campaign y utm_content: letras, números, punto, guion o guion bajo; máximo 100 caracteres
+```
+
+Ejemplo permitido:
+
+```text
+https://www.psicologamayumikitahara.com/?utm_source=google&utm_medium=cpc&utm_campaign=consulta_mx_brand&utm_content=anuncio_1
+```
+
+No usar diagnósticos, síntomas, nombre, teléfono, correo ni audiencias clínicas en una
+UTM. `utm_term` se descarta deliberadamente.
+
+## 5. Validar y publicar el contenedor
+
+1. Abrir una ventana incógnita con almacenamiento y cookies limpios.
+2. Antes de elegir, comprobar en Network que no existen solicitudes a
+   `googletagmanager.com`, `google-analytics.com` o `doubleclick.net`.
+3. Elegir **Rechazar todo** y repetir la comprobación.
+4. En otro perfil limpio elegir **Sólo analítica**: GTM/GA4 pueden cargar, pero las
+   etiquetas publicitarias deben permanecer bloqueadas.
+5. En otro perfil elegir **Aceptar todo** y validar los eventos con Tag Assistant.
+6. En cada payload comprobar que sólo aparecen los parámetros de la tabla.
+7. Enviar un formulario sintético coordinado y confirmar un único `generate_lead`.
+8. Cambiar la preferencia a rechazo desde el pie y confirmar que no se envían nuevos
+   eventos. Borrar manualmente cookies previas durante la prueba de revocación.
+9. Publicar en GTM una versión con nombre, fecha, responsable y ticket de aprobación.
+10. Verificar nuevamente Network y GA4 DebugView sobre el deployment productivo.
+
+Google documenta que el estado predeterminado debe definirse antes de enviar medición y
+actualizarse inmediatamente cuando cambia la elección. Esta implementación conserva
+todos los estados en `denied` hasta la acción afirmativa y no carga el tag en rechazo.
+
+## Bloqueos antes de campañas
+
+- IDs, responsables y objetivos numéricos aprobados.
+- Aviso de privacidad definitivo y consentimiento revisado legalmente.
+- Validación de las políticas vigentes de publicidad relacionada con salud.
+- Contenedor sin etiquetas automáticas, PII, Enhanced Conversions ni audiencias
+  sensibles.
+- Evidencia del checklist en `docs/qa/launch-checklist.md`.
+
+## Fuentes oficiales
+
+- [Configurar el modo de consentimiento](https://developers.google.com/tag-platform/security/guides/consent?hl=es-419)
+- [Depurar el modo de consentimiento con Tag Assistant](https://developers.google.com/tag-platform/security/guides/consent-debugging)
+- [Política de publicidad personalizada: salud](https://support.google.com/adspolicy/answer/143465?hl=es-419)

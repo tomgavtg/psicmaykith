@@ -80,7 +80,7 @@ export const professionalProfile = defineType({
       title: "Cédula profesional",
       type: "string",
       description: "Publicar únicamente después de verificarla.",
-      validation: (Rule) => Rule.max(40),
+      validation: (Rule) => Rule.required().min(4).max(40),
     }),
     defineField({
       name: "education",
@@ -100,6 +100,7 @@ export const professionalProfile = defineType({
           ],
         }),
       ],
+      validation: (Rule) => Rule.required().min(1).max(6),
     }),
     defineField({
       name: "certifications",

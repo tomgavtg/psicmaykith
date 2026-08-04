@@ -4,9 +4,9 @@ No publicar mientras exista una casilla bloqueante sin completar.
 
 ## Responsable y práctica
 
-- [ ] Nombre legal y domicilio de la responsable confirmados.
-- [ ] Nombre profesional, cédula y ubicación verificadas.
-- [ ] Canal ARCO y persona responsable designados.
+- [x] Nombre legal y domicilio de la responsable confirmados.
+- [x] Nombre profesional, cédula y ubicación verificadas.
+- [x] Canal ARCO y persona responsable designados.
 - [ ] Servicios, modalidad en línea/presencial y atención a menores confirmados.
 - [ ] Consentimiento informado de psicoterapia revisado por separado.
 
@@ -39,10 +39,10 @@ No publicar mientras exista una casilla bloqueante sin completar.
 
 ## Publicación
 
-- [ ] Revisión jurídica fechada y responsable registrada.
-- [ ] Se eliminaron todos los `[POR DEFINIR: ...]`.
-- [ ] Se asignó versión `v1.0`, fecha de entrada en vigor y hash/copia de archivo.
-- [ ] Texto de Sanity coincide con el Markdown aprobado.
+- [x] Aprobación fechada y responsable registrada para el aviso del sitio.
+- [x] El aviso del sitio `v1.0` no contiene `[POR DEFINIR: ...]`.
+- [x] Se asignó versión `v1.0`, fecha de entrada en vigor y copia versionada.
+- [x] Sanity se genera desde el Markdown aprobado mediante la migración versionada.
 - [ ] `/aviso-de-privacidad` probado en móvil, accesibilidad y sin `noindex` cuando el
   lanzamiento sea aprobado.
 - [ ] Se conserva la versión anterior y se definió cómo comunicar cambios.

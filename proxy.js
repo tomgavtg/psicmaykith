@@ -6,6 +6,9 @@ export function contentSecurityPolicy(nonce, isAdmin, isDevelopment) {
     `'nonce-${nonce}'`,
     "'strict-dynamic'",
     "https://challenges.cloudflare.com",
+    "https://www.googletagmanager.com",
+    "https://connect.facebook.net",
+    "https://analytics.tiktok.com",
   ];
 
   if (isDevelopment) {
@@ -23,8 +26,15 @@ export function contentSecurityPolicy(nonce, isAdmin, isDevelopment) {
     "https://challenges.cloudflare.com",
     "https://www.google-analytics.com",
     "https://region1.google-analytics.com",
+    "https://*.google-analytics.com",
+    "https://*.analytics.google.com",
+    "https://www.googletagmanager.com",
+    "https://www.googleadservices.com",
+    "https://*.doubleclick.net",
     "https://www.facebook.com",
+    "https://connect.facebook.net",
     "https://analytics.tiktok.com",
+    "https://*.tiktok.com",
   ];
 
   if (isAdmin) {
@@ -40,7 +50,7 @@ export function contentSecurityPolicy(nonce, isAdmin, isDevelopment) {
     "default-src 'self'",
     `script-src ${scriptSources.join(" ")}`,
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob: https://cdn.sanity.io",
+    "img-src 'self' data: blob: https://cdn.sanity.io https://www.google-analytics.com https://*.google-analytics.com https://www.googleadservices.com https://*.doubleclick.net https://www.facebook.com https://analytics.tiktok.com https://*.tiktok.com",
     "font-src 'self' data:",
     `connect-src ${connectSources.join(" ")}`,
     "frame-src https://challenges.cloudflare.com",

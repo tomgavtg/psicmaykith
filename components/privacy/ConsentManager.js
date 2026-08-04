@@ -1,16 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import {
+  CONSENT_CHANGE_EVENT,
+  emptyConsent,
+  getStoredConsent,
+  storeConsentPreference,
+} from "../../lib/analytics/consent";
 
 export function ConsentManager() {
-  const [choice, setChoice] = useState(null);
+  const [choice, setChoice] = useState(emptyConsent());
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const initialSync = window.setTimeout(() => {
-      const savedChoice = localStorage.getItem("analytics-consent");
+      const savedChoice = getStoredConsent();
       setChoice(savedChoice);
-      setIsOpen(!savedChoice);
+      setIsOpen(!savedChoice.decided);
     }, 0);
 
     function openSettings() {
@@ -25,11 +31,11 @@ export function ConsentManager() {
   }, []);
 
   function saveChoice(nextChoice) {
-    localStorage.setItem("analytics-consent", nextChoice);
+    const consent = storeConsentPreference(nextChoice);
     window.dispatchEvent(
-      new CustomEvent("consent-change", { detail: nextChoice }),
+      new CustomEvent(CONSENT_CHANGE_EVENT, { detail: consent }),
     );
-    setChoice(nextChoice);
+    setChoice(consent);
     setIsOpen(false);
   }
 
@@ -46,29 +52,44 @@ export function ConsentManager() {
       <div>
         <h2 id="consent-title">Tu privacidad importa</h2>
         <p>
-          Las mediciones de campañas permanecen desactivadas hasta que aceptes. Puedes
-          usar el sitio y contactar sin habilitarlas.
+          La analítica mide el uso agregado del sitio. Marketing atribuye campañas en
+          Google, Meta o TikTok. Ambas permanecen desactivadas hasta que elijas y nunca
+          reciben los campos del formulario. Puedes contactar sin habilitarlas.
         </p>
       </div>
       <div className="consent-actions">
         <button
           type="button"
           className="button button-secondary"
-          onClick={() => saveChoice("rejected")}
+          onClick={() =>
+            saveChoice({ analytics: false, marketing: false })
+          }
         >
-          Rechazar
+          Rechazar todo
+        </button>
+        <button
+          type="button"
+          className="button button-secondary"
+          onClick={() =>
+            saveChoice({ analytics: true, marketing: false })
+          }
+        >
+          Sólo analítica
         </button>
         <button
           type="button"
           className="button button-primary"
-          onClick={() => saveChoice("accepted")}
+          onClick={() =>
+            saveChoice({ analytics: true, marketing: true })
+          }
         >
-          Aceptar medición
+          Aceptar todo
         </button>
       </div>
-      {choice ? (
+      {choice.decided ? (
         <p className="consent-current">
-          Preferencia actual: {choice === "accepted" ? "aceptada" : "rechazada"}.
+          Preferencia actual: analítica {choice.analytics ? "activa" : "inactiva"} y
+          marketing {choice.marketing ? "activo" : "inactivo"}.
         </p>
       ) : null}
     </section>

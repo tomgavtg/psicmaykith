@@ -10,6 +10,15 @@ export function Hero({ profile, contactSettings, globalNotice }) {
   );
   const hasProfessionalName =
     profile.fullName && !profile.fullName.includes("[POR DEFINIR");
+  const credentials = [
+    profile.licenseNumber
+      ? `Cédula profesional: ${profile.licenseNumber}`
+      : null,
+    ...(profile.education || [])
+      .filter((item) => item?.degree && item?.institution)
+      .slice(0, 2)
+      .map((item) => `${item.degree} · ${item.institution}`),
+  ].filter(Boolean);
 
   return (
     <section id="sobre-mi" className="hero section" aria-labelledby="hero-title">
@@ -23,6 +32,14 @@ export function Hero({ profile, contactSettings, globalNotice }) {
           <h1 id="hero-title">{profile.heroTitle || profile.fullName}</h1>
           <p className="hero-headline">{profile.headline}</p>
           <p className="hero-bio">{profile.shortBio}</p>
+
+          {credentials.length ? (
+            <ul className="credential-list" aria-label="Formación profesional">
+              {credentials.map((credential) => (
+                <li key={credential}>{credential}</li>
+              ))}
+            </ul>
+          ) : null}
 
           <ul className="highlight-list" aria-label="Información destacada">
             {(profile.highlights || []).slice(0, 3).map((highlight) => (

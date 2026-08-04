@@ -17,6 +17,16 @@ export async function generateMetadata() {
       process.env.NEXT_PUBLIC_SITE_URL,
   );
 
+  const socialImage = seoSettings.ogImage?.url
+    ? {
+        url: seoSettings.ogImage.url,
+        alt:
+          seoSettings.ogImage.alt ||
+          seoSettings.ogImageAlt ||
+          "Presentación de los servicios de psicoterapia",
+      }
+    : null;
+
   return {
     title: seoSettings.metaTitle,
     description: seoSettings.metaDescription,
@@ -25,19 +35,16 @@ export async function generateMetadata() {
       type: "website",
       locale: "es_MX",
       url: siteUrl,
+      siteName: "Psicóloga Mayumi Kitahara",
       title: seoSettings.metaTitle,
       description: seoSettings.metaDescription,
-      images: seoSettings.ogImage?.url
-        ? [
-            {
-              url: seoSettings.ogImage.url,
-              alt:
-                seoSettings.ogImage.alt ||
-                seoSettings.ogImageAlt ||
-                "Imagen de presentación",
-            },
-          ]
-        : [],
+      ...(socialImage ? { images: [socialImage] } : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoSettings.metaTitle,
+      description: seoSettings.metaDescription,
+      ...(socialImage ? { images: [socialImage] } : {}),
     },
     robots: isPlaceholder ? { index: false, follow: false } : undefined,
   };
@@ -61,22 +68,49 @@ export default async function HomePage() {
     ? null
     : {
         "@context": "https://schema.org",
-        "@type": seoSettings.businessType || "ProfessionalService",
-        name: professionalProfile.fullName,
-        url: siteUrl,
-        ...(professionalProfile.portrait?.url
-          ? { image: professionalProfile.portrait.url }
-          : {}),
-        ...(contactSettings.phoneDisplay
-          ? { telephone: contactSettings.phoneDisplay }
-          : {}),
-        ...(contactSettings.email ? { email: contactSettings.email } : {}),
-        ...(contactSettings.locationName
-          ? { areaServed: contactSettings.locationName }
-          : {}),
-        ...(seoSettings.socialProfiles?.length
-          ? { sameAs: seoSettings.socialProfiles }
-          : {}),
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": `${siteUrl}/#website`,
+            url: siteUrl,
+            name: siteSettings.siteName,
+            inLanguage: "es-MX",
+          },
+          {
+            "@type": seoSettings.businessType || "ProfessionalService",
+            "@id": `${siteUrl}/#professional-service`,
+            name: professionalProfile.fullName,
+            url: siteUrl,
+            description: seoSettings.metaDescription,
+            ...(professionalProfile.portrait?.url
+              ? { image: professionalProfile.portrait.url }
+              : {}),
+            ...(contactSettings.phoneDisplay
+              ? { telephone: contactSettings.phoneDisplay }
+              : {}),
+            ...(contactSettings.email ? { email: contactSettings.email } : {}),
+            ...(seoSettings.areaServed?.length
+              ? { areaServed: seoSettings.areaServed }
+              : contactSettings.serviceAreas?.length
+                ? { areaServed: contactSettings.serviceAreas }
+                : {}),
+            ...(seoSettings.socialProfiles?.length
+              ? { sameAs: seoSettings.socialProfiles }
+              : {}),
+            hasOfferCatalog: {
+              "@type": "OfferCatalog",
+              name: "Servicios de psicoterapia",
+              itemListElement: services.map((service) => ({
+                "@type": "Offer",
+                itemOffered: {
+                  "@type": "Service",
+                  name: service.name,
+                  description: service.shortDescription,
+                },
+              })),
+            },
+          },
+        ],
       };
 
   return (

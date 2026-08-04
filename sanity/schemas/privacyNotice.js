@@ -48,7 +48,30 @@ export const privacyNotice = defineType({
       title: "Identidad de la persona responsable",
       type: "text",
       rows: 3,
-      validation: (Rule) => Rule.required().max(400),
+      validation: (Rule) =>
+        Rule.required()
+          .min(8)
+          .max(400)
+          .custom((value) =>
+            !value || !/^mk\.?$/i.test(value.trim())
+              ? true
+              : "Indica la identidad legal completa; una abreviatura no es suficiente.",
+          ),
+    }),
+    defineField({
+      name: "controllerAddress",
+      title: "Domicilio de la responsable",
+      type: "text",
+      rows: 3,
+      description:
+        "Domicilio profesional aprobado para publicarse en el aviso de privacidad.",
+      validation: (Rule) =>
+        Rule.max(400).custom((value, context) =>
+          context.document?.status !== "approved" ||
+          (typeof value === "string" && value.trim().length >= 10)
+            ? true
+            : "El domicilio es obligatorio al aprobar el aviso.",
+        ),
     }),
     defineField({
       name: "content",
@@ -81,13 +104,30 @@ export const privacyNotice = defineType({
           },
         }),
       ],
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.required().custom((value, context) =>
+          context.document?.status !== "approved" ||
+          (Array.isArray(value) && value.length >= 3)
+            ? true
+            : "Un aviso aprobado debe contener al menos tres bloques estructurados.",
+        ),
     }),
     defineField({
       name: "contactEmail",
       title: "Correo de privacidad",
       type: "string",
       validation: (Rule) => Rule.required().email(),
+    }),
+    defineField({
+      name: "contactWhatsapp",
+      title: "WhatsApp para solicitudes ARCO",
+      type: "string",
+      description:
+        "Sólo dígitos con código de país. Debe ser un canal aprobado para privacidad.",
+      validation: (Rule) =>
+        Rule.required().regex(/^\d{10,15}$/, {
+          name: "número internacional",
+        }),
     }),
   ],
   preview: {

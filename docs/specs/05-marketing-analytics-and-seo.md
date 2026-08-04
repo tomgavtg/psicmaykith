@@ -29,7 +29,9 @@ No usar schema `Physician` por inferencia.
 
 ## UTMs y atribución
 
-Se admiten `utm_source`, `utm_medium`, `utm_campaign`, `utm_content` y `utm_term`.
+Se admiten `utm_source`, `utm_medium`, `utm_campaign` y `utm_content`. `utm_term` se
+descarta para reducir el riesgo de recibir búsquedas o segmentaciones relacionadas con
+salud.
 Las UTMs:
 
 - se leen sólo para analítica consentida;
@@ -47,8 +49,9 @@ Estado inicial: `denied` para almacenamiento analítico y publicitario. Antes de
 acción afirmativa no se descargan GTM, Meta Pixel ni TikTok Pixel y no se disparan
 requests a sus dominios. Rechazar es tan sencillo como aceptar y no afecta funciones.
 
-La elección se conserva sólo durante el plazo aprobado y puede revocarse. El texto,
-categorías, proveedor, plazo y evidencia de consentimiento requieren revisión legal.
+La implementación conserva la elección durante 180 días y permite revocarla desde el
+pie de página. Ese plazo, el texto, las categorías, proveedores y evidencia de
+consentimiento requieren revisión legal antes del lanzamiento.
 Google Consent Mode, si se activa, debe evaluarse específicamente: no se supone que una
 señal “denied” sin cookies equivalga por sí sola a no tratar datos.
 
@@ -57,14 +60,14 @@ señal “denied” sin cookies equivalga por sí sola a no tratar datos.
 | Evento | Disparador | Parámetros permitidos |
 | --- | --- | --- |
 | `view_landing` | primera vista consentida | ruta, referrer clasificado, UTMs saneadas |
-| `click_whatsapp` | clic antes de abrir WhatsApp | ubicación del CTA, servicio slug |
-| `form_start` | primera interacción | servicio slug opcional |
-| `generate_lead` | confirmación 200 del servidor | método `form`, servicio slug |
+| `click_whatsapp` | clic antes de abrir WhatsApp | ubicación del CTA |
+| `form_start` | primera interacción | ninguno |
+| `generate_lead` | confirmación 200 del servidor | método `form` |
 | `click_email` | clic en correo | ubicación |
 
-No se usan IDs persistentes propios para unir una persona entre plataformas. Un `slug`
-de servicio debe ser genérico y no revelar condición de salud. No usar conversiones
-mejoradas ni audiencias basadas en datos del formulario.
+No se usan IDs persistentes propios para unir una persona entre plataformas ni se
+envía el servicio seleccionado. No usar conversiones mejoradas ni audiencias basadas
+en datos del formulario.
 
 ## Google Ads
 

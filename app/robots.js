@@ -1,10 +1,12 @@
 import { getSiteUrl } from "../lib/config/site-url";
+import { getSiteContent } from "../lib/content/get-site-content";
+import { isProductionLaunchEnabled } from "../lib/content/publication";
 
-export default function robots() {
+export default async function robots() {
   const baseUrl = getSiteUrl();
+  const content = await getSiteContent();
   const isProduction =
-    process.env.SITE_MODE === "production" &&
-    process.env.CONTENT_APPROVED === "true";
+    isProductionLaunchEnabled() && !content.isPlaceholder;
 
   if (!isProduction) {
     return {

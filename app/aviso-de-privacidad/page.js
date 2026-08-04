@@ -1,15 +1,34 @@
 import Link from "next/link";
 import { PortableText } from "next-sanity";
 import { getSiteContent } from "../../lib/content/get-site-content";
+import { getSiteUrl } from "../../lib/config/site-url";
+import {
+  isPrivacyNoticePublishable,
+  isProductionLaunchEnabled,
+} from "../../lib/content/publication";
 
-export const metadata = {
-  title: "Aviso de privacidad",
-  description:
-    "Información sobre el tratamiento de datos personales enviados por los medios de contacto.",
-};
+export async function generateMetadata() {
+  const { privacyNotice } = await getSiteContent();
+  const isPublishable =
+    isProductionLaunchEnabled() &&
+    isPrivacyNoticePublishable(privacyNotice);
+
+  return {
+    title: "Aviso de privacidad",
+    description:
+      "Información sobre el tratamiento de datos personales enviados por los medios de contacto.",
+    alternates: {
+      canonical: `${getSiteUrl()}/aviso-de-privacidad`,
+    },
+    robots: isPublishable
+      ? { index: true, follow: true }
+      : { index: false, follow: false },
+  };
+}
 
 export default async function PrivacyNoticePage() {
-  const { privacyNotice, isPlaceholder } = await getSiteContent();
+  const { privacyNotice } = await getSiteContent();
+  const isPublishable = isPrivacyNoticePublishable(privacyNotice);
 
   return (
     <main className="legal-page">
@@ -26,7 +45,7 @@ export default async function PrivacyNoticePage() {
             : ""}
         </p>
 
-        {isPlaceholder || privacyNotice.status !== "approved" ? (
+        {!isPublishable ? (
           <div className="legal-draft" role="alert">
             <strong>Borrador sujeto a revisión legal en México.</strong>
             <p>
@@ -34,6 +53,16 @@ export default async function PrivacyNoticePage() {
               debe publicarse como versión legal aprobada.
             </p>
           </div>
+        ) : null}
+
+        {privacyNotice.controllerIdentity ? (
+          <section className="legal-contact" aria-labelledby="controller-title">
+            <h2 id="controller-title">Responsable del tratamiento</h2>
+            <p>{privacyNotice.controllerIdentity}</p>
+            {privacyNotice.controllerAddress ? (
+              <p>Domicilio: {privacyNotice.controllerAddress}</p>
+            ) : null}
+          </section>
         ) : null}
 
         {privacyNotice.content ? (
@@ -62,6 +91,40 @@ export default async function PrivacyNoticePage() {
             </p>
           </article>
         )}
+
+        <section className="legal-contact" aria-labelledby="arco-contact-title">
+          <h2 id="arco-contact-title">Canales para derechos ARCO</h2>
+          <p>
+            Para solicitar acceso, rectificación, cancelación u oposición, así como
+            revocar el consentimiento o limitar el uso de datos, puedes utilizar:
+          </p>
+          <ul>
+            {privacyNotice.contactEmail ? (
+              <li>
+                Correo: {" "}
+                <a href={`mailto:${privacyNotice.contactEmail}`}>
+                  {privacyNotice.contactEmail}
+                </a>
+              </li>
+            ) : null}
+            {privacyNotice.contactWhatsapp ? (
+              <li>
+                WhatsApp: {" "}
+                <a
+                  href={`https://wa.me/${privacyNotice.contactWhatsapp}`}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  +52 56 3955 1234
+                </a>
+              </li>
+            ) : null}
+          </ul>
+          <p>
+            Estos canales no brindan atención de emergencia ni sustituyen los
+            procedimientos clínicos correspondientes.
+          </p>
+        </section>
       </div>
     </main>
   );

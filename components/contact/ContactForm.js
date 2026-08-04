@@ -81,9 +81,7 @@ export function ContactForm({
   function markStarted() {
     if (!started) {
       setStarted(true);
-      trackEvent("form_start", {
-        service_slug: values.service || undefined,
-      });
+      trackEvent("form_start");
     }
   }
 
@@ -142,7 +140,6 @@ export function ContactForm({
       setStarted(false);
       trackEvent("generate_lead", {
         method: "form",
-        service_slug: values.service,
       });
     } catch (error) {
       setStatus("error");

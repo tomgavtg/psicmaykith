@@ -8,7 +8,7 @@ secciones definida en `docs/specs/02-ux-ui-specification.md`.
 
 Estos textos sirven para revisar la experiencia local y cargar contenido en Sanity.
 No equivalen a aprobación profesional, legal ni de publicación. Antes de producción
-deben confirmarse el nombre profesional, cédula, formación, población atendida,
+deben confirmarse la formación, población atendida,
 servicios, modalidad, duración, honorarios, disponibilidad, plazo de respuesta y
 fotografías.
 
@@ -53,11 +53,11 @@ razón consciente. Explorar la historia de nuestros vínculos permite reconocer 
 poner en palabras lo que ocurre y abrir la posibilidad de relacionarnos de otra manera.
 No se trata de quedarse en el pasado, sino de comprender cómo sigue presente.**
 
-### Perfil pendiente
+### Perfil profesional
 
-- Nombre profesional: `[POR DEFINIR: nombre profesional]`
+- Nombre profesional: **Psicóloga Marissa Mayumi Kitahara Funes**.
 - Formación: `[POR DEFINIR: formación verificada]`
-- Cédula: `[POR DEFINIR: cédula verificada]`
+- Cédula profesional: **10630199**.
 - Fotografía propuesta: `public/images/psychologist/PhotoMK1.jpeg`.
 - Alt propuesto: **Retrato de la profesional sentada junto a una mesa en un espacio
   interior.**

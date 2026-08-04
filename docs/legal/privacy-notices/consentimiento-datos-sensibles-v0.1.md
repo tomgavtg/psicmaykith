@@ -19,7 +19,7 @@ Aviso integral relacionado: versión `[POR DEFINIR]`, puesto a disposición el
 ## Información y consentimiento
 
 Declaro que recibí y pude consultar el Aviso de privacidad integral para servicios de
-psicoterapia de `[POR DEFINIR: nombre legal de la responsable]`.
+psicoterapia de **Marissa Mayumi Kitahara Funes**.
 
 Comprendo que, para valorar y prestar el servicio, elaborar y conservar el expediente,
 dar continuidad a la atención, coordinar referencias autorizadas, proteger la
@@ -45,7 +45,9 @@ preguntas:
     datos, resulta posible prestar el servicio de forma segura y conforme a la ley.
 ```
 
-Este consentimiento puede revocarse mediante `[POR DEFINIR: canal y procedimiento]`,
+Este consentimiento puede revocarse mediante
+`contacto@psicologamayumikitahara.com` o el WhatsApp empresarial
+`+52 56 3955 1234`, siguiendo el procedimiento descrito en el aviso vigente,
 sin efectos retroactivos y sujeto a obligaciones legales de conservación/bloqueo.
 
 ## Formalización

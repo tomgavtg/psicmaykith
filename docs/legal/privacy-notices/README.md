@@ -2,8 +2,9 @@
 
 ## Estado
 
-**Borradores de trabajo. No publicar ni cargar en Sanity sin revisión jurídica y
-aprobación de la responsable.**
+El aviso del sitio y contacto inicial `v1.0` fue aprobado por la responsable y entró en
+vigor el 4 de agosto de 2026. Los documentos clínicos `v0.1` continúan como borradores
+y no deben utilizarse con pacientes.
 
 Esta carpeta es el repositorio versionado de los textos de privacidad del proyecto. Se
 mantiene dentro del repositorio Git de la plataforma para evitar un repositorio Git
@@ -14,8 +15,10 @@ Fecha de elaboración inicial: 1 de agosto de 2026.
 
 ## Documentos
 
-- [Aviso integral del sitio y contacto](aviso-integral-sitio-contacto-v0.1.md): visitas,
-  formulario, correo y WhatsApp antes de iniciar una relación terapéutica.
+- [Aviso integral del sitio y contacto v1.0](aviso-integral-sitio-contacto-v1.0.md):
+  versión aprobada para visitas, formulario, correo y WhatsApp antes de iniciar una
+  relación terapéutica.
+- [Borrador histórico del aviso del sitio v0.1](aviso-integral-sitio-contacto-v0.1.md).
 - [Aviso simplificado del formulario](aviso-simplificado-formulario-v0.1.md): texto
   inmediato que debe acompañar la captura electrónica y enlazar al aviso integral.
 - [Aviso integral de psicoterapia](aviso-integral-psicoterapia-v0.1.md): expediente y

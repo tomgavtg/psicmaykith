@@ -11,14 +11,14 @@ Fecha de entrada en vigor: `[POR DEFINIR: fecha]`
 
 ## 1. Identidad y domicilio de la responsable
 
-`[POR DEFINIR: nombre legal completo de la persona física responsable]`, quien presta
-servicios profesionales de psicología bajo el nombre
-`[POR DEFINIR: nombre profesional o comercial, si aplica]`, con domicilio en
+**Marissa Mayumi Kitahara Funes**, quien presta servicios profesionales de psicología
+bajo el nombre **Psicóloga Mayumi Kitahara**, con domicilio en
 `[POR DEFINIR: domicilio completo para oír y recibir notificaciones de privacidad]`, es
 responsable del tratamiento de los datos personales descritos en este aviso.
 
-Canal de privacidad y derechos ARCO:
-`[POR DEFINIR: correo aprobado; confirmar si será contacto@psicologamayumikitahara.com]`.
+Canales de privacidad y derechos ARCO:
+`contacto@psicologamayumikitahara.com` y WhatsApp empresarial
+`+52 56 3955 1234`.
 
 Sitio oficial: <https://www.psicologamayumikitahara.com>.
 
@@ -165,9 +165,9 @@ La persona titular o su representante puede solicitar acceso, rectificación,
 cancelación u oposición (derechos ARCO), revocar su consentimiento o limitar el uso o
 divulgación de sus datos.
 
-La solicitud debe enviarse a
-`[POR DEFINIR: canal de privacidad]` con el asunto “Solicitud de derechos de datos
-personales” e incluir:
+La solicitud puede enviarse a `contacto@psicologamayumikitahara.com` con el asunto
+“Solicitud de derechos de datos personales” o por WhatsApp empresarial al
+`+52 56 3955 1234`, e incluir:
 
 - nombre y un medio para recibir notificaciones;
 - información suficiente para localizar los datos;

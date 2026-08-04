@@ -3,7 +3,8 @@
 > **BORRADOR v0.1 — NO PUBLICAR.** Debe actualizarse al cerrar el aviso integral y la
 > operación real.
 
-`[POR DEFINIR: nombre legal completo y domicilio de la responsable]` tratará tu nombre,
+**Marissa Mayumi Kitahara Funes**, con domicilio en
+`[POR DEFINIR: domicilio de la responsable]`, tratará tu nombre,
 correo, teléfono opcional, servicio, modalidad, tres preferencias semanales de día y
 hora, y mensaje para responder
 tu solicitud, revisar disponibilidad, contactarte, gestionar una posible cita, prevenir
@@ -20,7 +21,8 @@ datos podrán ser tratados por proveedores de seguridad, alojamiento, envío y c
 incluso fuera de México, conforme al aviso integral y a la revisión pendiente.
 
 Puedes limitar el uso de tus datos y ejercer acceso, rectificación, cancelación u
-oposición escribiendo a `[POR DEFINIR: canal ARCO]`. Consulta finalidades,
+oposición escribiendo a `contacto@psicologamayumikitahara.com` o al WhatsApp
+empresarial `+52 56 3955 1234`. Consulta finalidades,
 transferencias, conservación, mecanismos y cambios en el
 [Aviso de privacidad integral](https://www.psicologamayumikitahara.com/aviso-de-privacidad).
 

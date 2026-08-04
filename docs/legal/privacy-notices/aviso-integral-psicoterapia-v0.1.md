@@ -9,12 +9,13 @@ Fecha de entrada en vigor: `[POR DEFINIR: fecha]`
 
 ## 1. Responsable
 
-`[POR DEFINIR: nombre legal completo de la profesional responsable]`, con cédula
-profesional `[POR DEFINIR: número verificado]` y domicilio en
+**Marissa Mayumi Kitahara Funes**, con cédula profesional **10630199** y domicilio en
 `[POR DEFINIR: domicilio completo]`, es responsable del tratamiento de datos personales
 relacionados con la evaluación y prestación de servicios de psicoterapia.
 
-Canal de privacidad y derechos ARCO: `[POR DEFINIR: correo y, si aplica, domicilio]`.
+Canales de privacidad y derechos ARCO: `contacto@psicologamayumikitahara.com` y
+WhatsApp empresarial `+52 56 3955 1234`. El domicilio profesional aprobado continúa
+pendiente de incorporar.
 
 ## 2. Relación con otros documentos
 
@@ -146,8 +147,9 @@ necesario, documentarse y seguir un protocolo clínico-jurídico
 
 ## 11. Derechos ARCO, revocación y limitación
 
-Las solicitudes se presentarán en `[POR DEFINIR: canal ARCO]` e incluirán nombre, medio
-de respuesta, acreditación de identidad/representación, datos involucrados y petición.
+Las solicitudes se presentarán en `contacto@psicologamayumikitahara.com` o en el
+WhatsApp empresarial `+52 56 3955 1234` e incluirán nombre, medio de respuesta,
+acreditación de identidad/representación, datos involucrados y petición.
 La determinación se comunicará en un máximo de veinte días hábiles y, si procede, se
 hará efectiva dentro de los quince días hábiles siguientes, con la ampliación legal que
 pudiera justificarse.

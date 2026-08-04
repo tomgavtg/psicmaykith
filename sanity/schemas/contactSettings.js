@@ -42,6 +42,15 @@ export const contactSettings = defineType({
       validation: (Rule) => Rule.required().max(120),
     }),
     defineField({
+      name: "serviceAreas",
+      title: "Áreas atendidas",
+      type: "array",
+      description:
+        "Zonas o modalidades geográficas reales utilizadas en SEO y datos estructurados.",
+      of: [defineArrayMember({ type: "string" })],
+      validation: (Rule) => Rule.required().min(1).max(6).unique(),
+    }),
+    defineField({
       name: "modalities",
       title: "Modalidades del formulario",
       type: "array",

@@ -22,7 +22,14 @@ export const siteSettings = defineType({
       title: "Aviso de no emergencia",
       type: "text",
       rows: 2,
-      validation: (Rule) => Rule.required().max(220),
+      validation: (Rule) =>
+        Rule.required()
+          .max(220)
+          .custom((value) =>
+            value && !/mantenimiento/i.test(value)
+              ? true
+              : "El aviso de no emergencia no debe contener texto de mantenimiento.",
+          ),
     }),
     defineField({
       name: "crisisNotice",
@@ -30,7 +37,14 @@ export const siteSettings = defineType({
       type: "text",
       rows: 3,
       description: "Verificar contra fuentes oficiales antes de publicar.",
-      validation: (Rule) => Rule.required().max(400),
+      validation: (Rule) =>
+        Rule.required()
+          .max(400)
+          .custom((value) =>
+            value && !/mantenimiento/i.test(value)
+              ? true
+              : "Agrega el protocolo público de crisis; no uses texto de mantenimiento.",
+          ),
     }),
     defineField({
       name: "footerText",

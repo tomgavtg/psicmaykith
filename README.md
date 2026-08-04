@@ -6,10 +6,14 @@ rápida, accesible y respetuosa de la privacidad.
 
 ## Estado
 
-**Fase 2 — primera implementación funcional.** La aplicación Next.js, la landing, el
-Studio de Sanity, el formulario protegido, la página legal, SEO y consentimiento están
-implementados. Mientras falten contenido aprobado y cuentas externas, el sitio se
-muestra como demostración, permanece en `noindex` y el formulario no permite enviar.
+**Fase 2 — candidato técnico de producción.** La aplicación Next.js, la landing, el
+Studio de Sanity, el formulario protegido, metadata social, datos estructurados, SEO,
+consentimiento por categorías y eventos de marketing con lista permitida están
+implementados. Sanity Production ya contiene los tres servicios, horarios, fotografía
+y copy optimizado. La cédula `10630199`, el nombre profesional completo y el aviso de
+privacidad integral `v1.0` aprobado están en Sanity Production. El gate de contenido no
+reporta bloqueos; `SITE_MODE` y `CONTENT_APPROVED` deben habilitarse únicamente sobre el
+deployment aprobado después de completar QA y variables de Production.
 
 El flujo de cita permite seleccionar un servicio, modalidad y tres combinaciones de día
 y horario preferidas; envía una solicitud por correo y nunca presenta la cita como confirmada. Los
@@ -510,6 +514,8 @@ Referencias oficiales:
 - [Seguridad y privacidad](docs/specs/04-security-and-privacy.md)
 - [Repositorio de avisos de privacidad](docs/legal/privacy-notices/README.md)
 - [Marketing, analítica y SEO](docs/specs/05-marketing-analytics-and-seo.md)
+- [GA4, Google Ads y Tag Manager](docs/runbooks/google-ads-and-tag-manager.md)
+- [Meta Pixel y TikTok Pixel](docs/runbooks/meta-and-tiktok-pixels.md)
 - [Modelo de contenido](docs/specs/06-content-model.md)
 - [Definition of Done](docs/specs/07-definition-of-done.md)
 - [Development, staging y producción](docs/runbooks/environments-and-deployment.md)
@@ -565,3 +571,30 @@ usar un widget **Managed** llamado `contact-production`, con
 aplicación y las dos claves reales configuradas en Vercel. El formulario también exige
 `RESEND_API_KEY`, `LEADS_TO_EMAIL` y `RESEND_FROM_EMAIL`; Turnstile por sí solo no
 entrega el mensaje.
+
+## Preparación y verificación de Sanity Production
+
+Los scripts no contienen tokens y usan la sesión local de Sanity. La preparación es
+de sólo lectura; confirma dataset, IDs y necesidad de revisión legal:
+
+```bash
+yarn sanity exec scripts/sanity/prepare-production-content.js --with-user-token
+```
+
+La aplicación controlada de la migración utiliza un punto de entrada distinto para
+evitar escrituras accidentales:
+
+```bash
+yarn sanity exec scripts/sanity/apply-production-content.js --with-user-token
+```
+
+Después se valida el estado efectivo y se enumeran los bloqueos de publicación:
+
+```bash
+yarn sanity exec scripts/sanity/verify-production-content.js --with-user-token
+```
+
+No se debe volver a ejecutar la aplicación sin revisar primero el modo preparación y
+el historial del dataset. Estos scripts no completan honorarios faltantes. El gate
+exige además `SITE_MODE=production` y
+`CONTENT_APPROVED=true`; ambos sólo se activan al cerrar el checklist.

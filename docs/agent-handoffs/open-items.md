@@ -21,12 +21,13 @@ responsables correspondientes.
 
 ## A. Preguntas para la psicóloga
 
-- [ ] Corregir Servicios en Sanity: actualmente sólo hay dos activos y sus slugs (`2`
-  y `Psicoterapia`) no son válidos. Crear/publicar Adultos, Adolescentes y Pareja con
-  slugs `terapia-para-adultos`, `terapia-para-adolescentes` y `terapia-de-pareja`.
-- [ ] ¿Cuál es el nombre profesional exacto y, si aplica, el nombre comercial?
-- [ ] ¿Qué cédula, formación, certificaciones y hasta tres elementos de enfoque pueden
-  publicarse y con qué evidencia?
+- [x] Servicios corregidos en Sanity Production: Adultos, Adolescentes y Pareja están
+  activos con slugs canónicos y duraciones de 50, 50 y 70 minutos.
+- [x] Nombre profesional completo confirmado: Marissa Mayumi Kitahara Funes; la marca
+  visible puede conservar “Psicóloga Mayumi Kitahara”.
+- [x] Cédula profesional confirmada y cargada en Sanity: `10630199`.
+- [ ] Confirmar evidencia y texto exacto de formación, certificaciones y hasta tres
+  elementos de enfoque publicables.
 - [ ] ¿A qué audiencia adulta atiende, en qué ubicaciones y para qué motivos de consulta
   ofrece efectivamente sus servicios? ¿Atiende a menores?
 - [ ] ¿Cuáles son los tres o cuatro servicios, modalidades, honorarios, horarios y
@@ -57,11 +58,12 @@ responsables correspondientes.
   sensibles.
 - [x] Crear repositorio documental con borradores separados para sitio/contacto,
   psicoterapia, aviso simplificado y consentimiento de datos sensibles.
-- [ ] Obtener revisión jurídica vigente en México del aviso de privacidad, cookies,
-  finalidades, derechos, transferencias, incidentes, menores y datos sensibles
-  accidentales.
-- [ ] Confirmar identidad/domicilio de la persona responsable y canal para derechos de
-  privacidad.
+- [x] Aviso integral del sitio `v1.0` aprobado, versionado y publicado en Sanity con
+  fecha de entrada en vigor del 4 de agosto de 2026.
+- [x] Identidad de la responsable confirmada en Sanity: Marissa Mayumi Kitahara Funes.
+- [x] Canales ARCO confirmados: `contacto@psicologamayumikitahara.com` y WhatsApp
+  empresarial `+52 56 3955 1234`.
+- [x] Domicilio profesional aprobado e incorporado al aviso `v1.0`.
 - [ ] Definir si se conserva el campo de mensaje libre o se sustituye por una pregunta
   más acotada para reducir datos clínicos accidentales.
 - [ ] Definir cómo acreditar versión/aceptación del aviso sin crear una base de leads.
@@ -69,7 +71,8 @@ responsables correspondientes.
   `docs/legal/privacy-notices/` antes de convertir los borradores `v0.1` en `v1.0`.
 - [ ] Definir retención y borrado en Resend, buzón receptor, logs y analítica; revisar
   contratos/DPA, subencargados y transferencias de todos los proveedores.
-- [ ] Elegir solución, categorías, texto, plazo y revocación del consentimiento.
+- [ ] Revisar legalmente la solución implementada: categorías separadas de analítica y
+  marketing, rechazo equivalente, revocación desde el pie y vigencia de 180 días.
 - [ ] Confirmar UTMs, eventos y campañas realmente aprobados; conversiones mejoradas y
   audiencias sensibles permanecen excluidas.
 - [ ] Volver a verificar texto y datos de emergencia en fuente oficial inmediatamente
@@ -122,6 +125,10 @@ responsables correspondientes.
 ## D. Marketing y operación
 
 - [ ] Confirmar cuentas e IDs de GTM, Google Ads, Meta y TikTok, si se usarán.
+- [x] Implementar carga condicional de GTM, Meta y TikTok, Consent Mode v2, eventos con
+  lista permitida y atribución UTM sin `utm_term`, servicio ni datos del formulario.
+- [ ] Configurar IDs reales por ambiente, crear GA4/conversiones, probar con Tag
+  Assistant/Pixel Helpers y publicar los contenedores aprobados.
 - [ ] Designar responsables y suplentes de contenido, leads, DNS, seguridad,
   privacidad, analítica, QA, lanzamiento y rollback.
 - [ ] Definir matriz de campañas, objetivos numéricos y método de calificación de leads
