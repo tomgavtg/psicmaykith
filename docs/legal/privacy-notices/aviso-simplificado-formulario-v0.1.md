@@ -4,7 +4,8 @@
 > operación real.
 
 `[POR DEFINIR: nombre legal completo y domicilio de la responsable]` tratará tu nombre,
-correo, teléfono opcional, servicio, modalidad, fecha, horario y mensaje para responder
+correo, teléfono opcional, servicio, modalidad, tres preferencias semanales de día y
+hora, y mensaje para responder
 tu solicitud, revisar disponibilidad, contactarte, gestionar una posible cita, prevenir
 abuso y cumplir obligaciones legales.
 

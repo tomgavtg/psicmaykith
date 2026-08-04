@@ -1,7 +1,10 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { buildLeadEmail, escapeHtml } from "../lib/contact/email";
 import {
+  formatSchedulePreference,
+  formatTimeRange,
   formatPreferredDate,
+  getServiceDurationMinutes,
   getTodayInMexico,
   isCurrentOrFuturePreferredDate,
   isValidPreferredDate,
@@ -72,14 +75,34 @@ describe("correo seguro", () => {
       phone: "",
       service: "servicio-uno",
       modality: "En línea",
-      preferredDate: "2026-08-15",
-      preferredSchedule: "Horario flexible",
+      schedulePreferences: [
+        { day: "Lunes", startTime: "17:00" },
+        { day: "Martes", startTime: "16:00" },
+        { day: "Viernes", startTime: "11:00" },
+      ],
       message: "<img src=x onerror=alert(1)>",
     });
 
     expect(html).toContain("&lt;b&gt;Nombre&lt;/b&gt;");
-    expect(html).toContain("15 de agosto de 2026");
+    expect(html).toContain("Lunes, 5:00–5:50 p. m.");
     expect(html).not.toContain("<img src=x");
+  });
+});
+
+describe("horarios de preferencia", () => {
+  it("calcula la hora final según la duración del servicio", () => {
+    expect(formatTimeRange("17:00", 50)).toBe("5:00–5:50 p. m.");
+    expect(formatTimeRange("16:00", 70)).toBe("4:00–5:10 p. m.");
+    expect(getServiceDurationMinutes("terapia-de-pareja")).toBe(70);
+  });
+
+  it("presenta el día y el rango completo", () => {
+    expect(
+      formatSchedulePreference(
+        { day: "Viernes", startTime: "11:30" },
+        70,
+      ),
+    ).toBe("Viernes, 11:30 a. m.–12:40 p. m.");
   });
 });
 

@@ -4,6 +4,17 @@ import Image from "next/image";
 import { ArrowIcon } from "../icons";
 import { APPOINTMENT_SERVICE_EVENT } from "../../lib/contact/appointment";
 
+function formatDuration(minutes) {
+  if (!minutes) return "";
+  if (minutes < 60) return `${minutes} min`;
+
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+  return remainingMinutes
+    ? `${hours} h ${remainingMinutes} min`
+    : `${hours} h`;
+}
+
 export function Services({ services }) {
   function selectService(serviceSlug) {
     const heading = document.querySelector("#agendar-title");
@@ -34,12 +45,13 @@ export function Services({ services }) {
           <div>
             <p className="section-kicker">Servicios</p>
             <h2 id="services-title" className="section-title">
-              Opciones de atención, explicadas con claridad
+              Un espacio para cada momento del proceso
             </h2>
           </div>
           <p className="section-intro">
-            Revisa las modalidades disponibles y solicita información. El primer
-            mensaje no confirma una cita ni requiere que compartas información clínica.
+            No necesitas tener todo claro para comenzar. Revisa las opciones propuestas
+            y solicita información sin compartir datos clínicos en el primer mensaje.
+            La atención, duración y disponibilidad se confirman personalmente.
           </p>
         </div>
 
@@ -64,7 +76,7 @@ export function Services({ services }) {
                 <p className="service-meta">
                   {(service.modality || []).join(" · ")}
                   {service.durationMinutes
-                    ? ` · ${service.durationMinutes} min`
+                    ? ` · ${formatDuration(service.durationMinutes)}`
                     : ""}
                 </p>
                 <h3>{service.name}</h3>
@@ -88,7 +100,7 @@ export function Services({ services }) {
                   onClick={() => selectService(service.slug)}
                   aria-label={`Solicitar información sobre ${service.name}`}
                 >
-                  Solicitar información
+                  Solicitar información sobre este servicio
                   <ArrowIcon />
                 </button>
               </div>

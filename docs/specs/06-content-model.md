@@ -25,10 +25,12 @@ contenido completo. Los placeholders locales nunca sustituyen datos reales.
 | Campo | Tipo | Regla |
 | --- | --- | --- |
 | `fullName` | string | requerido |
+| `heroTitle` | string | requerido, mensaje principal sin promesas |
 | `headline` | string | requerido, claro y comprobable |
 | `shortBio` | text | requerido, máximo 55 palabras |
 | `portrait` | image | hotspot, metadata y alt requeridos |
 | `approach` | text | enfoque real, sin promesas |
+| `validationItems` | array string | entre tres y cinco situaciones, sin diagnosticar |
 | `licenseNumber` | string | opcional visualmente, verificado |
 | `education` | array object | institución, grado, año opcional |
 | `certifications` | array object | máximo según diseño, evidencia interna |
@@ -64,14 +66,16 @@ persona ni se capturan expedientes.
 | `address` | object | opcional, sólo datos publicables |
 | `serviceAreas` | array string | zonas reales |
 | `modalities` | array string | opciones del formulario |
-| `preferredScheduleOptions` | array string | no promete disponibilidad |
+| `availableWeekdays` | array string | días ofrecidos como preferencia, no como reserva |
+| `availableStartTimes` | array string | horas `HH:mm`; la interfaz calcula el fin según duración |
 | `responseTimeCopy` | string | sólo con SLA operativo |
 | `successMessage` | text | sin confirmar cita |
 | `errorMessage` | text | ofrece alternativa |
 
-La fecha preferida de una solicitud es un dato transitorio del formulario y no forma
-parte del contenido de Sanity. Se valida como fecha actual o futura en la zona horaria
-de Ciudad de México, se incluye sólo en el correo de solicitud y no confirma una cita.
+Las tres preferencias de día/hora son datos transitorios del formulario y no forman
+parte del contenido clínico. El servidor exige tres combinaciones distintas, valida
+cada valor contra la configuración publicada y las incluye sólo en el correo de
+solicitud. Ninguna selección confirma una cita.
 
 ## `seoSettings` — singleton
 

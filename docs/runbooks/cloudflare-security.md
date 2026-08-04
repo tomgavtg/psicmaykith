@@ -237,9 +237,9 @@ por endpoint de Bot Management. Referencia:
 En **Turnstile**:
 
 1. Crear widgets separados para local/preview y producción.
-2. Restringir el widget de producción a `[POR DEFINIR: hostname canónico]`.
+2. Restringir el widget de producción a `www.psicologamayumikitahara.com`.
 3. Guardar site key en variable pública y secret key sólo en servidor.
-4. Definir y validar una `action` estable para contacto.
+4. Usar y validar `action=contact`.
 5. Probar éxito, expiración, duplicado, hostname/action incorrectos, indisponibilidad y
    lector de pantalla.
 6. Rotar el secreto ante exposición. No capturarlo en screenshots o tickets.

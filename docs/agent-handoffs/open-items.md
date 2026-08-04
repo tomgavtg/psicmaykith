@@ -16,8 +16,8 @@ responsables correspondientes.
   explícitos de publicación.
 - [x] Docker y Docker Compose se aprobaron como rutas adicionales de desarrollo y
   portabilidad; Vercel permanece como destino de Production.
-- [x] La v1 solicita servicio, modalidad, fecha opcional y horario preferido; no simula
-  disponibilidad ni confirma automáticamente una cita.
+- [x] La v1 solicita servicio, modalidad y tres preferencias semanales distintas de
+  día/hora; no simula disponibilidad ni confirma automáticamente una cita.
 
 ## A. Preguntas para la psicóloga
 
@@ -26,8 +26,10 @@ responsables correspondientes.
   publicarse y con qué evidencia?
 - [ ] ¿A qué audiencia adulta atiende, en qué ubicaciones y para qué motivos de consulta
   ofrece efectivamente sus servicios? ¿Atiende a menores?
-- [ ] ¿Cuáles son los tres o cuatro servicios, modalidades, duración, honorarios,
-  horarios y zona/dirección que desea publicar?
+- [ ] ¿Cuáles son los tres o cuatro servicios, modalidades, honorarios, horarios y
+  zona/dirección que desea publicar?
+- [x] Duraciones confirmadas: terapia para adultos y adolescentes, 50 minutos; terapia
+  de pareja, 70 minutos.
 - [x] Número de WhatsApp Business confirmado: `+52 56 3955 1234`; valor técnico
   `525639551234`, sin el antiguo prefijo móvil mexicano `1`.
 - [ ] Confirmar titular operativo del número y aprobar el mensaje inicial definitivo.
@@ -37,12 +39,19 @@ responsables correspondientes.
   `LEADS_TO_EMAIL` y en qué plazo real se responderán las solicitudes.
 - [ ] ¿Quién atiende mensajes que indiquen crisis y cuál es el protocolo operativo sin
   presentar WhatsApp o el sitio como servicio de emergencia?
-- [ ] ¿Qué retrato e imágenes del espacio se usarán? Entregar originales, textos
-  alternativos, titularidad, permiso, alcance y vigencia.
+- [ ] Se recibieron `PhotoMK.jpeg` y `PhotoMK1.jpeg`; confirmar que `PhotoMK1.jpeg` será
+  el retrato principal y documentar titularidad, permiso, alcance y vigencia. Aprobar el
+  texto alternativo propuesto en `docs/content/application-copy.md`.
 - [ ] ¿Qué perfiles sociales oficiales se enlazarán?
 
 ## B. Producto, contenido y legal
 
+- [ ] Revisar y aprobar la hoja editorial `docs/content/application-copy.md`; confirmar
+  que adolescentes, adultos, parejas, atención en línea y enfoque psicoanalítico
+  describen la práctica real antes de publicar.
+- [ ] Elegir el título principal definitivo entre la propuesta implementada y las
+  alternativas documentadas; cualquier prueba A/B debe aprobarse y medirse sin datos
+  sensibles.
 - [x] Crear repositorio documental con borradores separados para sitio/contacto,
   psicoterapia, aviso simplificado y consentimiento de datos sensibles.
 - [ ] Obtener revisión jurídica vigente en México del aviso de privacidad, cookies,
@@ -99,7 +108,10 @@ responsables correspondientes.
 - [x] Fijar versiones compatibles de Node.js, Next.js, React, Tailwind, Yarn y Sanity.
 - [ ] Definir dominio remitente, `RESEND_FROM_EMAIL`, `LEADS_TO_EMAIL`, timeouts y buzón
   sintético de QA.
-- [ ] Definir `action` y hostnames de Turnstile por entorno.
+- [x] Turnstile Production: `action=contact` y hostname
+  `www.psicologamayumikitahara.com`; Development usa las claves oficiales de prueba.
+- [ ] Crear el widget real `contact-production`, guardar sus claves en Vercel Production
+  y definir un widget/hostname separado cuando exista la URL estable de Preview.
 - [x] HTTPS local obligatorio en `https://localhost:3000`, con certificado `mkcert`
   individual por estación; Production-like usa `https://localhost:3443`.
 - [ ] Definir HSTS, CAA, allowlist administrativa, MFA, recuperación y rotación.

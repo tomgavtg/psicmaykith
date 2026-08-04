@@ -42,8 +42,12 @@ export default async function PrivacyNoticePage() {
           </article>
         ) : (
           <article className="portable-text">
-            <h2>Responsable</h2>
-            <p>{privacyNotice.controllerIdentity}</p>
+            {privacyNotice.controllerIdentity ? (
+              <>
+                <h2>Responsable</h2>
+                <p>{privacyNotice.controllerIdentity}</p>
+              </>
+            ) : null}
             <h2>Información pendiente</h2>
             <p>
               Falta documentar las finalidades, datos tratados, fundamento, medios para

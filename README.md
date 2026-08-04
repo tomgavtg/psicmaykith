@@ -11,8 +11,8 @@ Studio de Sanity, el formulario protegido, la página legal, SEO y consentimient
 implementados. Mientras falten contenido aprobado y cuentas externas, el sitio se
 muestra como demostración, permanece en `noindex` y el formulario no permite enviar.
 
-El flujo de cita permite seleccionar un servicio, modalidad, fecha opcional y horario
-preferido; envía una solicitud por correo y nunca presenta la cita como confirmada. Los
+El flujo de cita permite seleccionar un servicio, modalidad y tres combinaciones de día
+y horario preferidas; envía una solicitud por correo y nunca presenta la cita como confirmada. Los
 CTA de WhatsApp usan el número empresarial confirmado `+52 56 3955 1234`, almacenado
 en Sanity como `525639551234`. El antiguo prefijo móvil mexicano `1` no forma parte del
 enlace `wa.me`. El correo empresarial público confirmado es
@@ -557,3 +557,11 @@ preview autorizados. Nunca confirmar `.env.local`.
 Los valores de Vercel se configuran por entorno (Development, Preview y Production).
 Los secretos nunca usan prefijo `NEXT_PUBLIC_`. Los pasos de cada proveedor se describen
 en `docs/runbooks/`.
+
+Las claves de Turnstile incluidas en `.env.example` son las credenciales oficiales de
+prueba que siempre aprueban y sólo deben utilizarse en Development. Production debe
+usar un widget **Managed** llamado `contact-production`, con
+`www.psicologamayumikitahara.com` como único hostname, `action=contact` en la
+aplicación y las dos claves reales configuradas en Vercel. El formulario también exige
+`RESEND_API_KEY`, `LEADS_TO_EMAIL` y `RESEND_FROM_EMAIL`; Turnstile por sí solo no
+entrega el mensaje.

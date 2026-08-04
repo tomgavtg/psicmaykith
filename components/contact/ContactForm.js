@@ -4,9 +4,12 @@ import { useCallback, useEffect, useState } from "react";
 import { trackEvent } from "../../lib/analytics/events";
 import {
   APPOINTMENT_SERVICE_EVENT,
-  getTodayInMexico,
+  formatTimeRange,
 } from "../../lib/contact/appointment";
 import { TurnstileWidget } from "./TurnstileWidget";
+
+const emptySchedulePreferences = () =>
+  Array.from({ length: 3 }, () => ({ day: "", startTime: "" }));
 
 const initialValues = {
   name: "",
@@ -14,8 +17,7 @@ const initialValues = {
   phone: "",
   service: "",
   modality: "",
-  preferredDate: "",
-  preferredSchedule: "",
+  schedulePreferences: emptySchedulePreferences(),
   message: "",
   privacyAccepted: false,
   website: "",
@@ -24,7 +26,8 @@ const initialValues = {
 export function ContactForm({
   services,
   modalities,
-  scheduleOptions,
+  availableWeekdays,
+  availableStartTimes,
   successMessage,
   errorMessage,
   hasWhatsApp,
@@ -37,7 +40,10 @@ export function ContactForm({
   const [started, setStarted] = useState(false);
   const [selectionAnnouncement, setSelectionAnnouncement] = useState("");
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
-  const minimumDate = getTodayInMexico();
+  const selectedService = services.find(
+    (service) => service.slug === values.service,
+  );
+  const selectedDuration = selectedService?.durationMinutes || 50;
 
   const onToken = useCallback((token) => {
     setTurnstileToken(token);
@@ -84,10 +90,32 @@ export function ContactForm({
     }));
   }
 
+  function updateSchedulePreference(index, field, value) {
+    setValues((current) => ({
+      ...current,
+      schedulePreferences: current.schedulePreferences.map((preference, itemIndex) =>
+        itemIndex === index ? { ...preference, [field]: value } : preference,
+      ),
+    }));
+  }
+
+  function hasRepeatedPreferences() {
+    const selections = values.schedulePreferences.map(
+      ({ day, startTime }) => `${day}|${startTime}`,
+    );
+    return new Set(selections).size !== selections.length;
+  }
+
   async function submitForm(event) {
     event.preventDefault();
     setStatus("submitting");
     setFeedback("");
+
+    if (hasRepeatedPreferences()) {
+      setStatus("error");
+      setFeedback("Selecciona tres combinaciones distintas de día y horario.");
+      return;
+    }
 
     try {
       const response = await fetch("/api/contact", {
@@ -103,7 +131,7 @@ export function ContactForm({
 
       setStatus("success");
       setFeedback(result.message || successMessage);
-      setValues(initialValues);
+      setValues({ ...initialValues, schedulePreferences: emptySchedulePreferences() });
       setTurnstileToken("");
       setResetKey((current) => current + 1);
       setStarted(false);
@@ -205,38 +233,63 @@ export function ContactForm({
             ))}
           </select>
         </label>
-        <label>
-          Fecha preferida <span className="optional">(opcional)</span>
-          <input
-            type="date"
-            name="preferredDate"
-            value={values.preferredDate}
-            onChange={updateField}
-            min={minimumDate}
-            aria-describedby="preferred-date-help"
-          />
-          <span id="preferred-date-help" className="field-help">
-            La fecha se confirmará después de revisar disponibilidad.
-          </span>
-        </label>
       </div>
 
-      <label>
-        Horario preferido
-        <select
-          name="preferredSchedule"
-          value={values.preferredSchedule}
-          onChange={updateField}
-          required
-        >
-          <option value="">Selecciona una opción</option>
-          {scheduleOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </label>
+      <fieldset className="schedule-preferences" aria-describedby="schedule-help">
+        <legend>Tres horarios de preferencia</legend>
+        <p id="schedule-help" className="field-help">
+          Selecciona tres opciones distintas. Son preferencias semanales y no reservan
+          una sesión; la cita se confirma personalmente después de revisar
+          disponibilidad.
+        </p>
+
+        {values.schedulePreferences.map((preference, index) => (
+          <fieldset className="schedule-preference" key={index}>
+            <legend>Preferencia {index + 1}</legend>
+            <div className="form-row">
+              <label>
+                Día
+                <select
+                  value={preference.day}
+                  onChange={(event) =>
+                    updateSchedulePreference(index, "day", event.target.value)
+                  }
+                  required
+                >
+                  <option value="">Selecciona un día</option>
+                  {availableWeekdays.map((day) => (
+                    <option key={day} value={day}>
+                      {day}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Horario
+                <select
+                  value={preference.startTime}
+                  onChange={(event) =>
+                    updateSchedulePreference(index, "startTime", event.target.value)
+                  }
+                  disabled={!selectedService}
+                  required
+                >
+                  <option value="">
+                    {selectedService
+                      ? "Selecciona un horario"
+                      : "Selecciona primero un servicio"}
+                  </option>
+                  {availableStartTimes.map((startTime) => (
+                    <option key={startTime} value={startTime}>
+                      {formatTimeRange(startTime, selectedDuration)}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+          </fieldset>
+        ))}
+      </fieldset>
 
       <label>
         Mensaje <span className="optional">(opcional)</span>

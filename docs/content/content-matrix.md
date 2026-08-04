@@ -2,20 +2,20 @@
 
 | Ubicación | Contenido | Responsable | Estado/evidencia |
 | --- | --- | --- | --- |
-| Header | nombre corto | psicóloga | `[POR DEFINIR]` |
-| Sobre mí | nombre y titular | psicóloga + contenido | `[POR DEFINIR]` |
-| Sobre mí | bio ≤55 palabras | psicóloga + contenido | `[POR DEFINIR]` |
+| Header | nombre corto | psicóloga | propuesta genérica preparada; nombre profesional `[POR DEFINIR]` |
+| Sobre mí | nombre y titular | psicóloga + contenido | titular propuesto en `application-copy.md`; nombre `[POR DEFINIR]` |
+| Sobre mí | bio ≤55 palabras | psicóloga + contenido | borrador preparado; requiere aprobación profesional |
 | Sobre mí | hasta 3 credenciales | psicóloga | verificar documentos |
-| Sobre mí | retrato y alt | psicóloga + diseño | permiso requerido |
-| Servicios | 3–4 nombres y descripciones | psicóloga | verificar alcance |
-| Servicios | modalidad/duración/honorarios | psicóloga | opcionales |
+| Sobre mí | retrato y alt | psicóloga + diseño | `PhotoMK1.jpeg` integrado localmente; confirmar permiso y aprobar alt |
+| Servicios | 3–4 nombres y descripciones | psicóloga | tres borradores preparados; verificar que el alcance sea real |
+| Servicios | modalidad/duración/honorarios | psicóloga | en línea; adultos y adolescentes 50 min, pareja 70 min; honorarios pendientes |
 | Servicios | imagen editorial | psicóloga + diseño | permiso requerido |
 | Agendar | WhatsApp y mensaje | psicóloga | número confirmado `+52 56 3955 1234`; mensaje inicial sujeto a aprobación final |
 | Agendar | correo y SLA | operación | `[POR DEFINIR]` |
-| Agendar | opciones de modalidad/horario | psicóloga | `[POR DEFINIR]` |
+| Agendar | opciones de modalidad/horario | psicóloga | en línea; lunes a viernes, inicios de 09:30 a 17:30 cada 30 min; confirmar disponibilidad real |
 | Global | aviso de no-emergencia | psicóloga + legal | revisar |
 | Privacidad | avisos de sitio/contacto y psicoterapia | asesoría legal | borradores `v0.1` en `docs/legal/privacy-notices/`; no publicar |
-| SEO | título, descripción, OG | contenido | tras definir oferta |
+| SEO | título, descripción, OG | contenido | título y descripción propuestos; OG pendiente y oferta por confirmar |
 | Datos estructurados | negocio, zona y horario | psicóloga | sólo datos reales |
 | Consentimiento | banner y política | legal + marketing | `[POR DEFINIR]` |
 | Éxito/error | mensajes | operación + UX | validar SLA |

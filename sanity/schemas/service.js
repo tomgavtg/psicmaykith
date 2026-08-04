@@ -41,7 +41,25 @@ export const service = defineType({
       name: "durationMinutes",
       title: "Duración en minutos",
       type: "number",
-      validation: (Rule) => Rule.integer().min(15).max(240),
+      description:
+        "Adultos y adolescentes: 50 minutos. Pareja: 70 minutos.",
+      validation: (Rule) =>
+        Rule.required()
+          .integer()
+          .min(15)
+          .max(240)
+          .custom((value, context) => {
+            const slug = context.document?.slug?.current;
+            const expectedDuration = {
+              "terapia-para-adultos": 50,
+              "terapia-para-adolescentes": 50,
+              "terapia-de-pareja": 70,
+            }[slug];
+
+            return !expectedDuration || value === expectedDuration
+              ? true
+              : `La duración confirmada para este servicio es ${expectedDuration} minutos.`;
+          }),
     }),
     defineField({
       name: "fee",

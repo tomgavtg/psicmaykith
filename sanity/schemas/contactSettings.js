@@ -49,11 +49,37 @@ export const contactSettings = defineType({
       validation: (Rule) => Rule.required().min(1).max(4),
     }),
     defineField({
-      name: "preferredScheduleOptions",
-      title: "Opciones de horario",
+      name: "availableWeekdays",
+      title: "Días disponibles",
       type: "array",
-      of: [defineArrayMember({ type: "string" })],
-      validation: (Rule) => Rule.required().min(1).max(10),
+      description:
+        "Días que pueden elegirse como preferencia. Seleccionar un día no confirma una cita.",
+      of: [
+        defineArrayMember({
+          type: "string",
+          options: {
+            list: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"],
+          },
+        }),
+      ],
+      validation: (Rule) => Rule.required().min(1).max(5).unique(),
+    }),
+    defineField({
+      name: "availableStartTimes",
+      title: "Horas de inicio disponibles",
+      type: "array",
+      description:
+        "Formato de 24 horas HH:mm. La interfaz calcula la hora final según el servicio.",
+      of: [
+        defineArrayMember({
+          type: "string",
+          validation: (Rule) =>
+            Rule.regex(/^([01]\d|2[0-3]):[0-5]\d$/, {
+              name: "hora HH:mm",
+            }),
+        }),
+      ],
+      validation: (Rule) => Rule.required().min(1).max(24).unique(),
     }),
     defineField({
       name: "responseTimeCopy",

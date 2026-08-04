@@ -87,8 +87,8 @@ tokens, cookies, direcciones personales ni payloads de formulario.
   WhatsApp.
 - [ ] Logs de todos los status sólo contienen metadatos permitidos, nunca payload o PII.
 - [ ] Éxito limpia campos y emite un solo `generate_lead` sin PII; error no lo emite.
-- [ ] Fecha preferida vacía/actual/futura funciona; fecha inexistente o pasada se
-  rechaza y ningún mensaje presenta la cita como confirmada.
+- [ ] Se exigen tres preferencias distintas; días/horas fuera de la lista publicada y
+  combinaciones duplicadas se rechazan sin perder los demás campos.
 - [ ] Seleccionar un servicio desde su tarjeta actualiza el formulario y anuncia el
   cambio a tecnologías de asistencia.
 

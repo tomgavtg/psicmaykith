@@ -86,8 +86,9 @@ RESEND_FROM_EMAIL=
 - Conviene limitar la llave al equipo/dominio y permisos mínimos que ofrezca el plan.
 - Los cambios requieren redeploy del entorno afectado.
 
-La `.env.example` sólo lleva nombres y valores vacíos; su propiedad corresponde al
-agente integrador.
+La `.env.example` conserva vacíos los valores de Resend. Las únicas claves completas
+que incluye son las credenciales públicas oficiales de prueba de Turnstile para
+Development; nunca son credenciales de producción.
 
 ## Flujo del Route Handler
 

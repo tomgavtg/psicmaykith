@@ -19,7 +19,7 @@ export function Header({ name, contactSettings }) {
         </a>
 
         <nav className="main-nav" aria-label="Navegación principal">
-          <a href="#sobre-mi">Sobre mí</a>
+          <a href="#sobre-mi">Inicio</a>
           <a href="#servicios">Servicios</a>
           <a href="#agendar">Agendar</a>
         </nav>

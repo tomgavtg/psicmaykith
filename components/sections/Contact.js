@@ -23,12 +23,12 @@ export function Contact({
         <div className="contact-heading">
           <p className="section-kicker">Agendar</p>
           <h2 id="agendar-title" className="section-title" tabIndex={-1}>
-            Solicita una primera cita
+            Demos el primer paso
           </h2>
           <p className="section-intro">
-            Comparte sólo tus preferencias de servicio, modalidad, fecha y horario.
-            La cita se confirma personalmente después de revisar disponibilidad; no
-            necesitas explicar el motivo de consulta en este primer contacto.
+            Elige el servicio, la modalidad y el horario que prefieres. Recibirás una
+            respuesta para revisar disponibilidad, resolver dudas y confirmar la cita.
+            No necesitas explicar el motivo de consulta en este primer contacto.
           </p>
         </div>
 
@@ -40,8 +40,9 @@ export function Contact({
             <p className="section-kicker">Ruta directa</p>
             <h3 id="whatsapp-title">WhatsApp Business</h3>
             <p>
-              Envía un mensaje breve para solicitar una cita o preguntar por servicios,
-              modalidades y disponibilidad.
+              Envía un mensaje breve para solicitar una primera cita o preguntar por
+              servicios y disponibilidad. La conversación inicial no te compromete a
+              continuar un proceso.
             </p>
             {whatsappUrl ? (
               <TrackedLink
@@ -56,9 +57,7 @@ export function Contact({
                 Abrir WhatsApp
               </TrackedLink>
             ) : (
-              <p className="pending-contact">
-                [POR DEFINIR: número de WhatsApp Business]
-              </p>
+              <p className="pending-contact">WhatsApp no disponible temporalmente.</p>
             )}
             {contactSettings.email ? (
               <TrackedLink
@@ -91,7 +90,8 @@ export function Contact({
             <ContactForm
               services={services}
               modalities={contactSettings.modalities || []}
-              scheduleOptions={contactSettings.preferredScheduleOptions || []}
+              availableWeekdays={contactSettings.availableWeekdays || []}
+              availableStartTimes={contactSettings.availableStartTimes || []}
               successMessage={contactSettings.successMessage}
               errorMessage={contactSettings.errorMessage}
               hasWhatsApp={Boolean(whatsappUrl)}

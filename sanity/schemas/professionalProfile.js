@@ -12,6 +12,14 @@ export const professionalProfile = defineType({
       validation: (Rule) => Rule.required().max(100),
     }),
     defineField({
+      name: "heroTitle",
+      title: "Título principal",
+      type: "string",
+      description:
+        "Idea principal de la portada. Debe ser clara, respetuosa y no prometer resultados.",
+      validation: (Rule) => Rule.required().max(110),
+    }),
+    defineField({
       name: "headline",
       title: "Titular",
       type: "string",
@@ -52,6 +60,20 @@ export const professionalProfile = defineType({
       type: "text",
       rows: 3,
       validation: (Rule) => Rule.required().max(500),
+    }),
+    defineField({
+      name: "validationItems",
+      title: "Situaciones con las que puede identificarse quien visita",
+      type: "array",
+      description:
+        "Entre tres y cinco situaciones, sin diagnosticar ni asumir que describen a todas las personas.",
+      of: [
+        defineArrayMember({
+          type: "string",
+          validation: (Rule) => Rule.max(180),
+        }),
+      ],
+      validation: (Rule) => Rule.required().min(3).max(5),
     }),
     defineField({
       name: "licenseNumber",

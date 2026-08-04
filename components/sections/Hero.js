@@ -8,6 +8,8 @@ export function Hero({ profile, contactSettings, globalNotice }) {
     contactSettings.whatsappNumber,
     contactSettings.whatsappMessage,
   );
+  const hasProfessionalName =
+    profile.fullName && !profile.fullName.includes("[POR DEFINIR");
 
   return (
     <section id="sobre-mi" className="hero section" aria-labelledby="hero-title">
@@ -15,8 +17,10 @@ export function Hero({ profile, contactSettings, globalNotice }) {
       <div className="hero-orb hero-orb-two" aria-hidden="true" />
       <div className="container hero-grid">
         <div className="hero-copy">
-          <p className="section-kicker">Atención psicológica</p>
-          <h1 id="hero-title">{profile.fullName}</h1>
+          <p className="section-kicker">
+            {hasProfessionalName ? profile.fullName : "Atención psicológica"}
+          </p>
+          <h1 id="hero-title">{profile.heroTitle || profile.fullName}</h1>
           <p className="hero-headline">{profile.headline}</p>
           <p className="hero-bio">{profile.shortBio}</p>
 
@@ -60,7 +64,7 @@ export function Hero({ profile, contactSettings, globalNotice }) {
           {profile.portrait?.url ? (
             <Image
               src={profile.portrait.url}
-              alt={profile.portrait.alt || `Retrato profesional de ${profile.fullName}`}
+              alt={profile.portrait.alt || "Retrato profesional"}
               fill
               priority
               sizes="(max-width: 767px) 100vw, 45vw"
@@ -69,8 +73,7 @@ export function Hero({ profile, contactSettings, globalNotice }) {
           ) : (
             <div className="portrait-placeholder">
               <span className="portrait-leaf" aria-hidden="true" />
-              <p>Fotografía profesional</p>
-              <small>[POR DEFINIR: imagen aprobada]</small>
+              <p>Retrato profesional no disponible</p>
             </div>
           )}
           <div className="portrait-caption">
@@ -78,6 +81,28 @@ export function Hero({ profile, contactSettings, globalNotice }) {
             <strong>claro, humano y respetuoso</strong>
           </div>
         </div>
+      </div>
+
+      <div className="container hero-context-grid">
+        {profile.validationItems?.length ? (
+          <div className="reflection-panel">
+            <p className="section-kicker">Tal vez te resulte familiar</p>
+            <h2>¿Te ha pasado que…?</h2>
+            <ul>
+              {profile.validationItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+
+        {profile.approach ? (
+          <div className="approach-panel">
+            <p className="section-kicker">Enfoque terapéutico</p>
+            <h2>Comprender lo que se repite puede abrir algo distinto</h2>
+            <p>{profile.approach}</p>
+          </div>
+        ) : null}
       </div>
     </section>
   );

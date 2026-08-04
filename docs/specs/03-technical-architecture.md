@@ -252,8 +252,8 @@ formulario
 ### Contrato de entrada
 
 El body debe ser un objeto JSON con una lista cerrada de campos equivalentes a: nombre,
-correo, teléfono opcional, identificador de servicio, modalidad, preferencia de horario,
-mensaje opcional, aceptación de privacidad, honeypot y token de Turnstile. Los nombres
+correo, teléfono opcional, identificador de servicio, modalidad, tres preferencias de
+día y hora, mensaje opcional, aceptación de privacidad, honeypot y token de Turnstile. Los nombres
 y límites concretos del schema deben fijarse y probarse en Fase 2. No se deben aceptar
 HTML, archivos, claves inesperadas ni valores de servicio/modalidad fuera de los
 catálogos publicados.

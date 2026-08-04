@@ -52,8 +52,25 @@ function validateRequestSource(request) {
 
 async function validateTurnstile(token, ip) {
   const secret = process.env.TURNSTILE_SECRET_KEY;
+  const allowedOrigin = process.env.ALLOWED_ORIGIN;
+  const usesDevelopmentTestSecret =
+    secret === "1x0000000000000000000000000000000AA";
+  const isProductionEnvironment =
+    process.env.VERCEL_ENV === "production" ||
+    process.env.SITE_MODE === "production";
 
-  if (!secret) {
+  if (
+    !secret ||
+    !allowedOrigin ||
+    (isProductionEnvironment && usesDevelopmentTestSecret)
+  ) {
+    return false;
+  }
+
+  let expectedHostname;
+  try {
+    expectedHostname = new URL(allowedOrigin).hostname;
+  } catch {
     return false;
   }
 
@@ -83,10 +100,8 @@ async function validateTurnstile(token, ip) {
 
     return (
       result.success === true &&
-      (!result.action || result.action === "contact") &&
-      (!result.hostname ||
-        (process.env.ALLOWED_ORIGIN &&
-          result.hostname === new URL(process.env.ALLOWED_ORIGIN).hostname))
+      result.action === "contact" &&
+      result.hostname === expectedHostname
     );
   } catch {
     return false;
@@ -139,7 +154,11 @@ export async function POST(request) {
   if (
     !contactOptions.services.includes(parsed.data.service) ||
     !contactOptions.modalities.includes(parsed.data.modality) ||
-    !contactOptions.schedules.includes(parsed.data.preferredSchedule)
+    parsed.data.schedulePreferences.some(
+      ({ day, startTime }) =>
+        !contactOptions.weekdays.includes(day) ||
+        !contactOptions.startTimes.includes(startTime),
+    )
   ) {
     return json("Alguna de las opciones seleccionadas no es válida.", 400);
   }

@@ -1,11 +1,12 @@
 "use client";
 
 import Script from "next/script";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export function TurnstileWidget({ siteKey, onToken, resetKey }) {
   const containerRef = useRef(null);
   const widgetIdRef = useRef(null);
+  const [verificationMessage, setVerificationMessage] = useState("");
 
   const renderWidget = useCallback(() => {
     if (
@@ -22,9 +23,22 @@ export function TurnstileWidget({ siteKey, onToken, resetKey }) {
       action: "contact",
       theme: "light",
       size: "flexible",
-      callback: (token) => onToken(token),
-      "expired-callback": () => onToken(""),
-      "error-callback": () => onToken(""),
+      callback: (token) => {
+        setVerificationMessage("");
+        onToken(token);
+      },
+      "expired-callback": () => {
+        setVerificationMessage(
+          "La verificación venció. Espera a que se genere una nueva antes de enviar.",
+        );
+        onToken("");
+      },
+      "error-callback": () => {
+        setVerificationMessage(
+          "No pudimos completar la verificación. Intenta nuevamente o utiliza WhatsApp.",
+        );
+        onToken("");
+      },
     });
   }, [onToken, siteKey]);
 
@@ -35,6 +49,7 @@ export function TurnstileWidget({ siteKey, onToken, resetKey }) {
   useEffect(() => {
     if (widgetIdRef.current !== null && window.turnstile) {
       window.turnstile.reset(widgetIdRef.current);
+      setVerificationMessage("");
       onToken("");
     }
   }, [onToken, resetKey]);
@@ -42,7 +57,8 @@ export function TurnstileWidget({ siteKey, onToken, resetKey }) {
   if (!siteKey) {
     return (
       <p className="form-configuration-note" role="status">
-        El formulario se habilitará al configurar Cloudflare Turnstile.
+        El formulario por correo no está disponible temporalmente. Puedes solicitar tu
+        cita por WhatsApp.
       </p>
     );
   }
@@ -55,6 +71,11 @@ export function TurnstileWidget({ siteKey, onToken, resetKey }) {
         onLoad={renderWidget}
       />
       <div ref={containerRef} className="turnstile-container" />
+      {verificationMessage ? (
+        <p className="form-configuration-note" role="alert">
+          {verificationMessage}
+        </p>
+      ) : null}
     </>
   );
 }

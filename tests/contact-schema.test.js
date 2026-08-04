@@ -7,8 +7,11 @@ const validLead = {
   phone: "+52 55 0000 0000",
   service: "servicio-uno",
   modality: "En línea",
-  preferredDate: "2099-08-15",
-  preferredSchedule: "Horario flexible",
+  schedulePreferences: [
+    { day: "Lunes", startTime: "17:00" },
+    { day: "Martes", startTime: "16:00" },
+    { day: "Viernes", startTime: "11:00" },
+  ],
   message: "Deseo conocer disponibilidad.",
   privacyAccepted: true,
   website: "",
@@ -49,20 +52,34 @@ describe("contactSchema", () => {
     ).toBe(false);
   });
 
-  it("rechaza fechas inexistentes o pasadas", () => {
+  it("exige exactamente tres preferencias distintas", () => {
     expect(
-      contactSchema.safeParse({ ...validLead, preferredDate: "2026-02-30" })
-        .success,
+      contactSchema.safeParse({
+        ...validLead,
+        schedulePreferences: validLead.schedulePreferences.slice(0, 2),
+      }).success,
     ).toBe(false);
     expect(
-      contactSchema.safeParse({ ...validLead, preferredDate: "2020-01-01" })
-        .success,
+      contactSchema.safeParse({
+        ...validLead,
+        schedulePreferences: [
+          validLead.schedulePreferences[0],
+          validLead.schedulePreferences[0],
+          validLead.schedulePreferences[2],
+        ],
+      }).success,
     ).toBe(false);
   });
 
-  it("permite omitir una fecha específica", () => {
+  it("rechaza horas con formato inválido", () => {
     expect(
-      contactSchema.safeParse({ ...validLead, preferredDate: "" }).success,
-    ).toBe(true);
+      contactSchema.safeParse({
+        ...validLead,
+        schedulePreferences: [
+          { day: "Lunes", startTime: "25:00" },
+          ...validLead.schedulePreferences.slice(1),
+        ],
+      }).success,
+    ).toBe(false);
   });
 });
