@@ -16,7 +16,12 @@ export const service = defineType({
       title: "Identificador",
       type: "slug",
       options: { source: "name", maxLength: 80 },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.required().custom((value) =>
+          !value?.current || /^[a-z0-9-]{2,80}$/.test(value.current)
+            ? true
+            : "Usa entre 2 y 80 caracteres: minúsculas, números y guiones.",
+        ),
     }),
     defineField({
       name: "shortDescription",

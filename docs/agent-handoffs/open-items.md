@@ -21,6 +21,9 @@ responsables correspondientes.
 
 ## A. Preguntas para la psicóloga
 
+- [ ] Corregir Servicios en Sanity: actualmente sólo hay dos activos y sus slugs (`2`
+  y `Psicoterapia`) no son válidos. Crear/publicar Adultos, Adolescentes y Pareja con
+  slugs `terapia-para-adultos`, `terapia-para-adolescentes` y `terapia-de-pareja`.
 - [ ] ¿Cuál es el nombre profesional exacto y, si aplica, el nombre comercial?
 - [ ] ¿Qué cédula, formación, certificaciones y hasta tres elementos de enfoque pueden
   publicarse y con qué evidencia?

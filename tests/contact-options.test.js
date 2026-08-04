@@ -13,7 +13,11 @@ describe("mergeContactOptions", () => {
     expect(
       mergeContactOptions(
         {
-          services: ["servicio-publicado-en-sanity"],
+          services: [
+            "terapia-publicada-uno",
+            "terapia-publicada-dos",
+            "terapia-publicada-tres",
+          ],
           modalities: ["Videollamada"],
           weekdays: null,
           startTimes: null,
@@ -21,7 +25,11 @@ describe("mergeContactOptions", () => {
         fallback,
       ),
     ).toEqual({
-      services: ["servicio-publicado-en-sanity"],
+      services: [
+        "terapia-publicada-uno",
+        "terapia-publicada-dos",
+        "terapia-publicada-tres",
+      ],
       modalities: ["Videollamada"],
       weekdays: fallback.weekdays,
       startTimes: fallback.startTimes,
@@ -43,6 +51,25 @@ describe("mergeContactOptions", () => {
       services: fallback.services,
       modalities: ["En línea"],
       weekdays: ["Viernes"],
+      startTimes: fallback.startTimes,
+    });
+  });
+
+  it("usa el mismo fallback que la landing si Sanity tiene menos de tres servicios válidos", () => {
+    expect(
+      mergeContactOptions(
+        {
+          services: ["2", "Psicoterapia"],
+          modalities: ["En Línea", "Presencial"],
+          weekdays: null,
+          startTimes: null,
+        },
+        fallback,
+      ),
+    ).toEqual({
+      services: fallback.services,
+      modalities: ["En Línea", "Presencial"],
+      weekdays: fallback.weekdays,
       startTimes: fallback.startTimes,
     });
   });
