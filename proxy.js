@@ -7,6 +7,7 @@ export function contentSecurityPolicy(nonce, isAdmin, isDevelopment) {
     "'strict-dynamic'",
     "https://challenges.cloudflare.com",
     "https://www.googletagmanager.com",
+    "https://tagmanager.google.com",
     "https://connect.facebook.net",
     "https://analytics.tiktok.com",
   ];
@@ -49,11 +50,11 @@ export function contentSecurityPolicy(nonce, isAdmin, isDevelopment) {
   const directives = [
     "default-src 'self'",
     `script-src ${scriptSources.join(" ")}`,
-    "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob: https://cdn.sanity.io https://www.google-analytics.com https://*.google-analytics.com https://www.googleadservices.com https://*.doubleclick.net https://www.facebook.com https://analytics.tiktok.com https://*.tiktok.com",
-    "font-src 'self' data:",
+    "style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com",
+    "img-src 'self' data: blob: https://cdn.sanity.io https://www.googletagmanager.com https://ssl.gstatic.com https://www.gstatic.com https://www.google-analytics.com https://*.google-analytics.com https://www.googleadservices.com https://*.doubleclick.net https://www.facebook.com https://analytics.tiktok.com https://*.tiktok.com",
+    "font-src 'self' data: https://fonts.gstatic.com",
     `connect-src ${connectSources.join(" ")}`,
-    "frame-src https://challenges.cloudflare.com",
+    "frame-src https://challenges.cloudflare.com https://www.googletagmanager.com",
     "worker-src 'self' blob:",
     "media-src 'none'",
     "object-src 'none'",

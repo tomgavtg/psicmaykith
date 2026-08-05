@@ -83,6 +83,12 @@ UTM. `utm_term` se descarta deliberadamente.
 
 ## 5. Validar y publicar el contenedor
 
+La CSP de la aplicación debe permitir los recursos oficiales de Preview Mode de
+`tagmanager.google.com`, `googletagmanager.com`, `fonts.googleapis.com`,
+`fonts.gstatic.com`, `ssl.gstatic.com` y `www.gstatic.com`. Si Tag Assistant muestra
+errores para `badge.css`, Material Icons o Google Sans, verificar primero la cabecera
+`Content-Security-Policy` del deployment antes de cambiar extensiones o consentimiento.
+
 1. Abrir una ventana incógnita con almacenamiento y cookies limpios.
 2. Antes de elegir, comprobar en Network que no existen solicitudes a
    `googletagmanager.com`, `google-analytics.com` o `doubleclick.net`.
