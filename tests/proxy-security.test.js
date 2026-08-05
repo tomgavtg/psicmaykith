@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { contentSecurityPolicy } from "../proxy";
+import { contentSecurityPolicy, isTagAssistantPreview } from "../proxy";
 
 describe("Content Security Policy", () => {
   it("permite el CDN de módulos de Sanity sólo en el Studio", () => {
@@ -20,5 +20,15 @@ describe("Content Security Policy", () => {
     expect(policy).toContain("https://fonts.gstatic.com");
     expect(policy).toContain("https://ssl.gstatic.com");
     expect(policy).toContain("https://www.gstatic.com");
+  });
+
+  it("identifica únicamente señales reconocidas de Tag Assistant", () => {
+    expect(isTagAssistantPreview(new URLSearchParams("_dbg=1"))).toBe(true);
+    expect(
+      isTagAssistantPreview(new URLSearchParams("gtm_preview=env-2")),
+    ).toBe(true);
+    expect(isTagAssistantPreview(new URLSearchParams("utm_source=google"))).toBe(
+      false,
+    );
   });
 });

@@ -88,6 +88,11 @@ La CSP de la aplicación debe permitir los recursos oficiales de Preview Mode de
 `fonts.gstatic.com`, `ssl.gstatic.com` y `www.gstatic.com`. Si Tag Assistant muestra
 errores para `badge.css`, Material Icons o Google Sans, verificar primero la cabecera
 `Content-Security-Policy` del deployment antes de cambiar extensiones o consentimiento.
+Las respuestas normales conservan `Cross-Origin-Opener-Policy: same-origin`; cuando la
+URL incluye una señal reconocida de Tag Assistant (`_dbg`, `gtm_debug`, `gtm_preview` o
+`gtm_auth`), el proxy responde temporalmente con `unsafe-none` para conservar el canal
+`window.opener` que necesita la sesión de depuración. La excepción no debe activarse
+para parámetros de campañas ni para navegación ordinaria.
 
 1. Abrir una ventana incógnita con almacenamiento y cookies limpios.
 2. Antes de elegir, comprobar en Network que no existen solicitudes a

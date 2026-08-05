@@ -70,6 +70,12 @@ export function contentSecurityPolicy(nonce, isAdmin, isDevelopment) {
   return directives.join("; ");
 }
 
+export function isTagAssistantPreview(searchParams) {
+  return ["_dbg", "gtm_debug", "gtm_preview", "gtm_auth"].some((parameter) =>
+    searchParams.has(parameter),
+  );
+}
+
 export function proxy(request) {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const isAdmin = request.nextUrl.pathname.startsWith("/admin");
@@ -101,7 +107,12 @@ export function proxy(request) {
     "Permissions-Policy",
     "camera=(), microphone=(), geolocation=(), payment=()",
   );
-  response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
+  response.headers.set(
+    "Cross-Origin-Opener-Policy",
+    isTagAssistantPreview(request.nextUrl.searchParams)
+      ? "unsafe-none"
+      : "same-origin",
+  );
   response.headers.set("Cross-Origin-Resource-Policy", "same-site");
 
   return response;
