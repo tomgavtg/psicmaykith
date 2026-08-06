@@ -11,10 +11,10 @@ async function main() {
     "portrait": portrait{"url": asset->url,alt}
   },
   "services": *[_type == "service" && isActive == true] | order(order asc){
-    name,"slug": slug.current,durationMinutes,fee,modality
+    name,"slug": slug.current,durationMinutes,fee,modality,bookingUrl
   },
   "contactSettings": *[_id == "contactSettings"][0]{
-    email,whatsappNumber,modalities,availableWeekdays,availableStartTimes,responseTimeCopy
+    email,whatsappNumber,modalities,availableWeekdays,availableStartTimes,bookingPolicy,responseTimeCopy
   },
   "seoSettings": *[_id == "seoSettings"][0]{
     metaTitle,metaDescription,businessType,areaServed,"ogImage": ogImage{"url": asset->url,alt}
@@ -38,10 +38,15 @@ async function main() {
           slug: service.slug,
           durationMinutes: service.durationMinutes,
           hasFee: Number.isFinite(service.fee?.amount),
+          hasBookingUrl: Boolean(service.bookingUrl),
         })),
         schedule: {
           weekdays: content.contactSettings?.availableWeekdays?.length || 0,
           startTimes: content.contactSettings?.availableStartTimes?.length || 0,
+          cancellationWindowHours:
+            content.contactSettings?.bookingPolicy?.cancellationWindowHours,
+          clientReschedulingAllowed:
+            content.contactSettings?.bookingPolicy?.clientReschedulingAllowed,
         },
         seo: {
           title: content.seoSettings?.metaTitle,

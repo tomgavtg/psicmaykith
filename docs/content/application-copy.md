@@ -9,7 +9,7 @@ secciones definida en `docs/specs/02-ux-ui-specification.md`.
 Estos textos sirven para revisar la experiencia local y cargar contenido en Sanity.
 No equivalen a aprobación profesional, legal ni de publicación. Antes de producción
 deben confirmarse la formación, población atendida,
-servicios, modalidad, duración, honorarios, disponibilidad, plazo de respuesta y
+servicios, disponibilidad, plazo de respuesta y
 fotografías.
 
 ## Configuración del sitio
@@ -73,10 +73,9 @@ requiere datos personales y profesionales que todavía no están confirmados.
 **Un espacio para comprender lo que sientes, reconocer patrones en tus relaciones o
 decisiones y poner en palabras aquello que todavía resulta difícil nombrar.**
 
-- Modalidad propuesta: En línea.
+- Modalidad: En línea.
 - Duración: **50 minutos**.
-- Honorarios y disponibilidad se comunicarán por los medios de contacto cuando estén
-  aprobados.
+- Honorarios: **$750 MXN por sesión**.
 
 ### Terapia para adolescentes
 
@@ -84,10 +83,9 @@ decisiones y poner en palabras aquello que todavía resulta difícil nombrar.**
 evaluado. El encuadre y la comunicación con madres, padres o tutores se acuerdan antes
 de comenzar.**
 
-- Modalidad propuesta: En línea.
+- Modalidad: En línea.
 - Duración: **50 minutos**.
-- Honorarios y disponibilidad se comunicarán por los medios de contacto cuando estén
-  aprobados.
+- Honorarios: **$750 MXN por sesión**.
 - Antes de publicar: confirmar atención real a menores y obtener revisión profesional
   y legal del encuadre, consentimiento, confidencialidad y comunicación con tutores.
 
@@ -96,21 +94,26 @@ de comenzar.**
 **Un espacio neutral para escuchar lo que sucede entre ambos, comprender los conflictos
 que se repiten y conversar sin buscar quién tiene la razón.**
 
-- Modalidad propuesta: En línea.
+- Modalidad: En línea.
 - Duración: **1 hora con 10 minutos**.
-- Honorarios y disponibilidad se comunicarán por los medios de contacto cuando estén
-  aprobados.
+- Honorarios: **$1,200 MXN por sesión**.
 
 ## Agenda
 
 - Encabezado: **Demos el primer paso**
-- Introducción: **Elige el servicio, la modalidad y tres horarios semanales que
-  prefieras. Recibirás una respuesta para revisar disponibilidad, resolver dudas y
-  confirmar la cita. No necesitas explicar el motivo de consulta en este primer
-  contacto.**
+- Introducción: **Por el momento, todas las citas disponibles son en línea. Elige el
+  servicio, comparte brevemente tu motivo de consulta e indica tres horarios semanales
+  que prefieras. Recibirás una respuesta para revisar disponibilidad y confirmar la
+  cita.**
 - Ayuda de horarios: **Selecciona tres opciones distintas. Son preferencias semanales y
   no reservan una sesión; la cita se confirma personalmente después de revisar
   disponibilidad.**
+- Campo obligatorio: **Motivo de consulta**. Debe limitarse a 500 caracteres y mostrar
+  una instrucción para compartir sólo lo necesario, sin diagnósticos, medicamentos,
+  antecedentes ni información de otras personas.
+- Consentimiento separado: **Consiento expresamente el tratamiento del motivo de
+  consulta, que puede revelar datos personales sensibles, únicamente para atender mi
+  solicitud y gestionar una posible cita.**
 - WhatsApp: **Envía un mensaje breve para solicitar una primera cita o preguntar por
   servicios y disponibilidad. La conversación inicial no te compromete a continuar un
   proceso.**
@@ -123,6 +126,20 @@ que se repiten y conversar sin buscar quién tiene la razón.**
 
 El formulario mantiene el lenguaje que aclara que una solicitud no confirma la cita ni
 crea un expediente.
+
+### Reserva con pago
+
+- Cada servicio tendrá su propio enlace público de Horarios de citas de Google
+  Calendar con pago mediante Stripe.
+- Cancelación sin penalización: hasta **48 horas antes** de la sesión.
+- Reprogramación solicitada por la persona usuaria: **no disponible**.
+- Cancelación tardía: **sin reembolso**.
+- Inasistencia: **sin reembolso**.
+- Cancelación por parte de la psicóloga: **se ofrecerá reprogramación**.
+- Adultos y adolescentes utilizan el horario individual público:
+  `https://calendar.app.google/ASqcLDM3toM1cwU39`.
+- Pareja utiliza el horario público de 70 minutos:
+  `https://calendar.app.google/mYGWH7GsyeatowKMA`.
 
 ## SEO propuesto
 

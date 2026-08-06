@@ -30,10 +30,18 @@ responsables correspondientes.
   elementos de enfoque publicables.
 - [ ] ¿A qué audiencia adulta atiende, en qué ubicaciones y para qué motivos de consulta
   ofrece efectivamente sus servicios? ¿Atiende a menores?
-- [ ] ¿Cuáles son los tres o cuatro servicios, modalidades, honorarios, horarios y
-  zona/dirección que desea publicar?
+- [x] Modalidad y honorarios confirmados: sólo en línea; adultos y adolescentes,
+  `$750 MXN`; pareja, `$1,200 MXN`, todos por sesión.
 - [x] Duraciones confirmadas: terapia para adultos y adolescentes, 50 minutos; terapia
   de pareja, 70 minutos.
+- [x] Política comercial confirmada: cancelación sin penalización con 48 horas de
+  anticipación; no se permite reprogramar por solicitud de la persona usuaria;
+  cancelación tardía e inasistencia sin reembolso; si cancela la psicóloga se ofrece
+  reprogramación.
+- [x] Enlaces públicos de Google Calendar confirmados: Adultos y Adolescentes comparten
+  el horario individual de 50 minutos; Pareja utiliza el horario de 70 minutos.
+- [ ] Ejecutar la preparación de Sanity y comprobar con una reserva de prueba que el
+  flujo individual solicita `$750 MXN` y el de pareja `$1,200 MXN` en Stripe.
 - [x] Número de WhatsApp Business confirmado: `+52 56 3955 1234`; valor técnico
   `525639551234`, sin el antiguo prefijo móvil mexicano `1`.
 - [ ] Confirmar titular operativo del número y aprobar el mensaje inicial definitivo.
@@ -64,8 +72,13 @@ responsables correspondientes.
 - [x] Canales ARCO confirmados: `contacto@psicologamayumikitahara.com` y WhatsApp
   empresarial `+52 56 3955 1234`.
 - [x] Domicilio profesional aprobado e incorporado al aviso `v1.0`.
-- [ ] Definir si se conserva el campo de mensaje libre o se sustituye por una pregunta
-  más acotada para reducir datos clínicos accidentales.
+- [x] El 6 de agosto de 2026 se decidió sustituir “Mensaje” por “Motivo de consulta”,
+  obligatorio, breve y limitado a 500 caracteres.
+- [x] Aviso integral `v1.1` aprobado y publicado en Sanity Production el 6 de agosto de
+  2026 para cubrir motivo de consulta, consentimiento expreso, Google Calendar, Stripe
+  y política comercial.
+- [ ] Definir cómo acreditar el consentimiento expreso del motivo de consulta sin crear
+  una base de expedientes ni ampliar innecesariamente la retención.
 - [ ] Definir cómo acreditar versión/aceptación del aviso sin crear una base de leads.
 - [ ] Completar y aprobar los campos bloqueantes inventariados en
   `docs/legal/privacy-notices/` antes de convertir los borradores `v0.1` en `v1.0`.

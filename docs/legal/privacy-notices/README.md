@@ -2,9 +2,10 @@
 
 ## Estado
 
-El aviso del sitio y contacto inicial `v1.0` fue aprobado por la responsable y entró en
-vigor el 4 de agosto de 2026. Los documentos clínicos `v0.1` continúan como borradores
-y no deben utilizarse con pacientes.
+El aviso integral del sitio, contacto inicial, agenda y pago `v1.1` fue aprobado por la
+responsable y entró en vigor el 6 de agosto de 2026. La versión `v1.0` se conserva como
+historial. Los documentos clínicos `v0.1` continúan como borradores y no deben
+utilizarse con pacientes.
 
 Esta carpeta es el repositorio versionado de los textos de privacidad del proyecto. Se
 mantiene dentro del repositorio Git de la plataforma para evitar un repositorio Git
@@ -15,9 +16,10 @@ Fecha de elaboración inicial: 1 de agosto de 2026.
 
 ## Documentos
 
+- [Aviso integral del sitio, contacto, agenda y pago v1.1](aviso-integral-sitio-contacto-v1.1.md):
+  versión vigente aprobada para visitas, formulario, Google Calendar y Stripe.
 - [Aviso integral del sitio y contacto v1.0](aviso-integral-sitio-contacto-v1.0.md):
-  versión aprobada para visitas, formulario, correo y WhatsApp antes de iniciar una
-  relación terapéutica.
+  versión histórica vigente del 4 al 5 de agosto de 2026.
 - [Borrador histórico del aviso del sitio v0.1](aviso-integral-sitio-contacto-v0.1.md).
 - [Aviso simplificado del formulario](aviso-simplificado-formulario-v0.1.md): texto
   inmediato que debe acompañar la captura electrónica y enlazar al aviso integral.

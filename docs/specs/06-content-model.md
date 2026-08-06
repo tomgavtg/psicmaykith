@@ -43,9 +43,10 @@ contenido completo. Los placeholders locales nunca sustituyen datos reales.
 | `name` | string | requerido |
 | `slug` | slug | genérico, único y no sensible |
 | `shortDescription` | text | requerido, límite editorial |
-| `modality` | array enum | presencial, en línea o valor aprobado |
-| `durationMinutes` | number | opcional, entero razonable |
-| `fee` | object | opcional: cantidad, moneda MXN, nota |
+| `modality` | array enum | sólo `En línea` en la versión vigente |
+| `durationMinutes` | number | requerido; 50 o 70 según el servicio |
+| `fee` | object | requerido: cantidad positiva, moneda MXN, nota |
+| `bookingUrl` | URL HTTPS | opcional hasta activación; sólo Google Calendar |
 | `availabilityNote` | string | opcional, no sustituye agenda |
 | `image` | image | opcional, metadata/alt |
 | `order` | number | único o criterio de desempate |
@@ -65,9 +66,10 @@ persona ni se capturan expedientes.
 | `locationName` | string | zona aprobada, evita domicilio si no es público |
 | `address` | object | opcional, sólo datos publicables |
 | `serviceAreas` | array string | zonas reales |
-| `modalities` | array string | opciones del formulario |
+| `modalities` | array string | temporalmente sólo `En línea` |
 | `availableWeekdays` | array string | días ofrecidos como preferencia, no como reserva |
 | `availableStartTimes` | array string | horas `HH:mm`; la interfaz calcula el fin según duración |
+| `bookingPolicy` | object | ventana de cancelación, reprogramación y resolución de cancelaciones |
 | `responseTimeCopy` | string | sólo con SLA operativo |
 | `successMessage` | text | sin confirmar cita |
 | `errorMessage` | text | ofrece alternativa |
@@ -76,6 +78,16 @@ Las tres preferencias de día/hora son datos transitorios del formulario y no fo
 parte del contenido clínico. El servidor exige tres combinaciones distintas, valida
 cada valor contra la configuración publicada y las incluye sólo en el correo de
 solicitud. Ninguna selección confirma una cita.
+
+Cuando un servicio tiene `bookingUrl`, su CTA abre la página pública de Google Calendar
+en una pestaña nueva. El enlace no se embebe al cargar la landing, para no contactar al
+tercero antes de una acción explícita. El pago y la creación del evento ocurren fuera
+de la aplicación mediante Google Calendar y Stripe.
+
+El motivo de consulta es un campo transaccional obligatorio de máximo 500 caracteres;
+no se almacena en Sanity ni se envía a analítica. Por poder revelar información de
+salud, requiere consentimiento expreso separado y una versión vigente del aviso que
+describa su tratamiento.
 
 ## `seoSettings` — singleton
 

@@ -54,8 +54,14 @@ export const contactSettings = defineType({
       name: "modalities",
       title: "Modalidades del formulario",
       type: "array",
-      of: [defineArrayMember({ type: "string" })],
-      validation: (Rule) => Rule.required().min(1).max(4),
+      description: "Por el momento, el formulario sólo admite la modalidad En línea.",
+      of: [
+        defineArrayMember({
+          type: "string",
+          options: { list: ["En línea"] },
+        }),
+      ],
+      validation: (Rule) => Rule.required().length(1).unique(),
     }),
     defineField({
       name: "availableWeekdays",
@@ -89,6 +95,47 @@ export const contactSettings = defineType({
         }),
       ],
       validation: (Rule) => Rule.required().min(1).max(24).unique(),
+    }),
+    defineField({
+      name: "bookingPolicy",
+      title: "Política de reserva y cancelación",
+      type: "object",
+      fields: [
+        defineField({
+          name: "cancellationWindowHours",
+          title: "Cancelación sin penalización (horas antes)",
+          type: "number",
+          validation: (Rule) => Rule.required().integer().min(1).max(720),
+        }),
+        defineField({
+          name: "clientReschedulingAllowed",
+          title: "Reprogramación solicitada por la persona usuaria",
+          type: "boolean",
+          initialValue: false,
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: "lateCancellationPolicy",
+          title: "Cancelación tardía",
+          type: "string",
+          options: { list: ["Sin reembolso"] },
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: "noShowPolicy",
+          title: "Inasistencia",
+          type: "string",
+          options: { list: ["Sin reembolso"] },
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: "providerCancellationPolicy",
+          title: "Cancelación por parte de la psicóloga",
+          type: "string",
+          options: { list: ["Se ofrecerá reprogramación"] },
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
     }),
     defineField({
       name: "responseTimeCopy",

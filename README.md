@@ -595,6 +595,11 @@ yarn sanity exec scripts/sanity/verify-production-content.js --with-user-token
 ```
 
 No se debe volver a ejecutar la aplicación sin revisar primero el modo preparación y
-el historial del dataset. Estos scripts no completan honorarios faltantes. El gate
-exige además `SITE_MODE=production` y
+el historial del dataset. El script carga los honorarios confirmados y la política de
+cancelación, además de los enlaces públicos confirmados de Google Calendar en el campo
+**Enlace público de reserva** de cada servicio. También publica el aviso integral v1.1
+aprobado desde `docs/legal/privacy-notices/aviso-integral-sitio-contacto-v1.1.md`; se
+detiene si Sanity ya contiene una versión posterior. El gate exige una versión `1.1` o
+posterior aprobada, además de
+`SITE_MODE=production` y
 `CONTENT_APPROVED=true`; ambos sólo se activan al cerrar el checklist.

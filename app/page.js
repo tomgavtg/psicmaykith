@@ -102,10 +102,18 @@ export default async function HomePage() {
               name: "Servicios de psicoterapia",
               itemListElement: services.map((service) => ({
                 "@type": "Offer",
+                ...(service.fee?.amount
+                  ? {
+                      price: service.fee.amount,
+                      priceCurrency: service.fee.currency || "MXN",
+                    }
+                  : {}),
+                ...(service.bookingUrl ? { url: service.bookingUrl } : {}),
                 itemOffered: {
                   "@type": "Service",
                   name: service.name,
                   description: service.shortDescription,
+                  serviceType: "Psicoterapia en línea",
                 },
               })),
             },

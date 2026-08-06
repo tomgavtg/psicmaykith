@@ -8,6 +8,8 @@ export function Contact({
   services,
   crisisNotice,
 }) {
+  const hasOnlineBooking = services.some((service) => service.bookingUrl);
+  const bookingPolicy = contactSettings.bookingPolicy;
   const whatsappUrl = buildWhatsAppUrl(
     contactSettings.whatsappNumber,
     contactSettings.whatsappMessage,
@@ -26,9 +28,10 @@ export function Contact({
             Demos el primer paso
           </h2>
           <p className="section-intro">
-            Elige el servicio, la modalidad y el horario que prefieres. Recibirás una
-            respuesta para revisar disponibilidad, resolver dudas y confirmar la cita.
-            No necesitas explicar el motivo de consulta en este primer contacto.
+            Por el momento, todas las citas disponibles son en línea. Elige el servicio,
+            comparte brevemente tu motivo de consulta e indica los horarios que
+            prefieres. Recibirás una respuesta para revisar disponibilidad y confirmar
+            la cita.
           </p>
         </div>
 
@@ -82,14 +85,37 @@ export function Contact({
 
           <div className="form-panel">
             <h3>Solicitud de cita</h3>
+            {hasOnlineBooking && bookingPolicy ? (
+              <div className="booking-policy" role="note">
+                <h4>Reserva y cancelación</h4>
+                <ul>
+                  <li>
+                    Cancelación sin penalización hasta {bookingPolicy.cancellationWindowHours}
+                    {" "}horas antes de la sesión.
+                  </li>
+                  <li>
+                    {bookingPolicy.clientReschedulingAllowed
+                      ? "Se permiten reprogramaciones conforme a la disponibilidad de la agenda."
+                      : "No se permiten reprogramaciones solicitadas por la persona usuaria."}
+                  </li>
+                  <li>
+                    Cancelación tardía: {bookingPolicy.lateCancellationPolicy.toLowerCase()}.
+                  </li>
+                  <li>Inasistencia: {bookingPolicy.noShowPolicy.toLowerCase()}.</li>
+                  <li>
+                    Cancelación por parte de la psicóloga:{" "}
+                    {bookingPolicy.providerCancellationPolicy.toLowerCase()}.
+                  </li>
+                </ul>
+              </div>
+            ) : null}
             <p>
-              Indica tres combinaciones de día y horario. Los datos se utilizan
-              únicamente para responder; enviar el formulario no confirma la cita ni
-              crea un expediente.
+              Indica tres combinaciones de día y horario para una cita en línea. Los
+              datos se utilizan únicamente para atender tu solicitud; enviar el
+              formulario no confirma la cita ni crea un expediente.
             </p>
             <ContactForm
               services={services}
-              modalities={contactSettings.modalities || []}
               availableWeekdays={contactSettings.availableWeekdays || []}
               availableStartTimes={contactSettings.availableStartTimes || []}
               successMessage={contactSettings.successMessage}

@@ -17,16 +17,16 @@ const initialValues = {
   email: "",
   phone: "",
   service: "",
-  modality: "",
+  modality: "En línea",
   schedulePreferences: emptySchedulePreferences(),
   message: "",
+  sensitiveDataAccepted: false,
   privacyAccepted: false,
   website: "",
 };
 
 export function ContactForm({
   services = EMPTY_OPTIONS,
-  modalities = EMPTY_OPTIONS,
   availableWeekdays = EMPTY_OPTIONS,
   availableStartTimes = EMPTY_OPTIONS,
   successMessage = "Recibimos tu solicitud; la cita se confirmará personalmente.",
@@ -34,7 +34,6 @@ export function ContactForm({
   hasWhatsApp,
 }) {
   const serviceOptions = safeOptions(services);
-  const modalityOptions = safeOptions(modalities);
   const weekdayOptions = safeOptions(availableWeekdays);
   const startTimeOptions = safeOptions(availableStartTimes);
   const [values, setValues] = useState(initialValues);
@@ -220,20 +219,13 @@ export function ContactForm({
 
       <div className="form-row">
         <label>
-          Modalidad preferida
-          <select
+          Modalidad disponible
+          <input
             name="modality"
             value={values.modality}
-            onChange={updateField}
-            required
-          >
-            <option value="">Selecciona una opción</option>
-            {modalityOptions.map((modality) => (
-              <option key={modality} value={modality}>
-                {modality}
-              </option>
-            ))}
-          </select>
+            readOnly
+            aria-readonly="true"
+          />
         </label>
       </div>
 
@@ -294,7 +286,7 @@ export function ContactForm({
       </fieldset>
 
       <label>
-        Mensaje <span className="optional">(opcional)</span>
+        Motivo de consulta
         <textarea
           name="message"
           value={values.message}
@@ -302,10 +294,13 @@ export function ContactForm({
           maxLength={500}
           rows={4}
           aria-describedby="message-help"
+          required
         />
       </label>
       <p id="message-help" className="field-help">
-        No compartas información clínica o sensible en este formulario.
+        Describe brevemente qué te gustaría trabajar. Comparte sólo lo necesario y
+        evita incluir diagnósticos, medicamentos, antecedentes o información de otras
+        personas.
       </p>
 
       <label className="honeypot" aria-hidden="true">
@@ -317,6 +312,21 @@ export function ContactForm({
           tabIndex={-1}
           autoComplete="off"
         />
+      </label>
+
+      <label className="checkbox-label">
+        <input
+          type="checkbox"
+          name="sensitiveDataAccepted"
+          checked={values.sensitiveDataAccepted}
+          onChange={updateField}
+          required
+        />
+        <span>
+          Consiento expresamente el tratamiento del motivo de consulta, que puede
+          revelar datos personales sensibles, únicamente para atender mi solicitud y
+          gestionar una posible cita.
+        </span>
       </label>
 
       <label className="checkbox-label">

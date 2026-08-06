@@ -39,8 +39,9 @@ una persona especialista en privacidad en México.
 | nombre | identificar la solicitud | correo a la profesional | transitoria en la app; copia en proveedores de correo |
 | correo | responder y `replyTo` | Resend y buzón de destino | según retención aprobada |
 | teléfono opcional | canal alternativo solicitado | cuerpo del correo | según retención aprobada |
-| servicio, modalidad y tres preferencias semanales de día/hora | contextualizar disponibilidad sin confirmar cita | cuerpo del correo | según retención aprobada |
-| mensaje opcional | duda breve no clínica | cuerpo del correo | según retención aprobada |
+| servicio, modalidad en línea y tres preferencias semanales de día/hora | contextualizar disponibilidad sin confirmar cita | cuerpo del correo | según retención aprobada |
+| motivo de consulta obligatorio | contexto mínimo para atender la solicitud; puede revelar salud | cuerpo del correo | según retención aprobada |
+| consentimiento expreso sobre datos potencialmente sensibles | acreditar autorización del tratamiento solicitado | correo o metadato mínimo `[POR DEFINIR: mecanismo legal y técnico]` | `[POR DEFINIR: plazo]` |
 | aceptación y versión del aviso | acreditar el flujo presentado | correo o metadato mínimo `[POR DEFINIR: mecanismo legal y técnico]` | `[POR DEFINIR: plazo]` |
 | token Turnstile | reducir abuso | Cloudflare Siteverify | vida técnica del proveedor |
 | IP y metadatos de red | seguridad y entrega | Cloudflare, Vercel, Turnstile y proveedores de red | según plan y configuración |
@@ -53,16 +54,20 @@ real, no una promesa absoluta.
 
 ### Datos excluidos
 
-El formulario no debe pedir diagnóstico, síntomas, motivo clínico detallado, historial,
-medicación, fecha de nacimiento, identificaciones, documentos, datos financieros,
-fotografías ni información de terceros. No debe admitir archivos adjuntos. El copy debe
-decir: “No compartas información clínica o sensible en este formulario.”
+Por decisión de producto del 6 de agosto de 2026, el formulario pide un motivo de
+consulta breve y obligatorio. No debe pedir diagnóstico, síntomas detallados,
+historial, medicación, fecha de nacimiento, identificaciones, documentos, datos
+financieros, fotografías ni información de terceros. No debe admitir archivos adjuntos.
+El copy debe pedir que se comparta sólo lo necesario y debe acompañarse de consentimiento
+expreso separado para el posible tratamiento de datos sensibles.
 
-Un mensaje libre puede contener información de salud aunque no se solicite. Debe
+El motivo de consulta puede contener información de salud. Debe
 tratarse como potencialmente sensible: no analizarlo para publicidad, no incorporarlo
 a analítica, limitar su longitud, restringir accesos y eliminarlo conforme al plazo
-aprobado. La revisión jurídica debe decidir si el mensaje se conserva, se reduce a una
-pregunta estructurada o requiere un consentimiento adicional.
+aprobado. Antes de desplegar el cambio debe aprobarse una nueva versión del aviso de
+privacidad que describa el dato, la finalidad, el consentimiento y los proveedores. El
+aviso integral v1.1 fue aprobado por la responsable el 6 de agosto de 2026 e incorpora
+estos elementos, Google Calendar y Stripe.
 
 ### Retención y eliminación
 

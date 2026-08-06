@@ -26,9 +26,24 @@ function publishableContent() {
       education: [{ degree: "Licenciatura", institution: "Institución" }],
     },
     services: [
-      { slug: "terapia-para-adultos" },
-      { slug: "terapia-para-adolescentes" },
-      { slug: "terapia-de-pareja" },
+      {
+        slug: "terapia-para-adultos",
+        modality: ["En línea"],
+        fee: { amount: 750, currency: "MXN" },
+        bookingUrl: "https://calendar.app.google/individual",
+      },
+      {
+        slug: "terapia-para-adolescentes",
+        modality: ["En línea"],
+        fee: { amount: 750, currency: "MXN" },
+        bookingUrl: "https://calendar.app.google/individual",
+      },
+      {
+        slug: "terapia-de-pareja",
+        modality: ["En línea"],
+        fee: { amount: 1200, currency: "MXN" },
+        bookingUrl: "https://calendar.app.google/couple",
+      },
     ],
     contactSettings: {
       email: "contacto@example.test",
@@ -47,7 +62,7 @@ function publishableContent() {
       controllerAddress: "Domicilio profesional completo y aprobado",
       contactEmail: "privacidad@example.test",
       contactWhatsapp: "525500000000",
-      versionLabel: "1.0",
+      versionLabel: "1.1",
       effectiveDate: "2026-08-04",
       content: [{}, {}, {}],
     },
@@ -69,12 +84,38 @@ describe("gate de publicación", () => {
     expect(isPrivacyNoticePublishable(content.privacyNotice)).toBe(false);
   });
 
+  it("bloquea el aviso v1.0 porque no cubre motivo de consulta, agenda y pago", () => {
+    const content = publishableContent();
+    content.privacyNotice.versionLabel = "1.0";
+
+    expect(getPublicationIssues(content)).toContain(
+      "privacy-notice-version-outdated",
+    );
+  });
+
   it("bloquea servicios con slugs no canónicos", () => {
     const content = publishableContent();
     content.services[1].slug = "2";
 
     expect(getPublicationIssues(content)).toContain(
       "required-services-incomplete",
+    );
+  });
+
+  it("bloquea una oferta sin honorarios confirmados o con modalidad presencial", () => {
+    const content = publishableContent();
+    content.services[0].fee = null;
+    content.services[1].modality = ["Presencial"];
+
+    expect(getPublicationIssues(content)).toContain("service-offer-incomplete");
+  });
+
+  it("bloquea un servicio sin enlace público de Google Calendar", () => {
+    const content = publishableContent();
+    content.services[2].bookingUrl = null;
+
+    expect(getPublicationIssues(content)).toContain(
+      "service-booking-incomplete",
     );
   });
 });

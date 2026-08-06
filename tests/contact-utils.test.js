@@ -81,6 +81,7 @@ describe("correo seguro", () => {
         { day: "Viernes", startTime: "11:00" },
       ],
       message: "<img src=x onerror=alert(1)>",
+      sensitiveDataAccepted: true,
     });
 
     expect(html).toContain("&lt;b&gt;Nombre&lt;/b&gt;");

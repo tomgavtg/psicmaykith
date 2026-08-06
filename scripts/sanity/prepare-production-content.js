@@ -6,9 +6,9 @@ const shouldApply = process.argv.some((argument) =>
 );
 const client = getCliClient({ apiVersion: "2026-07-01" });
 const APPROVED_PRIVACY_PATH =
-  "docs/legal/privacy-notices/aviso-integral-sitio-contacto-v1.0.md";
+  "docs/legal/privacy-notices/aviso-integral-sitio-contacto-v1.1.md";
 
-function portableBlock(key, style, text) {
+function portableBlock(key, style, blockText) {
   return {
     _type: "block",
     _key: key,
@@ -18,7 +18,7 @@ function portableBlock(key, style, text) {
       {
         _type: "span",
         _key: `${key}-text`,
-        text,
+        text: blockText,
         marks: [],
       },
     ],
@@ -73,8 +73,10 @@ const serviceUpdates = [
       slug: { _type: "slug", current: "terapia-para-adultos" },
       shortDescription:
         "Un espacio para comprender lo que sientes, reconocer patrones en tus relaciones o decisiones y poner en palabras aquello que todavía resulta difícil nombrar.",
-      modality: ["En línea", "Presencial"],
+      modality: ["En línea"],
       durationMinutes: 50,
+      fee: { amount: 750, currency: "MXN", note: "por sesión" },
+      bookingUrl: "https://calendar.app.google/ASqcLDM3toM1cwU39",
       order: 1,
       isActive: true,
     },
@@ -86,8 +88,10 @@ const serviceUpdates = [
       slug: { _type: "slug", current: "terapia-para-adolescentes" },
       shortDescription:
         "Un espacio de escucha adaptado a su edad, donde pueda hablar sin sentirse juzgado o evaluado. El encuadre y la comunicación con madres, padres o tutores se acuerdan antes de comenzar.",
-      modality: ["En línea", "Presencial"],
+      modality: ["En línea"],
       durationMinutes: 50,
+      fee: { amount: 750, currency: "MXN", note: "por sesión" },
+      bookingUrl: "https://calendar.app.google/ASqcLDM3toM1cwU39",
       order: 2,
       isActive: true,
     },
@@ -99,12 +103,13 @@ const serviceUpdates = [
       slug: { _type: "slug", current: "terapia-de-pareja" },
       shortDescription:
         "Un espacio neutral para escuchar lo que sucede entre ambos, comprender los conflictos que se repiten y conversar sin buscar quién tiene la razón.",
-      modality: ["En línea", "Presencial"],
+      modality: ["En línea"],
       durationMinutes: 70,
+      fee: { amount: 1200, currency: "MXN", note: "por sesión" },
+      bookingUrl: "https://calendar.app.google/mYGWH7GsyeatowKMA",
       order: 3,
       isActive: true,
     },
-    unset: ["fee"],
   },
 ];
 
@@ -145,8 +150,22 @@ async function main() {
   }
 
   const privacy = await client.fetch(
-    '*[_type == "privacyNotice"] | order(_updatedAt desc)[0]{_id,status,controllerIdentity,"contentBlocks":count(content)}',
+    '*[_type == "privacyNotice"] | order(_updatedAt desc)[0]{_id,status,versionLabel,controllerIdentity,"contentBlocks":count(content)}',
   );
+  if (!privacy?._id) {
+    throw new Error("Falta el documento de aviso de privacidad en Sanity.");
+  }
+  const existingPrivacyVersion = Number.parseFloat(
+    String(privacy.versionLabel || "").replace(/^v/i, ""),
+  );
+  if (
+    Number.isFinite(existingPrivacyVersion) &&
+    existingPrivacyVersion > 1.1
+  ) {
+    throw new Error(
+      `Sanity ya contiene un aviso posterior (${privacy.versionLabel}); no se modificará.`,
+    );
+  }
   const portraitAsset = await findOrUploadPortrait();
   const privacyContent = approvedPrivacyContent();
 
@@ -158,11 +177,17 @@ async function main() {
           dataset: client.config().dataset,
           serviceIds: serviceUpdates.map((service) => service._id),
           portraitAsset: portraitAsset._id,
+          existingPrivacy: {
+            id: privacy?._id,
+            status: privacy?.status,
+            version: privacy?.versionLabel,
+            blocks: privacy?.contentBlocks,
+          },
           approvedPrivacy: {
             source: APPROVED_PRIVACY_PATH,
+            version: "1.1",
+            effectiveDate: "2026-08-06",
             blocks: privacyContent.length,
-            version: "1.0",
-            effectiveDate: "2026-08-04",
           },
         },
         null,
@@ -193,9 +218,9 @@ async function main() {
         heroTitle:
           "Lo que sientes hoy tiene una historia. Podemos empezar a entenderla.",
         headline:
-          "Psicoterapia psicoanalítica para adolescentes, adultos y parejas, en línea y presencial en CDMX.",
+          "Psicoterapia psicoanalítica en línea para adolescentes, adultos y parejas.",
         shortBio:
-          "Un espacio de escucha para comprender lo que sientes, reconocer patrones que se repiten y construir nuevas formas de relacionarte contigo y con otras personas. La atención puede ser en línea o presencial en Ciudad de México y cada proceso se trabaja de manera particular.",
+          "Un espacio de escucha para comprender lo que sientes, reconocer patrones que se repiten y construir nuevas formas de relacionarte contigo y con otras personas. Las sesiones se realizan por videollamada y cada proceso se trabaja de manera particular.",
         approach:
           "El enfoque psicoanalítico parte de que no todo lo que sentimos o hacemos tiene una razón consciente. Explorar la historia de nuestros vínculos permite reconocer patrones, poner en palabras lo que ocurre y abrir la posibilidad de relacionarnos de otra manera. No se trata de quedarse en el pasado, sino de comprender cómo sigue presente.",
         validationItems: [
@@ -206,7 +231,7 @@ async function main() {
           "Sabes que necesitas hablar con alguien, aunque todavía no tengas claro por dónde empezar.",
         ],
         highlights: [
-          "Atención en línea y presencial en CDMX",
+          "Atención por videollamada",
           "Adolescentes, adultos y parejas",
           "Enfoque psicoanalítico",
         ],
@@ -220,9 +245,9 @@ async function main() {
     .patch("contactSettings", (patch) =>
       patch
         .set({
-          locationName: "Ciudad de México y atención en línea",
+          locationName: "Atención en línea",
           serviceAreas: ["Ciudad de México", "Atención en línea"],
-          modalities: ["En línea", "Presencial"],
+          modalities: ["En línea"],
           availableWeekdays: [
             "Lunes",
             "Martes",
@@ -249,6 +274,13 @@ async function main() {
             "17:00",
             "17:30",
           ],
+          bookingPolicy: {
+            cancellationWindowHours: 48,
+            clientReschedulingAllowed: false,
+            lateCancellationPolicy: "Sin reembolso",
+            noShowPolicy: "Sin reembolso",
+            providerCancellationPolicy: "Se ofrecerá reprogramación",
+          },
           responseTimeCopy: "24 horas hábiles",
         })
         .unset(["preferredScheduleOptions"]),
@@ -256,9 +288,9 @@ async function main() {
     .patch("seoSettings", (patch) =>
       patch.set({
         metaTitle:
-          "Psicóloga Mayumi Kitahara | Psicoterapia en CDMX y en línea",
+          "Psicóloga Mayumi Kitahara | Psicoterapia en línea",
         metaDescription:
-          "Psicoterapia psicoanalítica para adolescentes, adultos y parejas, en línea y presencial en CDMX. Consulta disponibilidad y solicita una primera cita.",
+          "Psicoterapia psicoanalítica en línea para adolescentes, adultos y parejas. Consulta disponibilidad y solicita una primera cita.",
         businessType: "ProfessionalService",
         areaServed: ["Ciudad de México", "Atención en línea"],
         ogImage: {
@@ -277,23 +309,20 @@ async function main() {
     });
   }
 
-  if (privacy?._id) {
-    transaction = transaction.patch(privacy._id, (patch) =>
-      patch
-        .set({
-          title: "Aviso de privacidad integral del sitio y contacto inicial",
-          status: "approved",
-          versionLabel: "1.0",
-          effectiveDate: "2026-08-04",
-          controllerIdentity: "Marissa Mayumi Kitahara Funes",
-          controllerAddress:
-            "Hacienda del Batán s/n, colonia Balcones del Campestre, León de los Aldama, C.P. 37138, Guanajuato, México",
-          contactEmail: "contacto@psicologamayumikitahara.com",
-          contactWhatsapp: "525639551234",
-          content: privacyContent,
-        }),
-    );
-  }
+  transaction = transaction.patch(privacy._id, (patch) =>
+    patch.set({
+      title: "Aviso de privacidad integral del sitio web, contacto inicial, agenda y pago",
+      status: "approved",
+      versionLabel: "1.1",
+      effectiveDate: "2026-08-06",
+      controllerIdentity: "Marissa Mayumi Kitahara Funes",
+      controllerAddress:
+        "Hacienda del Batán s/n, colonia Balcones del Campestre, León de los Aldama, C.P. 37138, Guanajuato, México",
+      contactEmail: "contacto@psicologamayumikitahara.com",
+      contactWhatsapp: "525639551234",
+      content: privacyContent,
+    }),
+  );
 
   const result = await transaction.commit();
   console.log(

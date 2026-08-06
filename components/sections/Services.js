@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ArrowIcon } from "../icons";
 import { APPOINTMENT_SERVICE_EVENT } from "../../lib/contact/appointment";
+import { TrackedLink } from "../analytics/TrackedLink";
 
 function formatDuration(minutes) {
   if (!minutes) return "";
@@ -50,8 +51,8 @@ export function Services({ services }) {
           </div>
           <p className="section-intro">
             No necesitas tener todo claro para comenzar. Revisa las opciones propuestas
-            y solicita información sin compartir datos clínicos en el primer mensaje.
-            La atención, duración y disponibilidad se confirman personalmente.
+            y solicita información compartiendo sólo lo necesario. La disponibilidad
+            se consulta en la agenda o se confirma personalmente.
           </p>
         </div>
 
@@ -94,15 +95,33 @@ export function Services({ services }) {
                 {service.availabilityNote ? (
                   <p className="service-detail">{service.availabilityNote}</p>
                 ) : null}
-                <button
-                  type="button"
-                  className="service-link"
-                  onClick={() => selectService(service.slug)}
-                  aria-label={`Solicitar información sobre ${service.name}`}
-                >
-                  Solicitar información sobre este servicio
-                  <ArrowIcon />
-                </button>
+                {service.bookingUrl ? (
+                  <TrackedLink
+                    className="service-link"
+                    href={service.bookingUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    eventName="click_booking"
+                    eventParameters={{
+                      location: "services",
+                      service: service.slug,
+                    }}
+                    aria-label={`Consultar horarios y reservar ${service.name} en Google Calendar`}
+                  >
+                    Consultar horarios y reservar
+                    <ArrowIcon />
+                  </TrackedLink>
+                ) : (
+                  <button
+                    type="button"
+                    className="service-link"
+                    onClick={() => selectService(service.slug)}
+                    aria-label={`Solicitar información sobre ${service.name}`}
+                  >
+                    Solicitar información sobre este servicio
+                    <ArrowIcon />
+                  </button>
+                )}
               </div>
             </article>
           ))}

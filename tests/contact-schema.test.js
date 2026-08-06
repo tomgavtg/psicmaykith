@@ -13,6 +13,7 @@ const validLead = {
     { day: "Viernes", startTime: "11:00" },
   ],
   message: "Deseo conocer disponibilidad.",
+  sensitiveDataAccepted: true,
   privacyAccepted: true,
   website: "",
   turnstileToken: "test-token",
@@ -40,6 +41,24 @@ describe("contactSchema", () => {
   it("exige aceptación explícita del aviso", () => {
     expect(
       contactSchema.safeParse({ ...validLead, privacyAccepted: false }).success,
+    ).toBe(false);
+  });
+
+  it("exige el motivo de consulta y su consentimiento expreso", () => {
+    expect(
+      contactSchema.safeParse({ ...validLead, message: "" }).success,
+    ).toBe(false);
+    expect(
+      contactSchema.safeParse({
+        ...validLead,
+        sensitiveDataAccepted: false,
+      }).success,
+    ).toBe(false);
+  });
+
+  it("sólo admite citas en línea", () => {
+    expect(
+      contactSchema.safeParse({ ...validLead, modality: "Presencial" }).success,
     ).toBe(false);
   });
 

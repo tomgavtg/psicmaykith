@@ -37,10 +37,10 @@ export const service = defineType({
       of: [
         defineArrayMember({
           type: "string",
-          options: { list: ["En línea", "Presencial"] },
+          options: { list: ["En línea"] },
         }),
       ],
-      validation: (Rule) => Rule.required().min(1),
+      validation: (Rule) => Rule.required().length(1).unique(),
     }),
     defineField({
       name: "durationMinutes",
@@ -70,12 +70,13 @@ export const service = defineType({
       name: "fee",
       title: "Honorarios",
       type: "object",
+      validation: (Rule) => Rule.required(),
       fields: [
         defineField({
           name: "amount",
           title: "Cantidad",
           type: "number",
-          validation: (Rule) => Rule.positive(),
+          validation: (Rule) => Rule.required().positive(),
         }),
         defineField({
           name: "currency",
@@ -83,6 +84,7 @@ export const service = defineType({
           type: "string",
           initialValue: "MXN",
           options: { list: ["MXN"] },
+          validation: (Rule) => Rule.required(),
         }),
         defineField({
           name: "note",
@@ -91,6 +93,28 @@ export const service = defineType({
           validation: (Rule) => Rule.max(80),
         }),
       ],
+    }),
+    defineField({
+      name: "bookingUrl",
+      title: "Enlace público de reserva",
+      type: "url",
+      description:
+        "URL pública de Horarios de citas de Google Calendar para este servicio. Debe incluir el pago configurado en Stripe.",
+      validation: (Rule) =>
+        Rule.uri({ scheme: ["https"], allowRelative: false }).custom((value) => {
+          if (!value) return true;
+
+          try {
+            const hostname = new URL(value).hostname;
+            return ["calendar.app.google", "calendar.google.com"].includes(
+              hostname,
+            )
+              ? true
+              : "Usa un enlace público de Google Calendar.";
+          } catch {
+            return "Ingresa una URL HTTPS válida.";
+          }
+        }),
     }),
     defineField({
       name: "availabilityNote",
