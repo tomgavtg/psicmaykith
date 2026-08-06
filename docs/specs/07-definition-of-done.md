@@ -128,7 +128,8 @@ proveedor sin payload personal. Una afirmación sin artefacto no cuenta como apr
   tratamiento de identificadores existentes coinciden con el aviso y la solución de
   consentimiento aprobada.
 - **DOD-26 — Datos de eventos:** `view_landing`, `click_whatsapp`, `form_start`,
-  `generate_lead` y `click_email` no incluyen nombre, correo, teléfono, texto libre,
+  `generate_lead`, `click_email` y `click_booking` no incluyen nombre, correo,
+  teléfono, texto libre,
   diagnóstico, síntomas ni otros datos clínicos. No se habilitan conversiones
   mejoradas con estos datos.
 - **DOD-27 — Atribución:** UTMs válidas no rompen la interfaz ni el canonical y, con

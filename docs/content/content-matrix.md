@@ -8,11 +8,11 @@
 | Sobre mí | hasta 3 credenciales | psicóloga | verificar documentos |
 | Sobre mí | retrato y alt | psicóloga + diseño | `PhotoMK1.jpeg` integrado localmente; confirmar permiso y aprobar alt |
 | Servicios | 3–4 nombres y descripciones | psicóloga | tres borradores preparados; verificar que el alcance sea real |
-| Servicios | modalidad/duración/honorarios | psicóloga | en línea; adultos y adolescentes 50 min y $750 MXN; pareja 70 min y $1,200 MXN |
+| Servicios | modalidad/duración/honorarios | psicóloga | en línea; duraciones visibles; honorarios configurados pero visibles sólo al reservar |
 | Servicios | imagen editorial | psicóloga + diseño | permiso requerido |
-| Agendar | WhatsApp y mensaje | psicóloga | número confirmado `+52 56 3955 1234`; mensaje inicial sujeto a aprobación final |
-| Agendar | correo y SLA | operación | `[POR DEFINIR]` |
-| Agendar | agenda y pago | psicóloga + operación | Google Calendar y Stripe configurados; enlaces públicos confirmados para individual y pareja; falta prueba completa por servicio |
+| Agendar | WhatsApp y motivo | psicóloga | número confirmado `+52 56 3955 1234`; formulario local construye mensaje con nombre, servicio, motivo y consentimiento |
+| Agendar | correo y SLA | operación | infraestructura conservada sólo como contingencia, no visible en la landing |
+| Agendar | agenda y pago | psicóloga + operación | Google Calendar y Stripe configurados; enlaces confirmados; falta verificar campos obligatorios previos al pago en ambos horarios |
 | Agendar | cancelación y reembolso | psicóloga + legal | 48 h sin penalización; sin reprogramación por usuario; tardía e inasistencia sin reembolso; cancelación de la psicóloga ofrece reprogramación |
 | Global | aviso de no-emergencia | psicóloga + legal | revisar |
 | Privacidad | avisos de sitio/contacto y psicoterapia | asesoría legal | borradores `v0.1` en `docs/legal/privacy-notices/`; no publicar |

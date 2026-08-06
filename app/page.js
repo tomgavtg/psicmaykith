@@ -102,12 +102,6 @@ export default async function HomePage() {
               name: "Servicios de psicoterapia",
               itemListElement: services.map((service) => ({
                 "@type": "Offer",
-                ...(service.fee?.amount
-                  ? {
-                      price: service.fee.amount,
-                      priceCurrency: service.fee.currency || "MXN",
-                    }
-                  : {}),
                 ...(service.bookingUrl ? { url: service.bookingUrl } : {}),
                 itemOffered: {
                   "@type": "Service",
@@ -132,11 +126,10 @@ export default async function HomePage() {
           aprobación.
         </div>
       ) : null}
-      <Header name={siteSettings.headerName} contactSettings={contactSettings} />
+      <Header name={siteSettings.headerName} />
       <main id="contenido">
         <Hero
           profile={professionalProfile}
-          contactSettings={contactSettings}
           globalNotice={siteSettings.globalNotice}
         />
         <Services services={services} />

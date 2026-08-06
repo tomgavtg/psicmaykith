@@ -74,20 +74,21 @@ persona ni se capturan expedientes.
 | `successMessage` | text | sin confirmar cita |
 | `errorMessage` | text | ofrece alternativa |
 
-Las tres preferencias de día/hora son datos transitorios del formulario y no forman
-parte del contenido clínico. El servidor exige tres combinaciones distintas, valida
-cada valor contra la configuración publicada y las incluye sólo en el correo de
-solicitud. Ninguna selección confirma una cita.
+`availableWeekdays` y `availableStartTimes` se conservan para compatibilidad con el
+formulario de correo de contingencia, pero no se muestran en el flujo principal. La
+disponibilidad efectiva vive en Google Calendar.
 
 Cuando un servicio tiene `bookingUrl`, su CTA abre la página pública de Google Calendar
 en una pestaña nueva. El enlace no se embebe al cargar la landing, para no contactar al
 tercero antes de una acción explícita. El pago y la creación del evento ocurren fuera
 de la aplicación mediante Google Calendar y Stripe.
 
-El motivo de consulta es un campo transaccional obligatorio de máximo 500 caracteres;
-no se almacena en Sanity ni se envía a analítica. Por poder revelar información de
-salud, requiere consentimiento expreso separado y una versión vigente del aviso que
-describa su tratamiento.
+El motivo de consulta es un campo transaccional obligatorio de máximo 500 caracteres
+tanto en WhatsApp como en Google Calendar; no se almacena en Sanity ni se envía a
+analítica. Por poder revelar información de salud, requiere consentimiento expreso
+separado y una versión vigente del aviso que describa su tratamiento. En WhatsApp se
+construye en memoria; en Calendar su retención depende de la cuenta profesional y debe
+administrarse conforme al aviso vigente.
 
 ## `seoSettings` — singleton
 

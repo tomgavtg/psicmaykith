@@ -173,7 +173,7 @@ Google/GTM, Meta y TikTok.
 | PRIV-02 | H | Rechazar | landing y contactos funcionan; píxeles permanecen ausentes |
 | PRIV-03 | H | Aceptar afirmativamente | sólo entonces cargan proveedores aprobados y eventos permitidos |
 | PRIV-04 | H | Cambiar/revocar preferencia y recargar | conducta coincide con aviso y configuración aprobada |
-| PRIV-05 | H | Activar los cinco eventos con valores señuelo en campos | payloads no incluyen nombre, correo, teléfono, mensaje, diagnóstico ni datos clínicos |
+| PRIV-05 | H | Activar los seis eventos con valores señuelo en campos | payloads no incluyen nombre, correo, teléfono, mensaje, diagnóstico ni datos clínicos |
 | PRIV-06 | A | Inspeccionar URL, history, local/session storage, IndexedDB y cachés tras error/éxito | no contienen valores del formulario ni token Turnstile |
 | PRIV-07 | H | Visitar con UTMs válidas y parámetros arbitrarios | canonical permanece limpio; sólo atribución aprobada se procesa tras consentimiento |
 | PRIV-08 | M | Revisar checkbox y aviso | casilla inicia desmarcada, enlaza al aviso y no usa consentimiento agrupado o forzado |

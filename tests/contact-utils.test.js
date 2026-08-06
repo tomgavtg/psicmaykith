@@ -14,6 +14,7 @@ import {
   consumeRateLimit,
 } from "../lib/contact/rate-limit";
 import {
+  buildWhatsAppInquiryMessage,
   buildWhatsAppUrl,
   normalizeWhatsAppNumber,
 } from "../lib/contact/whatsapp";
@@ -43,6 +44,25 @@ describe("buildWhatsAppUrl", () => {
     expect(buildWhatsAppUrl("525512345678", "")).toBe(
       "https://wa.me/525512345678",
     );
+  });
+});
+
+describe("buildWhatsAppInquiryMessage", () => {
+  it("incluye sólo los datos necesarios para orientar el contacto", () => {
+    const message = buildWhatsAppInquiryMessage({
+      name: "  Ana Pérez  ",
+      service: "Terapia para adultos",
+      motive: "  Quiero orientación para iniciar un proceso.  ",
+    });
+
+    expect(message).toContain("Nombre: Ana Pérez");
+    expect(message).toContain("Servicio: Terapia para adultos");
+    expect(message).toContain(
+      "Motivo de consulta: Quiero orientación para iniciar un proceso.",
+    );
+    expect(message).toContain("consiento el tratamiento");
+    expect(message).not.toContain("correo");
+    expect(message).not.toContain("teléfono");
   });
 });
 

@@ -87,9 +87,10 @@ pero no fuerzan alturas que creen espacios artificiales.
 
 ### Agendar
 
-WhatsApp se presenta como ruta rápida; el formulario, como alternativa por correo.
-Ninguna se etiqueta como más confidencial. Privacidad, tiempos de respuesta
-`[POR DEFINIR]` y no-emergencia aparecen antes de enviar.
+La reserva y pago en Google Calendar se presenta como ruta principal; WhatsApp, como
+alternativa para orientación previa. El acceso a WhatsApp pasa por un formulario breve
+y obligatorio, pero permite revisar el mensaje antes de enviarlo. Privacidad, alcance
+del contacto y no-emergencia aparecen antes de continuar.
 
 ### Consentimiento analítico
 
@@ -103,8 +104,8 @@ Los siguientes textos son placeholders, no afirmaciones publicables:
 
 - H1: “[NOMBRE], atención psicológica [MODALIDAD/ZONA]”.
 - Titular: “Un espacio profesional para hablar con claridad y a tu ritmo.”
-- CTA primario: “Agendar por WhatsApp”.
-- CTA secundario: “Conocer servicios”.
+- CTA primario: “Reservar una cita”.
+- CTA secundario: “Contactar por WhatsApp”.
 - Servicios: “[SERVICIO REAL]”, “[DESCRIPCIÓN APROBADA EN 25–35 PALABRAS]”.
 - Formulario: “Cuéntame sólo lo necesario para contactarte y revisar disponibilidad.”
 - Éxito: “Gracias. Tu solicitud fue enviada. Te responderemos en [PLAZO CONFIRMADO].”

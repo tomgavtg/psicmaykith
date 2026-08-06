@@ -603,3 +603,9 @@ detiene si Sanity ya contiene una versión posterior. El gate exige una versión
 posterior aprobada, además de
 `SITE_MODE=production` y
 `CONTENT_APPROVED=true`; ambos sólo se activan al cerrar el checklist.
+
+La agenda y el pago requieren una configuración externa que no viaja en el código ni
+en Sanity. Antes de desplegar cambios del embudo, configura nombre, correo, teléfono,
+tipo de sesión, motivo y consentimiento como campos obligatorios en los dos horarios y
+ejecuta una reserva de prueba. El procedimiento completo está en
+[`docs/runbooks/google-calendar-stripe-booking.md`](docs/runbooks/google-calendar-stripe-booking.md).

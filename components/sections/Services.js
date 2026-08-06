@@ -1,8 +1,5 @@
-"use client";
-
 import Image from "next/image";
 import { ArrowIcon } from "../icons";
-import { APPOINTMENT_SERVICE_EVENT } from "../../lib/contact/appointment";
 import { TrackedLink } from "../analytics/TrackedLink";
 
 function formatDuration(minutes) {
@@ -17,24 +14,6 @@ function formatDuration(minutes) {
 }
 
 export function Services({ services }) {
-  function selectService(serviceSlug) {
-    const heading = document.querySelector("#agendar-title");
-
-    window.dispatchEvent(
-      new CustomEvent(APPOINTMENT_SERVICE_EVENT, {
-        detail: { serviceSlug },
-      }),
-    );
-
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    document
-      .querySelector("#agendar")
-      ?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
-    window.setTimeout(() => heading?.focus(), reducedMotion ? 0 : 350);
-  }
-
   return (
     <section
       id="servicios"
@@ -50,9 +29,9 @@ export function Services({ services }) {
             </h2>
           </div>
           <p className="section-intro">
-            No necesitas tener todo claro para comenzar. Revisa las opciones propuestas
-            y solicita información compartiendo sólo lo necesario. La disponibilidad
-            se consulta en la agenda o se confirma personalmente.
+            No necesitas tener todo claro para comenzar. Elige el tipo de sesión para
+            consultar la agenda en línea. La duración aparece aquí y el precio se
+            muestra antes de completar la reserva.
           </p>
         </div>
 
@@ -82,16 +61,6 @@ export function Services({ services }) {
                 </p>
                 <h3>{service.name}</h3>
                 <p>{service.shortDescription}</p>
-                {service.fee?.amount ? (
-                  <p className="service-detail">
-                    {new Intl.NumberFormat("es-MX", {
-                      style: "currency",
-                      currency: service.fee.currency || "MXN",
-                      maximumFractionDigits: 0,
-                    }).format(service.fee.amount)}
-                    {service.fee.note ? ` · ${service.fee.note}` : ""}
-                  </p>
-                ) : null}
                 {service.availabilityNote ? (
                   <p className="service-detail">{service.availabilityNote}</p>
                 ) : null}
@@ -102,25 +71,21 @@ export function Services({ services }) {
                     target="_blank"
                     rel="noreferrer"
                     eventName="click_booking"
-                    eventParameters={{
-                      location: "services",
-                      service: service.slug,
-                    }}
-                    aria-label={`Consultar horarios y reservar ${service.name} en Google Calendar`}
+                    eventParameters={{ location: "services" }}
+                    aria-label={`Reservar ${service.name} en Google Calendar`}
                   >
-                    Consultar horarios y reservar
+                    Reservar y pagar
                     <ArrowIcon />
                   </TrackedLink>
                 ) : (
-                  <button
-                    type="button"
+                  <a
                     className="service-link"
-                    onClick={() => selectService(service.slug)}
+                    href="#whatsapp-contact"
                     aria-label={`Solicitar información sobre ${service.name}`}
                   >
-                    Solicitar información sobre este servicio
+                    Consultar por WhatsApp
                     <ArrowIcon />
-                  </button>
+                  </a>
                 )}
               </div>
             </article>

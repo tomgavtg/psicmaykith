@@ -1,13 +1,4 @@
-import { WhatsAppIcon } from "../icons";
-import { buildWhatsAppUrl } from "../../lib/contact/whatsapp";
-import { TrackedLink } from "../analytics/TrackedLink";
-
-export function Header({ name, contactSettings }) {
-  const whatsappUrl = buildWhatsAppUrl(
-    contactSettings.whatsappNumber,
-    contactSettings.whatsappMessage,
-  );
-
+export function Header({ name }) {
   return (
     <header className="site-header">
       <div className="container header-inner">
@@ -24,23 +15,9 @@ export function Header({ name, contactSettings }) {
           <a href="#agendar">Agendar</a>
         </nav>
 
-        {whatsappUrl ? (
-          <TrackedLink
-            className="button button-primary header-cta"
-            href={whatsappUrl}
-            target="_blank"
-            rel="noreferrer"
-            eventName="click_whatsapp"
-            eventParameters={{ location: "header" }}
-          >
-            <WhatsAppIcon />
-            <span>Agendar</span>
-          </TrackedLink>
-        ) : (
-          <a className="button button-primary header-cta" href="#agendar">
-            Agendar
-          </a>
-        )}
+        <a className="button button-primary header-cta" href="#agendar">
+          Reservar
+        </a>
       </div>
     </header>
   );

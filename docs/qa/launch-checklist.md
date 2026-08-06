@@ -111,8 +111,8 @@ tokens, cookies, direcciones personales ni payloads de formulario.
 - [ ] Rechazar conserva toda la funcionalidad y mantiene los píxeles sin cargar.
 - [ ] Aceptar carga sólo proveedores aprobados; revocar coincide con el aviso.
 - [ ] Preferencias no están premarcadas ni usan patrones que fuercen aceptación.
-- [ ] Los eventos `view_landing`, `click_whatsapp`, `form_start`, `generate_lead` y
-  `click_email` contienen sólo datos permitidos.
+- [ ] Los eventos `view_landing`, `click_whatsapp`, `form_start`, `generate_lead`,
+  `click_email` y `click_booking` contienen sólo datos permitidos.
 - [ ] Nombre, correo, teléfono, mensaje, diagnóstico, síntomas y datos clínicos están
   ausentes de eventos, URL, storage, cookies, logs y trazas públicas.
 - [ ] No están habilitadas conversiones mejoradas con datos personales o clínicos.

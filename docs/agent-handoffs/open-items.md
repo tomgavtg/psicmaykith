@@ -40,8 +40,11 @@ responsables correspondientes.
   reprogramación.
 - [x] Enlaces públicos de Google Calendar confirmados: Adultos y Adolescentes comparten
   el horario individual de 50 minutos; Pareja utiliza el horario de 70 minutos.
-- [ ] Ejecutar la preparación de Sanity y comprobar con una reserva de prueba que el
-  flujo individual solicita `$750 MXN` y el de pareja `$1,200 MXN` en Stripe.
+- [x] Se comprobó que el flujo de Google Calendar solicita el pago para confirmar la
+  reserva.
+- [ ] En ambos horarios de Google Calendar, hacer obligatorios antes del pago: nombre,
+  correo, teléfono, tipo de sesión, motivo breve, aceptación del aviso y consentimiento
+  expreso para datos sensibles. Probar la evidencia que conserva cada proveedor.
 - [x] Número de WhatsApp Business confirmado: `+52 56 3955 1234`; valor técnico
   `525639551234`, sin el antiguo prefijo móvil mexicano `1`.
 - [ ] Confirmar titular operativo del número y aprobar el mensaje inicial definitivo.

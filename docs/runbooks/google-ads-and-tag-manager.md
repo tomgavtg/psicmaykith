@@ -16,6 +16,7 @@ La capa de datos sólo admite estos eventos y parámetros:
 | `form_start` | ninguno |
 | `generate_lead` | `method` |
 | `click_email` | `location` |
+| `click_booking` | `location` |
 
 No se envían campos del formulario, identificadores de clic almacenados manualmente,
 `utm_term`, URL de referencia completa ni servicio solicitado.
@@ -47,19 +48,21 @@ GTM. Nunca colocar el ID directamente en un componente.
 ## 3. Configurar GTM
 
 1. Crear variables de capa de datos para cada parámetro permitido de la tabla anterior.
-2. Crear disparadores **Custom Event** con coincidencia exacta para los cinco eventos.
+2. Crear disparadores **Custom Event** con coincidencia exacta para los seis eventos.
 3. Crear una etiqueta **Google tag** con el ID `G-...` de GA4.
 4. Desactivar medición automática que capture formularios, búsquedas o clics no
    aprobados. No habilitar DOM scraping.
-5. Crear etiquetas de evento GA4 para los cinco eventos y mapear sólo los parámetros
+5. Crear etiquetas de evento GA4 para los seis eventos y mapear sólo los parámetros
    que corresponden a cada uno.
 6. En **Consent Settings**, exigir `analytics_storage` para GA4.
 7. Crear en Google Ads una acción de conversión web para `generate_lead`; usarla como
    conversión principal sólo después de validar que representa envíos exitosos.
 8. Crear opcionalmente una conversión secundaria para `click_whatsapp`.
-9. En las etiquetas de Google Ads exigir `ad_storage` y `ad_user_data`. Mantener
+9. Mantener `click_booking` como evento de intención y conversión secundaria: el clic
+   no demuestra que la reserva ni el pago se hayan completado.
+10. En las etiquetas de Google Ads exigir `ad_storage` y `ad_user_data`. Mantener
    personalización y remarketing deshabilitados.
-10. No crear variables de nombre, correo, teléfono, mensaje, selección de servicio ni
+11. No crear variables de nombre, correo, teléfono, mensaje, selección de servicio ni
     elementos del DOM.
 
 ## 4. Convención de campañas
@@ -102,7 +105,8 @@ para parámetros de campañas ni para navegación ordinaria.
    etiquetas publicitarias deben permanecer bloqueadas.
 5. En otro perfil elegir **Aceptar todo** y validar los eventos con Tag Assistant.
 6. En cada payload comprobar que sólo aparecen los parámetros de la tabla.
-7. Enviar un formulario sintético coordinado y confirmar un único `generate_lead`.
+7. Probar WhatsApp y la agenda; confirmar un `click_whatsapp` o `click_booking` sin
+   datos del formulario. El sitio no puede confirmar el envío externo ni el pago.
 8. Cambiar la preferencia a rechazo desde el pie y confirmar que no se envían nuevos
    eventos. Borrar manualmente cookies previas durante la prueba de revocación.
 9. Publicar en GTM una versión con nombre, fecha, responsable y ticket de aprobación.

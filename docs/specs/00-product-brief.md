@@ -49,7 +49,7 @@ En menos de dos minutos podrá:
 ## Indicadores
 
 Medir únicamente eventos sin datos personales: `view_landing`, `click_whatsapp`,
-`form_start`, `generate_lead` y `click_email`. Indicadores propuestos:
+`form_start`, `generate_lead`, `click_email` y `click_booking`. Indicadores propuestos:
 
 - tasa de inicio de WhatsApp por sesión;
 - tasa de formulario enviado por sesión;

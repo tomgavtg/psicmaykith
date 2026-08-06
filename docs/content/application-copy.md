@@ -34,8 +34,8 @@ fuente oficial inmediatamente antes de publicar.
   patrones que se repiten y construir nuevas formas de relacionarte contigo y con otras
   personas. Las sesiones se realizan por videollamada y cada proceso se trabaja de
   manera particular.**
-- CTA principal: **Agendar por WhatsApp**
-- CTA secundario: **Conocer servicios**
+- CTA principal: **Reservar una cita**
+- CTA secundario: **Contactar por WhatsApp**
 
 ### Situaciones de identificación
 
@@ -75,7 +75,8 @@ decisiones y poner en palabras aquello que todavía resulta difícil nombrar.**
 
 - Modalidad: En línea.
 - Duración: **50 minutos**.
-- Honorarios: **$750 MXN por sesión**.
+- Honorarios configurados: **$750 MXN por sesión**; no se muestran en la tarjeta y
+  aparecen dentro del flujo de reserva.
 
 ### Terapia para adolescentes
 
@@ -85,7 +86,8 @@ de comenzar.**
 
 - Modalidad: En línea.
 - Duración: **50 minutos**.
-- Honorarios: **$750 MXN por sesión**.
+- Honorarios configurados: **$750 MXN por sesión**; no se muestran en la tarjeta y
+  aparecen dentro del flujo de reserva.
 - Antes de publicar: confirmar atención real a menores y obtener revisión profesional
   y legal del encuadre, consentimiento, confidencialidad y comunicación con tutores.
 
@@ -96,31 +98,26 @@ que se repiten y conversar sin buscar quién tiene la razón.**
 
 - Modalidad: En línea.
 - Duración: **1 hora con 10 minutos**.
-- Honorarios: **$1,200 MXN por sesión**.
+- Honorarios configurados: **$1,200 MXN por sesión**; no se muestran en la tarjeta y
+  aparecen dentro del flujo de reserva.
 
 ## Agenda
 
-- Encabezado: **Demos el primer paso**
-- Introducción: **Por el momento, todas las citas disponibles son en línea. Elige el
-  servicio, comparte brevemente tu motivo de consulta e indica tres horarios semanales
-  que prefieras. Recibirás una respuesta para revisar disponibilidad y confirmar la
-  cita.**
-- Ayuda de horarios: **Selecciona tres opciones distintas. Son preferencias semanales y
-  no reservan una sesión; la cita se confirma personalmente después de revisar
-  disponibilidad.**
+- Encabezado: **Reserva tu sesión en línea**
+- Introducción: **Consulta los horarios disponibles, completa tus datos y realiza el
+  pago para confirmar tu cita. Si antes necesitas orientación, puedes enviar tu nombre,
+  el servicio de interés y un motivo de consulta breve por WhatsApp.**
 - Campo obligatorio: **Motivo de consulta**. Debe limitarse a 500 caracteres y mostrar
   una instrucción para compartir sólo lo necesario, sin diagnósticos, medicamentos,
   antecedentes ni información de otras personas.
 - Consentimiento separado: **Consiento expresamente el tratamiento del motivo de
   consulta, que puede revelar datos personales sensibles, únicamente para atender mi
   solicitud y gestionar una posible cita.**
-- WhatsApp: **Envía un mensaje breve para solicitar una primera cita o preguntar por
-  servicios y disponibilidad. La conversación inicial no te compromete a continuar un
-  proceso.**
-- Recordatorio: **Por tu privacidad, evita compartir información clínica o sensible por
-  este medio.**
-- Mensaje inicial de WhatsApp: **Hola, me gustaría solicitar información para agendar
-  una primera sesión.**
+- WhatsApp: **Completa estos datos para preparar el mensaje. Podrás revisarlo antes de
+  enviarlo desde WhatsApp; completar este paso no reserva una cita ni realiza un
+  cobro.**
+- Recordatorio: **Comparte sólo lo necesario. No incluyas diagnósticos, medicamentos,
+  antecedentes ni información de otras personas.**
 - El plazo de respuesta no se muestra mientras no exista un compromiso operativo
   aprobado.
 

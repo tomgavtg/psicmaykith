@@ -1,29 +1,18 @@
-import { TrackedLink } from "../analytics/TrackedLink";
 import { WhatsAppIcon } from "../icons";
-import { buildWhatsAppUrl } from "../../lib/contact/whatsapp";
 
 export function FloatingWhatsApp({ contactSettings }) {
-  const whatsappUrl = buildWhatsAppUrl(
-    contactSettings.whatsappNumber,
-    contactSettings.whatsappMessage,
-  );
-
-  if (!whatsappUrl) {
+  if (!contactSettings.whatsappNumber) {
     return null;
   }
 
   return (
-    <TrackedLink
+    <a
       className="floating-whatsapp"
-      href={whatsappUrl}
-      target="_blank"
-      rel="noreferrer"
-      eventName="click_whatsapp"
-      eventParameters={{ location: "floating" }}
-      aria-label="Agendar por WhatsApp"
+      href="#whatsapp-contact"
+      aria-label="Ir al formulario de contacto por WhatsApp"
     >
       <WhatsAppIcon />
       <span>WhatsApp</span>
-    </TrackedLink>
+    </a>
   );
 }

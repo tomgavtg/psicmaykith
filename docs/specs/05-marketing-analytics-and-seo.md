@@ -64,9 +64,11 @@ señal “denied” sin cookies equivalga por sí sola a no tratar datos.
 | `form_start` | primera interacción | ninguno |
 | `generate_lead` | confirmación 200 del servidor | método `form` |
 | `click_email` | clic en correo | ubicación |
+| `click_booking` | clic antes de abrir la agenda externa | ubicación del CTA |
 
 No se usan IDs persistentes propios para unir una persona entre plataformas ni se
-envía el servicio seleccionado. No usar conversiones mejoradas ni audiencias basadas
+envía el servicio seleccionado. El sitio no marca como lead confirmado la apertura de
+WhatsApp ni el clic a la agenda. No usar conversiones mejoradas ni audiencias basadas
 en datos del formulario.
 
 ## Google Ads

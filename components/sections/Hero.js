@@ -1,13 +1,7 @@
 import Image from "next/image";
 import { ArrowIcon, WhatsAppIcon } from "../icons";
-import { buildWhatsAppUrl } from "../../lib/contact/whatsapp";
-import { TrackedLink } from "../analytics/TrackedLink";
 
-export function Hero({ profile, contactSettings, globalNotice }) {
-  const whatsappUrl = buildWhatsAppUrl(
-    contactSettings.whatsappNumber,
-    contactSettings.whatsappMessage,
-  );
+export function Hero({ profile, globalNotice }) {
   const hasProfessionalName =
     profile.fullName && !profile.fullName.includes("[POR DEFINIR");
   const credentials = [
@@ -51,26 +45,13 @@ export function Hero({ profile, contactSettings, globalNotice }) {
           </ul>
 
           <div className="hero-actions">
-            {whatsappUrl ? (
-              <TrackedLink
-                className="button button-primary"
-                href={whatsappUrl}
-                eventName="click_whatsapp"
-                eventParameters={{ location: "hero" }}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <WhatsAppIcon />
-                Agendar por WhatsApp
-              </TrackedLink>
-            ) : (
-              <a className="button button-primary" href="#agendar">
-                Consultar disponibilidad
-              </a>
-            )}
-            <a className="button button-secondary" href="#servicios">
-              Conocer servicios
+            <a className="button button-primary" href="#agendar">
+              Reservar una cita
               <ArrowIcon />
+            </a>
+            <a className="button button-secondary" href="#whatsapp-contact">
+              <WhatsAppIcon />
+              Contactar por WhatsApp
             </a>
           </div>
 

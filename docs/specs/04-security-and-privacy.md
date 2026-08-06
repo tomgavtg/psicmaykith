@@ -395,7 +395,8 @@ reporte CSP que envíe query strings con datos.
 ## Privacidad de analítica y campañas
 
 - Antes del consentimiento sólo pueden operar elementos estrictamente necesarios.
-- `view_landing`, `click_whatsapp`, `form_start`, `generate_lead` y `click_email` no
+- `view_landing`, `click_whatsapp`, `form_start`, `generate_lead`, `click_email` y
+  `click_booking` no
   deben incluir nombre, correo, teléfono, mensaje, servicio si revela una condición,
   ni ningún valor de campo.
 - No se deben activar conversiones mejoradas, emparejamiento avanzado, grabación de

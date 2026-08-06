@@ -34,3 +34,15 @@ política comercial. La transacción `bWvCnNg66C0Nb8XF6hs5lE` actualizó los tre
 servicios, contacto, SEO, perfil y aviso; la verificación posterior no reportó bloqueos
 de publicación. Después del despliegue debe ejecutarse una prueba controlada de pago,
 creación del evento, cancelación y devolución por cada tipo de horario.
+
+## Ajuste del embudo de reserva
+
+El 6 de agosto de 2026 se cambió la landing para priorizar reserva y pago. Los
+honorarios dejaron de mostrarse en las tarjetas y en el JSON-LD; Google Calendar es el
+único punto visible donde se presenta el precio. Header y Hero llevan a Agendar y los
+accesos de WhatsApp pasan por un formulario que solicita nombre, servicio, motivo y
+consentimientos antes de construir el mensaje en memoria.
+
+Queda como requisito externo configurar y validar los mismos datos obligatorios en los
+dos horarios de Google Calendar antes del pago. La aplicación no puede inyectar esos
+campos en una URL pública ni confirmar que el pago o el envío por WhatsApp finalizaron.

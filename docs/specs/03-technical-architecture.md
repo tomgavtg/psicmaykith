@@ -300,7 +300,7 @@ envío real deshabilitado por defecto.
 El HTML inicial no debe solicitar scripts de GTM, Meta o TikTok. Después de una elección
 de consentimiento válida, un cargador aislado puede inicializar los proveedores
 aprobados. Sólo se emiten `view_landing`, `click_whatsapp`, `form_start`,
-`generate_lead` y `click_email`, con identificadores de campaña permitidos y sin valores
+`generate_lead`, `click_email` y `click_booking`, con identificadores de campaña permitidos y sin valores
 de formulario, teléfonos, correos, texto libre, diagnósticos o síntomas.
 
 Los UTMs pueden leerse para atribución, pero no deben incorporar parámetros arbitrarios
