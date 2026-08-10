@@ -8,45 +8,57 @@ import { Hero } from "../components/sections/Hero";
 import { Services } from "../components/sections/Services";
 import { getSiteUrl } from "../lib/config/site-url";
 import { getSiteContent } from "../lib/content/get-site-content";
+import {
+  buildHomeStructuredData,
+  getSocialImage,
+} from "../lib/seo/home-seo";
 import { headers } from "next/headers";
 
 export async function generateMetadata() {
-  const { seoSettings, isPlaceholder } = await getSiteContent();
+  const { seoSettings, siteSettings, isPlaceholder } = await getSiteContent();
   const siteUrl = getSiteUrl(
     seoSettings.canonicalOverride ||
       process.env.NEXT_PUBLIC_SITE_URL,
   );
 
-  const socialImage = seoSettings.ogImage?.url
-    ? {
-        url: seoSettings.ogImage.url,
-        alt:
-          seoSettings.ogImage.alt ||
-          seoSettings.ogImageAlt ||
-          "Presentación de los servicios de psicoterapia",
-      }
-    : null;
+  const socialImage = getSocialImage({
+    seoSettings,
+    siteUrl,
+    professionalName: siteSettings.headerName,
+  });
 
   return {
-    title: seoSettings.metaTitle,
+    title: { absolute: seoSettings.metaTitle },
     description: seoSettings.metaDescription,
     alternates: { canonical: siteUrl },
     openGraph: {
       type: "website",
       locale: "es_MX",
       url: siteUrl,
-      siteName: "Psicóloga Mayumi Kit",
+      siteName: siteSettings.headerName,
       title: seoSettings.metaTitle,
       description: seoSettings.metaDescription,
-      ...(socialImage ? { images: [socialImage] } : {}),
+      images: [socialImage],
     },
     twitter: {
       card: "summary_large_image",
       title: seoSettings.metaTitle,
       description: seoSettings.metaDescription,
-      ...(socialImage ? { images: [socialImage] } : {}),
+      images: [socialImage],
     },
-    robots: isPlaceholder ? { index: false, follow: false } : undefined,
+    robots: isPlaceholder
+      ? { index: false, follow: false }
+      : {
+          index: true,
+          follow: true,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+            "max-video-preview": -1,
+          },
+        },
   };
 }
 
@@ -66,54 +78,7 @@ export default async function HomePage() {
   const siteUrl = getSiteUrl();
   const structuredData = content.isPlaceholder
     ? null
-    : {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": `${siteUrl}/#website`,
-            url: siteUrl,
-            name: siteSettings.siteName,
-            inLanguage: "es-MX",
-          },
-          {
-            "@type": seoSettings.businessType || "ProfessionalService",
-            "@id": `${siteUrl}/#professional-service`,
-            name: professionalProfile.fullName,
-            url: siteUrl,
-            description: seoSettings.metaDescription,
-            ...(professionalProfile.portrait?.url
-              ? { image: professionalProfile.portrait.url }
-              : {}),
-            ...(contactSettings.phoneDisplay
-              ? { telephone: contactSettings.phoneDisplay }
-              : {}),
-            ...(contactSettings.email ? { email: contactSettings.email } : {}),
-            ...(seoSettings.areaServed?.length
-              ? { areaServed: seoSettings.areaServed }
-              : contactSettings.serviceAreas?.length
-                ? { areaServed: contactSettings.serviceAreas }
-                : {}),
-            ...(seoSettings.socialProfiles?.length
-              ? { sameAs: seoSettings.socialProfiles }
-              : {}),
-            hasOfferCatalog: {
-              "@type": "OfferCatalog",
-              name: "Servicios de psicoterapia",
-              itemListElement: services.map((service) => ({
-                "@type": "Offer",
-                ...(service.bookingUrl ? { url: service.bookingUrl } : {}),
-                itemOffered: {
-                  "@type": "Service",
-                  name: service.name,
-                  description: service.shortDescription,
-                  serviceType: "Psicoterapia en línea",
-                },
-              })),
-            },
-          },
-        ],
-      };
+    : buildHomeStructuredData({ content, siteUrl });
 
   return (
     <div className="page-shell">

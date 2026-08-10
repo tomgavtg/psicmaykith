@@ -4,7 +4,7 @@ Fecha: 10 de agosto de 2026
 
 ## Decisión aprobada
 
-El nombre público y comercial del sitio es **Psicóloga Mayumi Kit**. Este valor debe
+El nombre público y comercial del sitio es **Psic. Mayumi Kitahara**. Este valor debe
 usarse en la interfaz, metadatos SEO, imagen social, datos estructurados, textos
 alternativos y perfil profesional de Sanity.
 
@@ -28,4 +28,4 @@ legal como marca o nombre del perfil en el resto del sitio.
 - La portada y sus metadatos no deben mostrar el nombre legal completo ni la marca
   anterior.
 - El aviso de privacidad debe conservar la identidad legal completa y mencionar el
-  nombre comercial **Psicóloga Mayumi Kit**.
+  nombre comercial **Psic. Mayumi Kitahara**.

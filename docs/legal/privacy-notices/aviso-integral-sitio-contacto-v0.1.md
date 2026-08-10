@@ -12,7 +12,7 @@ Fecha de entrada en vigor: `[POR DEFINIR: fecha]`
 ## 1. Identidad y domicilio de la responsable
 
 **Marissa Mayumi Kitahara Funes**, quien presta servicios profesionales de psicología
-bajo el nombre **Psicóloga Mayumi Kit**, con domicilio en
+bajo el nombre **Psic. Mayumi Kitahara**, con domicilio en
 `[POR DEFINIR: domicilio completo para oír y recibir notificaciones de privacidad]`, es
 responsable del tratamiento de los datos personales descritos en este aviso.
 

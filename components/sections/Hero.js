@@ -23,8 +23,12 @@ export function Hero({ profile, globalNotice }) {
           <p className="section-kicker">
             {hasProfessionalName ? profile.fullName : "Atención psicológica"}
           </p>
-          <h1 id="hero-title">{profile.heroTitle || profile.fullName}</h1>
-          <p className="hero-headline">{profile.headline}</p>
+          <h1 id="hero-title">
+            {profile.headline || profile.heroTitle || profile.fullName}
+          </h1>
+          {profile.heroTitle ? (
+            <p className="hero-headline">{profile.heroTitle}</p>
+          ) : null}
           <p className="hero-bio">{profile.shortBio}</p>
 
           {credentials.length ? (

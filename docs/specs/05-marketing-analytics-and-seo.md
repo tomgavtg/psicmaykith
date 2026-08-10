@@ -16,16 +16,19 @@ síntomas ni ningún dato clínico a plataformas publicitarias.
 - `/admin` además usa `noindex, nofollow`; el aviso legal se indexa salvo decisión legal.
 - Redirección permanente hacia una sola variante de dominio y una sola forma de URL.
 - Favicon y manifest/íconos de marca con rutas confirmadas.
-- JSON-LD `ProfessionalService` o `LocalBusiness` sólo si sus propiedades son reales.
-  No añadir `aggregateRating`, reseñas, precios, horarios ni `sameAs` sin evidencia.
+- JSON-LD `Organization` y `Person` para la práctica exclusivamente en línea.
+  `ProfessionalService` o `LocalBusiness` sólo se usarán si existe una ubicación física
+  real y visible para pacientes y se cumplen sus propiedades aplicables. No añadir
+  `aggregateRating`, reseñas, precios, horarios ni `sameAs` sin evidencia.
 - Contenido renderizado en servidor, estructura semántica y enlaces rastreables.
 
 ## Datos estructurados propuestos
 
 Campos permitidos una vez confirmados: `name`, `url`, `image`, `telephone`, `email`,
-`address` o `areaServed`, `openingHoursSpecification`, `priceRange` y perfiles oficiales.
-La selección final entre tipos se valida contra la naturaleza fiscal/comercial real.
-No usar schema `Physician` por inferencia.
+`areaServed`, cédula profesional, catálogo de servicios y perfiles oficiales. `address`,
+`openingHoursSpecification` y `priceRange` sólo se añadirán si existe una ubicación
+física de atención y los datos se muestran públicamente. No usar schema `Physician`
+por inferencia.
 
 ## UTMs y atribución
 

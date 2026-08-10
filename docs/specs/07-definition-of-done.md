@@ -180,8 +180,9 @@ proveedor sin payload personal. Una afirmación sin artefacto no cuenta como apr
   accesible públicamente.
 - **DOD-37 — Rastreo:** `robots.txt` y `sitemap.xml` usan el dominio canónico, sólo
   incluyen URLs públicas adecuadas, responden `200` y no bloquean recursos necesarios.
-- **DOD-38 — Datos estructurados:** JSON-LD válido usa `LocalBusiness` o
-  `ProfessionalService` sólo con datos comprobados; coincide con el contenido visible
+- **DOD-38 — Datos estructurados:** JSON-LD válido usa `Organization` y `Person` para
+  atención exclusivamente en línea; `LocalBusiness` o `ProfessionalService` sólo con
+  ubicación física y datos comprobados. Coincide con el contenido visible
   y no incluye reseñas, valoraciones, especialidades o ubicación inventadas.
 - **DOD-39 — Calidad técnica:** no hay enlaces rotos, cadenas de redirección,
   duplicados canónicos, errores de consola relevantes ni indexación accidental del

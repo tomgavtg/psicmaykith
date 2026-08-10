@@ -16,8 +16,8 @@
 | Agendar | cancelación y reembolso | psicóloga + legal | 48 h sin penalización; sin reprogramación por usuario; tardía e inasistencia sin reembolso; cancelación de la psicóloga ofrece reprogramación |
 | Global | aviso de no-emergencia | psicóloga + legal | revisar |
 | Privacidad | avisos de sitio/contacto y psicoterapia | asesoría legal | borradores `v0.1` en `docs/legal/privacy-notices/`; no publicar |
-| SEO | título, descripción, OG | contenido | título y descripción propuestos; OG pendiente y oferta por confirmar |
-| Datos estructurados | negocio, zona y horario | psicóloga | sólo datos reales |
+| SEO | título, descripción, OG | contenido | optimización inicial implementada; título y descripción cargados, tarjeta OG horizontal automática |
+| Datos estructurados | organización, profesional, zona y servicios | psicóloga | `Organization` para atención en línea, `Person` con cédula y catálogo con datos reales; sin dirección física ni reseñas |
 | Consentimiento | banner y política | legal + marketing | `[POR DEFINIR]` |
 | Éxito/error | mensajes | operación + UX | validar SLA |
 

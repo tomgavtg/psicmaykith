@@ -9,6 +9,8 @@ export const seoSettings = defineType({
       name: "metaTitle",
       title: "Título SEO",
       type: "string",
+      description:
+        "Título único y descriptivo. Conviene incluir el servicio, la zona atendida y la marca sin repetir palabras.",
       validation: (Rule) => Rule.required().min(20).max(65),
     }),
     defineField({
@@ -16,6 +18,8 @@ export const seoSettings = defineType({
       title: "Descripción SEO",
       type: "text",
       rows: 3,
+      description:
+        "Resumen claro de la página y su siguiente paso. No incluir promesas de resultados ni listas de palabras clave.",
       validation: (Rule) => Rule.required().min(80).max(165),
     }),
     defineField({
@@ -29,6 +33,8 @@ export const seoSettings = defineType({
       name: "ogImage",
       title: "Imagen para redes",
       type: "image",
+      description:
+        "Usar una imagen horizontal de 1200 × 630 px. Si la imagen no tiene una proporción adecuada, el sitio utilizará la tarjeta social generada automáticamente.",
       fields: [
         defineField({
           name: "alt",
@@ -43,8 +49,10 @@ export const seoSettings = defineType({
       title: "Tipo de negocio",
       type: "string",
       options: {
-        list: ["ProfessionalService", "LocalBusiness"],
+        list: ["Organization", "ProfessionalService", "LocalBusiness"],
       },
+      description:
+        "Para atención exclusivamente en línea usar Organization. LocalBusiness requiere una ubicación física real y visible para pacientes.",
     }),
     defineField({
       name: "areaServed",

@@ -4,8 +4,8 @@ import { getSiteUrl } from "../lib/config/site-url";
 export const metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "Consulta psicológica | Información y contacto",
-    template: "%s | Consulta psicológica",
+    default: "Psic. Mayumi Kitahara | Psicoterapia en línea",
+    template: "%s | Psic. Mayumi Kitahara",
   },
   description:
     "Información profesional y medios de contacto para solicitar disponibilidad de atención psicológica.",

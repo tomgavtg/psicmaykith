@@ -126,7 +126,7 @@ async function findOrUploadPortrait() {
     createReadStream("public/images/psychologist/PhotoMK1.jpeg"),
     {
       filename: "PhotoMK1.jpeg",
-      title: "Retrato profesional de Mayumi Kit",
+      title: "Retrato profesional de Mayumi Kitahara",
     },
   );
 }
@@ -201,8 +201,8 @@ async function main() {
     .transaction()
     .patch("siteSettings", (patch) =>
       patch.set({
-        siteName: "Psicóloga Mayumi Kit | Psicoterapia psicoanalítica",
-        headerName: "Psicóloga Mayumi Kit",
+        siteName: "Psic. Mayumi Kitahara | Psicoterapia en línea",
+        headerName: "Psic. Mayumi Kitahara",
         globalNotice:
           "Este espacio no sustituye servicios de emergencia ni atención en crisis.",
         crisisNotice:
@@ -213,7 +213,7 @@ async function main() {
     )
     .patch("professionalProfile", (patch) =>
       patch.set({
-        fullName: "Psicóloga Mayumi Kit",
+        fullName: "Psic. Mayumi Kitahara",
         licenseNumber: "10630199",
         heroTitle:
           "Lo que sientes hoy tiene una historia. Podemos empezar a entenderla.",
@@ -238,7 +238,7 @@ async function main() {
         portrait: {
           _type: "image",
           asset: { _type: "reference", _ref: portraitAsset._id },
-          alt: "Retrato profesional de la psicóloga Mayumi Kit.",
+          alt: "Retrato profesional de Psic. Mayumi Kitahara.",
         },
       }),
     )
@@ -290,15 +290,15 @@ async function main() {
     .patch("seoSettings", (patch) =>
       patch.set({
         metaTitle:
-          "Psicóloga Mayumi Kit | Psicoterapia en línea",
+          "Psicoterapia en línea en CDMX | Psic. Mayumi Kitahara",
         metaDescription:
-          "Psicoterapia psicoanalítica en línea para adolescentes, adultos y parejas. Consulta disponibilidad y solicita una primera cita.",
-        businessType: "ProfessionalService",
+          "Psicoterapia psicoanalítica en línea para adolescentes, adultos y parejas en CDMX. Consulta horarios disponibles y reserva tu sesión.",
+        businessType: "Organization",
         areaServed: ["Ciudad de México", "Atención en línea"],
         ogImage: {
           _type: "image",
           asset: { _type: "reference", _ref: portraitAsset._id },
-          alt: "Retrato profesional de la psicóloga Mayumi Kit.",
+          alt: "Retrato profesional de Psic. Mayumi Kitahara.",
         },
       }),
     );

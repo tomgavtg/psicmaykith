@@ -23,7 +23,7 @@ responsables correspondientes.
 
 - [x] Servicios corregidos en Sanity Production: Adultos, Adolescentes y Pareja están
   activos con slugs canónicos y duraciones de 50, 50 y 70 minutos.
-- [x] Nombre profesional visible confirmado: “Psicóloga Mayumi Kit”. La identidad
+- [x] Nombre profesional visible confirmado: “Psic. Mayumi Kitahara”. La identidad
   legal completa debe aparecer únicamente en el aviso de privacidad.
 - [x] Cédula profesional confirmada y cargada en Sanity: `10630199`.
 - [ ] Confirmar evidencia y texto exacto de formación, certificaciones y hasta tres

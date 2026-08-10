@@ -8,13 +8,13 @@ function publishableContent() {
   return {
     siteSettings: {
       siteName: "Psicoterapia",
-      headerName: "Psicóloga Mayumi Kit",
+      headerName: "Psic. Mayumi Kitahara",
       globalNotice: "Este espacio no sustituye atención de emergencia.",
       crisisNotice:
         "Si existe una situación de riesgo inmediato, contacta a los servicios de emergencia correspondientes.",
     },
     professionalProfile: {
-      fullName: "Psicóloga Mayumi Kit",
+      fullName: "Psic. Mayumi Kitahara",
       heroTitle: "Psicoterapia psicoanalítica con atención profesional",
       shortBio:
         "Información profesional suficiente para describir el servicio sin realizar promesas de resultados.",
@@ -23,7 +23,7 @@ function publishableContent() {
       licenseNumber: "1234567",
       portrait: {
         url: "https://cdn.example.test/image.jpg",
-        alt: "Retrato profesional de la psicóloga Mayumi Kit",
+        alt: "Retrato profesional de Psic. Mayumi Kitahara",
       },
       validationItems: ["Uno", "Dos", "Tres"],
       education: [{ degree: "Licenciatura", institution: "Institución" }],
@@ -57,7 +57,7 @@ function publishableContent() {
       metaTitle: "Psicoterapia profesional en línea y presencial",
       metaDescription:
         "Información clara y suficiente acerca de servicios profesionales de psicoterapia y medios para solicitar disponibilidad de una primera cita.",
-      businessType: "ProfessionalService",
+      businessType: "Organization",
     },
     privacyNotice: {
       status: "approved",

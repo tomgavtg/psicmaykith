@@ -9,7 +9,7 @@ Estado: aprobado por la responsable.
 ## Responsable del tratamiento
 
 Marissa Mayumi Kitahara Funes, quien presta servicios profesionales bajo el nombre
-Psicóloga Mayumi Kit, con domicilio en Hacienda del Batán s/n, colonia Balcones
+Psic. Mayumi Kitahara, con domicilio en Hacienda del Batán s/n, colonia Balcones
 del Campestre, León de los Aldama, C.P. 37138, Guanajuato, México, es responsable del
 tratamiento de los datos personales descritos en este aviso.
 

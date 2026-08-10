@@ -10,7 +10,7 @@ export const professionalProfile = defineType({
       title: "Nombre profesional visible",
       type: "string",
       description:
-        "Nombre comercial que se muestra públicamente en el sitio. La identidad legal se administra únicamente en el aviso de privacidad.",
+        "Nombre comercial que se muestra públicamente en el sitio. Usar “Psic. Mayumi Kitahara”. La identidad legal se administra únicamente en el aviso de privacidad.",
       validation: (Rule) => Rule.required().max(100),
     }),
     defineField({
