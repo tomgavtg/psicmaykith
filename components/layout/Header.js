@@ -14,12 +14,23 @@ export function Header({ name }) {
         <nav className="main-nav" aria-label="Navegación principal">
           <Link href="/#sobre-mi">Inicio</Link>
           <Link href="/#servicios">Servicios</Link>
+          <Link href="/preguntas-frecuentes">Preguntas frecuentes</Link>
           <Link href="/#agendar">Agendar</Link>
         </nav>
 
         <Link className="button button-primary header-cta" href="/#agendar">
           Reservar
         </Link>
+
+        <details className="mobile-navigation">
+          <summary>Menú</summary>
+          <nav aria-label="Navegación principal móvil">
+            <Link href="/#sobre-mi">Inicio</Link>
+            <Link href="/#servicios">Servicios</Link>
+            <Link href="/preguntas-frecuentes">Preguntas frecuentes</Link>
+            <Link href="/#agendar">Agendar una cita</Link>
+          </nav>
+        </details>
       </div>
     </header>
   );

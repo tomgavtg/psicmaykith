@@ -39,23 +39,19 @@ export function Hero({ profile, globalNotice }) {
             </ul>
           ) : null}
 
-          <ul className="highlight-list" aria-label="Información destacada">
-            {(profile.highlights || []).slice(0, 3).map((highlight) => (
-              <li key={highlight}>
-                <span aria-hidden="true">✓</span>
-                {highlight}
-              </li>
-            ))}
-          </ul>
+          <p className="professional-label">
+            <span aria-hidden="true">✓</span>
+            {profile.professionalLabel || "Atención profesional"}
+          </p>
 
           <div className="hero-actions">
             <a className="button button-primary" href="#agendar">
-              Reservar una cita
+              Agendar una cita
               <ArrowIcon />
             </a>
             <a className="button button-secondary" href="#whatsapp-contact">
               <WhatsAppIcon size={24} />
-              Contactar por WhatsApp
+              Contacto por WhatsApp
             </a>
           </div>
 
@@ -85,27 +81,6 @@ export function Hero({ profile, globalNotice }) {
         </div>
       </div>
 
-      <div className="container hero-context-grid">
-        {profile.validationItems?.length ? (
-          <div className="reflection-panel">
-            <p className="section-kicker">Tal vez te resulte familiar</p>
-            <h2>¿Te ha pasado que…?</h2>
-            <ul>
-              {profile.validationItems.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
-
-        {profile.approach ? (
-          <div className="approach-panel">
-            <p className="section-kicker">Enfoque terapéutico</p>
-            <h2>Comprender lo que se repite puede abrir algo distinto</h2>
-            <p>{profile.approach}</p>
-          </div>
-        ) : null}
-      </div>
     </section>
   );
 }

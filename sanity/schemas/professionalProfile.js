@@ -15,16 +15,18 @@ export const professionalProfile = defineType({
     }),
     defineField({
       name: "heroTitle",
-      title: "Título principal",
+      title: "Título secundario",
       type: "string",
       description:
-        "Idea principal de la portada. Debe ser clara, respetuosa y no prometer resultados.",
-      validation: (Rule) => Rule.required().max(110),
+        "Texto que acompaña al título principal. Debe ser claro, respetuoso y no prometer resultados.",
+      validation: (Rule) => Rule.required().max(160),
     }),
     defineField({
       name: "headline",
-      title: "Titular",
+      title: "Título principal",
       type: "string",
+      description:
+        "Titular principal de la portada. Usar lenguaje profesional y evitar credenciales no verificadas.",
       validation: (Rule) => Rule.required().max(120),
     }),
     defineField({
@@ -40,6 +42,15 @@ export const professionalProfile = defineType({
             ? true
             : "La descripción debe tener máximo 55 palabras.";
         }),
+    }),
+    defineField({
+      name: "professionalLabel",
+      title: "Etiqueta profesional",
+      type: "string",
+      description:
+        "Se muestra como un único distintivo breve en la portada.",
+      initialValue: "Atención profesional",
+      validation: (Rule) => Rule.required().max(50),
     }),
     defineField({
       name: "portrait",
@@ -125,10 +136,13 @@ export const professionalProfile = defineType({
     }),
     defineField({
       name: "highlights",
-      title: "Elementos destacados",
+      title: "Elementos destacados anteriores",
       type: "array",
+      hidden: true,
+      description:
+        "Campo conservado por compatibilidad. La portada utiliza la etiqueta profesional.",
       of: [defineArrayMember({ type: "string" })],
-      validation: (Rule) => Rule.required().min(1).max(3),
+      validation: (Rule) => Rule.max(3),
     }),
   ],
 });

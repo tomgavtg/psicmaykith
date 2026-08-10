@@ -7,11 +7,23 @@ describe("contenido editorial de respaldo", () => {
   });
 
   it("respeta los límites editoriales del perfil", () => {
-    const { heroTitle, shortBio, validationItems, portrait } =
+    const {
+      headline,
+      heroTitle,
+      shortBio,
+      professionalLabel,
+      validationItems,
+      portrait,
+    } =
       fallbackContent.professionalProfile;
 
-    expect(heroTitle.length).toBeLessThanOrEqual(110);
+    expect(headline).toBe(
+      "Psicoterapia psicoanalítica | Orientación psicológica profunda",
+    );
+    expect(headline.length).toBeLessThanOrEqual(120);
+    expect(heroTitle.length).toBeLessThanOrEqual(160);
     expect(shortBio.trim().split(/\s+/).length).toBeLessThanOrEqual(55);
+    expect(professionalLabel).toBe("Atención profesional");
     expect(validationItems.length).toBeGreaterThanOrEqual(3);
     expect(validationItems.length).toBeLessThanOrEqual(5);
     expect(portrait.url).toBe("/images/psychologist/PhotoMK1.jpeg");

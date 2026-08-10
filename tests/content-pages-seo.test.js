@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getFaqItems } from "../lib/content/faq";
+import { getFaqGroups, getFaqItems } from "../lib/content/faq";
 import { fallbackContent } from "../lib/content/fallback";
 import {
   buildFaqStructuredData,
@@ -107,5 +107,23 @@ describe("SEO de páginas públicas", () => {
     expect(faq.mainEntity).toHaveLength(questions.length);
     expect(faq.mainEntity[0].name).toBe(questions[0].question);
     expect(faq.mainEntity[0].acceptedAnswer.text).toBe(questions[0].answer);
+  });
+
+  it("organiza preguntas completas, prudentes y útiles por tema", () => {
+    const questions = getFaqItems(publishedContent());
+    const groups = getFaqGroups(questions);
+    const serialized = JSON.stringify(questions);
+
+    expect(groups).toHaveLength(4);
+    expect(questions.length).toBeGreaterThanOrEqual(25);
+    expect(questions.some((item) => item.slug === "saber-que-me-pasa")).toBe(
+      true,
+    );
+    expect(
+      questions.some((item) => item.slug === "ocultar-lo-que-sentimos"),
+    ).toBe(true);
+    expect(serialized).toContain("Línea de la Vida");
+    expect(serialized).not.toContain("lo que el fármaco no alcanza");
+    expect(serialized).not.toContain("terapia familiar");
   });
 });

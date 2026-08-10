@@ -26,6 +26,7 @@ export const structure = (S) =>
             .documentId("professionalProfile"),
         ),
       S.documentTypeListItem("service").title("Servicios"),
+      S.documentTypeListItem("faqItem").title("Preguntas frecuentes"),
       S.listItem()
         .title("Contacto")
         .id("contactSettings")
@@ -45,7 +46,7 @@ export const structure = (S) =>
       ...S.documentTypeListItems().filter(
         (item) =>
           !singletonTypes.has(item.getId()) &&
-          !["service", "privacyNotice", "imageAssetMetadata"].includes(
+          !["service", "faqItem", "privacyNotice", "imageAssetMetadata"].includes(
             item.getId(),
           ),
       ),
