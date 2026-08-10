@@ -126,7 +126,7 @@ async function findOrUploadPortrait() {
     createReadStream("public/images/psychologist/PhotoMK1.jpeg"),
     {
       filename: "PhotoMK1.jpeg",
-      title: "Retrato profesional de Mayumi Kitahara",
+      title: "Retrato profesional de Mayumi Kit",
     },
   );
 }
@@ -201,8 +201,8 @@ async function main() {
     .transaction()
     .patch("siteSettings", (patch) =>
       patch.set({
-        siteName: "Psicóloga Mayumi Kitahara | Psicoterapia psicoanalítica",
-        headerName: "Psicóloga Mayumi Kitahara",
+        siteName: "Psicóloga Mayumi Kit | Psicoterapia psicoanalítica",
+        headerName: "Psicóloga Mayumi Kit",
         globalNotice:
           "Este espacio no sustituye servicios de emergencia ni atención en crisis.",
         crisisNotice:
@@ -213,7 +213,7 @@ async function main() {
     )
     .patch("professionalProfile", (patch) =>
       patch.set({
-        fullName: "Psicóloga Marissa Mayumi Kitahara Funes",
+        fullName: "Psicóloga Mayumi Kit",
         licenseNumber: "10630199",
         heroTitle:
           "Lo que sientes hoy tiene una historia. Podemos empezar a entenderla.",
@@ -238,7 +238,7 @@ async function main() {
         portrait: {
           _type: "image",
           asset: { _type: "reference", _ref: portraitAsset._id },
-          alt: "Retrato profesional de la psicóloga Mayumi Kitahara.",
+          alt: "Retrato profesional de la psicóloga Mayumi Kit.",
         },
       }),
     )
@@ -290,7 +290,7 @@ async function main() {
     .patch("seoSettings", (patch) =>
       patch.set({
         metaTitle:
-          "Psicóloga Mayumi Kitahara | Psicoterapia en línea",
+          "Psicóloga Mayumi Kit | Psicoterapia en línea",
         metaDescription:
           "Psicoterapia psicoanalítica en línea para adolescentes, adultos y parejas. Consulta disponibilidad y solicita una primera cita.",
         businessType: "ProfessionalService",
@@ -298,7 +298,7 @@ async function main() {
         ogImage: {
           _type: "image",
           asset: { _type: "reference", _ref: portraitAsset._id },
-          alt: "Retrato profesional de la psicóloga Mayumi Kitahara.",
+          alt: "Retrato profesional de la psicóloga Mayumi Kit.",
         },
       }),
     );

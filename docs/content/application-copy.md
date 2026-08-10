@@ -55,7 +55,7 @@ No se trata de quedarse en el pasado, sino de comprender cómo sigue presente.**
 
 ### Perfil profesional
 
-- Nombre profesional: **Psicóloga Marissa Mayumi Kitahara Funes**.
+- Nombre profesional visible: **Psicóloga Mayumi Kit**.
 - Formación: `[POR DEFINIR: formación verificada]`
 - Cédula profesional: **10630199**.
 - Fotografía propuesta: `public/images/psychologist/PhotoMK1.jpeg`.

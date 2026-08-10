@@ -23,8 +23,8 @@ responsables correspondientes.
 
 - [x] Servicios corregidos en Sanity Production: Adultos, Adolescentes y Pareja están
   activos con slugs canónicos y duraciones de 50, 50 y 70 minutos.
-- [x] Nombre profesional completo confirmado: Marissa Mayumi Kitahara Funes; la marca
-  visible puede conservar “Psicóloga Mayumi Kitahara”.
+- [x] Nombre profesional visible confirmado: “Psicóloga Mayumi Kit”. La identidad
+  legal completa debe aparecer únicamente en el aviso de privacidad.
 - [x] Cédula profesional confirmada y cargada en Sanity: `10630199`.
 - [ ] Confirmar evidencia y texto exacto de formación, certificaciones y hasta tres
   elementos de enfoque publicables.
@@ -72,7 +72,8 @@ responsables correspondientes.
   psicoterapia, aviso simplificado y consentimiento de datos sensibles.
 - [x] Aviso integral del sitio `v1.0` aprobado, versionado y publicado en Sanity con
   fecha de entrada en vigor del 4 de agosto de 2026.
-- [x] Identidad de la responsable confirmada en Sanity: Marissa Mayumi Kitahara Funes.
+- [x] Identidad legal de la responsable confirmada en Sanity y reservada para el aviso
+  de privacidad; no debe utilizarse como nombre público del perfil.
 - [x] Canales ARCO confirmados: `contacto@psicologamayumikitahara.com` y WhatsApp
   empresarial `+52 55 1609 8584`.
 - [x] Domicilio profesional aprobado e incorporado al aviso `v1.0`.

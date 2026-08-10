@@ -7,8 +7,10 @@ export const professionalProfile = defineType({
   fields: [
     defineField({
       name: "fullName",
-      title: "Nombre profesional completo",
+      title: "Nombre profesional visible",
       type: "string",
+      description:
+        "Nombre comercial que se muestra públicamente en el sitio. La identidad legal se administra únicamente en el aviso de privacidad.",
       validation: (Rule) => Rule.required().max(100),
     }),
     defineField({

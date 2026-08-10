@@ -35,7 +35,7 @@ export async function generateMetadata() {
       type: "website",
       locale: "es_MX",
       url: siteUrl,
-      siteName: "Psicóloga Mayumi Kitahara",
+      siteName: "Psicóloga Mayumi Kit",
       title: seoSettings.metaTitle,
       description: seoSettings.metaDescription,
       ...(socialImage ? { images: [socialImage] } : {}),

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "Psicóloga Mayumi Kitahara, psicoterapia psicoanalítica en CDMX y en línea";
+  "Psicóloga Mayumi Kit, psicoterapia psicoanalítica en CDMX y en línea";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -43,7 +43,7 @@ export default function OpenGraphImage() {
           }}
         >
           <div style={{ display: "flex", fontSize: 68, lineHeight: 1.08 }}>
-            Psicóloga Mayumi Kitahara
+            Psicóloga Mayumi Kit
           </div>
           <div style={{ display: "flex", fontSize: 32, color: "#475b52" }}>
             Atención en CDMX y en línea
