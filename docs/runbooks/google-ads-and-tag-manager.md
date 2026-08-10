@@ -91,6 +91,11 @@ La CSP de la aplicación debe permitir los recursos oficiales de Preview Mode de
 `fonts.gstatic.com`, `ssl.gstatic.com` y `www.gstatic.com`. Si Tag Assistant muestra
 errores para `badge.css`, Material Icons o Google Sans, verificar primero la cabecera
 `Content-Security-Policy` del deployment antes de cambiar extensiones o consentimiento.
+La directiva `connect-src` debe incluir además el host exacto
+`https://analytics.google.com`: GA4 puede usar
+`https://analytics.google.com/g/collect` para la recopilación. El comodín
+`https://*.analytics.google.com` no cubre el dominio raíz y, por sí solo, provoca que
+el navegador bloquee el hit aunque Tag Assistant muestre la etiqueta como activada.
 Las respuestas normales conservan `Cross-Origin-Opener-Policy: same-origin`; cuando la
 URL incluye una señal reconocida de Tag Assistant (`_dbg`, `gtm_debug`, `gtm_preview` o
 `gtm_auth`), el proxy responde temporalmente con `unsafe-none` para conservar el canal
@@ -123,12 +128,16 @@ para parámetros de campañas ni para navegación ordinaria.
    `location: contact_form`.
 3. En ese evento, confirmar que se activa `GA4 - click_whatsapp` y que no hay errores
    de consentimiento en la etiqueta.
-4. Confirmar primero la llegada en **GA4 → Tiempo real** o **DebugView**. Los informes
+4. En Network, filtrar por `g/collect` y verificar que la solicitud de
+   `analytics.google.com` obtiene `204`. Si aparece `blocked:csp` o la consola indica
+   una violación de `connect-src`, comprobar la cabecera CSP del documento y no sólo
+   el estado de la etiqueta en Tag Assistant.
+5. Confirmar primero la llegada en **GA4 → Tiempo real** o **DebugView**. Los informes
    agregados y el conteo de eventos clave no deben usarse como prueba inmediata.
-5. En **Administrar → Eventos**, confirmar que `click_whatsapp` conserva la estrella
+6. En **Administrar → Eventos**, confirmar que `click_whatsapp` conserva la estrella
    de evento clave. El sitio emite el evento, pero la clasificación como evento clave
    se administra en GA4.
-6. No enviar nombre, servicio ni motivo a GTM o GA4 durante la prueba.
+7. No enviar nombre, servicio ni motivo a GTM o GA4 durante la prueba.
 
 Google documenta que el estado predeterminado debe definirse antes de enviar medición y
 actualizarse inmediatamente cuando cambia la elección. Esta implementación conserva

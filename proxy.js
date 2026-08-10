@@ -28,6 +28,7 @@ export function contentSecurityPolicy(nonce, isAdmin, isDevelopment) {
     "https://www.google-analytics.com",
     "https://region1.google-analytics.com",
     "https://*.google-analytics.com",
+    "https://analytics.google.com",
     "https://*.analytics.google.com",
     "https://www.googletagmanager.com",
     "https://www.googleadservices.com",

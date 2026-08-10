@@ -1,6 +1,7 @@
 # Entregas entre agentes
 
 - [CSP de Sanity Studio](sanity-studio-csp-handoff.md)
+- [Endpoint de recopilación de GA4 en CSP](ga4-csp-fix-handoff.md)
 - [Borradores de avisos de privacidad](privacy-notices-draft-handoff.md)
 
 Cada frente registra aquí alcance, decisiones, supuestos, riesgos y archivos entregados.

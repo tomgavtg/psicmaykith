@@ -22,6 +22,17 @@ describe("Content Security Policy", () => {
     expect(policy).toContain("https://www.gstatic.com");
   });
 
+  it("permite el endpoint activo de recopilación de GA4", () => {
+    const policy = contentSecurityPolicy("nonce", false, false);
+    const connectDirective = policy
+      .split("; ")
+      .find((directive) => directive.startsWith("connect-src "));
+
+    expect(connectDirective?.split(" ")).toContain(
+      "https://analytics.google.com",
+    );
+  });
+
   it("identifica únicamente señales reconocidas de Tag Assistant", () => {
     expect(isTagAssistantPreview(new URLSearchParams("_dbg=1"))).toBe(true);
     expect(
