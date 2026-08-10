@@ -112,6 +112,24 @@ para parámetros de campañas ni para navegación ordinaria.
 9. Publicar en GTM una versión con nombre, fecha, responsable y ticket de aprobación.
 10. Verificar nuevamente Network y GA4 DebugView sobre el deployment productivo.
 
+### Diagnóstico cuando `click_whatsapp` aparece en cero
+
+1. Abrir **Preferencias de privacidad** en el pie del sitio y confirmar que la
+   preferencia del navegador permite **Sólo analítica** o **Aceptar todo**. Con
+   **Rechazar todo**, el sitio no carga GTM ni emite `click_whatsapp`; es el
+   comportamiento esperado y no debe eludirse.
+2. Entrar a Preview de GTM, completar los campos obligatorios y pulsar **Continuar en
+   WhatsApp**. Debe aparecer un evento de capa de datos `click_whatsapp` con únicamente
+   `location: contact_form`.
+3. En ese evento, confirmar que se activa `GA4 - click_whatsapp` y que no hay errores
+   de consentimiento en la etiqueta.
+4. Confirmar primero la llegada en **GA4 → Tiempo real** o **DebugView**. Los informes
+   agregados y el conteo de eventos clave no deben usarse como prueba inmediata.
+5. En **Administrar → Eventos**, confirmar que `click_whatsapp` conserva la estrella
+   de evento clave. El sitio emite el evento, pero la clasificación como evento clave
+   se administra en GA4.
+6. No enviar nombre, servicio ni motivo a GTM o GA4 durante la prueba.
+
 Google documenta que el estado predeterminado debe definirse antes de enviar medición y
 actualizarse inmediatamente cuando cambia la elección. Esta implementación conserva
 todos los estados en `denied` hasta la acción afirmativa y no carga el tag en rechazo.

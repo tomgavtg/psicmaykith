@@ -18,12 +18,12 @@ export function ArrowIcon() {
   );
 }
 
-export function WhatsAppIcon() {
+export function WhatsAppIcon({ size = 24 }) {
   return (
     <svg
       aria-hidden="true"
-      width="20"
-      height="20"
+      width={size}
+      height={size}
       viewBox="0 0 24 24"
       fill="none"
     >

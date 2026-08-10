@@ -653,10 +653,10 @@ a {
 
 .whatsapp-icon-wrap {
   display: grid;
-  width: 3.25rem;
-  height: 3.25rem;
+  width: 4rem;
+  height: 4rem;
   place-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   border-radius: 50%;
   background: var(--sage-800);
   color: white;
@@ -982,8 +982,8 @@ a {
   right: max(1rem, env(safe-area-inset-right));
   bottom: max(1rem, env(safe-area-inset-bottom));
   display: inline-flex;
-  min-width: 2.75rem;
-  min-height: 2.75rem;
+  min-width: 3.25rem;
+  min-height: 3.25rem;
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
@@ -994,7 +994,7 @@ a {
   color: white;
   font-size: 0.87rem;
   font-weight: 700;
-  padding: 0.7rem 1rem;
+  padding: 0.8rem 1.1rem;
   text-decoration: none;
 }
 

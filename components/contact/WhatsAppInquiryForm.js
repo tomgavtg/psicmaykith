@@ -145,7 +145,7 @@ export function WhatsAppInquiryForm({ whatsappNumber, services }) {
       </label>
 
       <button className="button button-primary submit-button" type="submit">
-        <WhatsAppIcon />
+        <WhatsAppIcon size={24} />
         Continuar en WhatsApp
       </button>
 

@@ -119,7 +119,7 @@ export function Contact({ contactSettings, services, crisisNotice }) {
             aria-labelledby="whatsapp-title"
           >
             <div className="whatsapp-icon-wrap">
-              <WhatsAppIcon />
+              <WhatsAppIcon size={30} />
             </div>
             <p className="section-kicker">Alternativa de contacto</p>
             <h3 id="whatsapp-title">Contactar por WhatsApp</h3>

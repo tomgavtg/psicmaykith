@@ -54,7 +54,7 @@ export function Hero({ profile, globalNotice }) {
               <ArrowIcon />
             </a>
             <a className="button button-secondary" href="#whatsapp-contact">
-              <WhatsAppIcon />
+              <WhatsAppIcon size={24} />
               Contactar por WhatsApp
             </a>
           </div>

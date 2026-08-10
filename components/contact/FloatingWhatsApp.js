@@ -11,7 +11,7 @@ export function FloatingWhatsApp({ contactSettings }) {
       href="#whatsapp-contact"
       aria-label="Ir al formulario de contacto por WhatsApp"
     >
-      <WhatsAppIcon />
+      <WhatsAppIcon size={24} />
       <span>WhatsApp</span>
     </a>
   );
