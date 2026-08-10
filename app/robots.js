@@ -17,6 +17,24 @@ export default async function robots() {
   return {
     rules: [
       {
+        userAgent: [
+          "Googlebot",
+          "bingbot",
+          "OAI-SearchBot",
+          "ChatGPT-User",
+          "Claude-SearchBot",
+          "Claude-User",
+          "PerplexityBot",
+          "Perplexity-User",
+        ],
+        allow: "/",
+        disallow: ["/admin", "/api/"],
+      },
+      {
+        userAgent: ["GPTBot", "ClaudeBot", "Google-Extended"],
+        disallow: "/",
+      },
+      {
         userAgent: "*",
         allow: "/",
         disallow: ["/admin", "/api/"],

@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { contentSecurityPolicy, isTagAssistantPreview } from "../proxy";
+import {
+  contentSecurityPolicy,
+  isPrivateRoute,
+  isTagAssistantPreview,
+} from "../proxy";
 
 describe("Content Security Policy", () => {
   it("permite el CDN de módulos de Sanity sólo en el Studio", () => {
@@ -41,5 +45,13 @@ describe("Content Security Policy", () => {
     expect(isTagAssistantPreview(new URLSearchParams("utm_source=google"))).toBe(
       false,
     );
+  });
+
+  it("identifica rutas administrativas y de API sin afectar contenido público", () => {
+    expect(isPrivateRoute("/admin")).toBe(true);
+    expect(isPrivateRoute("/admin/desk")).toBe(true);
+    expect(isPrivateRoute("/api/contact")).toBe(true);
+    expect(isPrivateRoute("/sobre-mi")).toBe(false);
+    expect(isPrivateRoute("/apicultura")).toBe(false);
   });
 });

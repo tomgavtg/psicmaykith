@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { WhatsAppIcon } from "../icons";
 
 export function FloatingWhatsApp({ contactSettings }) {
@@ -6,13 +8,13 @@ export function FloatingWhatsApp({ contactSettings }) {
   }
 
   return (
-    <a
+    <Link
       className="floating-whatsapp"
-      href="#whatsapp-contact"
+      href="/#whatsapp-contact"
       aria-label="Ir al formulario de contacto por WhatsApp"
     >
       <WhatsAppIcon size={24} />
       <span>WhatsApp</span>
-    </a>
+    </Link>
   );
 }

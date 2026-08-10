@@ -4,6 +4,7 @@ import {
   isPrivacyNoticePublishable,
   isProductionLaunchEnabled,
 } from "../lib/content/publication";
+import { PUBLIC_CONTENT_PATHS } from "../lib/seo/content-pages";
 
 function lastUpdatedAt(content) {
   const candidates = [
@@ -41,6 +42,22 @@ export default async function sitemap() {
       priority: 1,
     },
   ];
+
+  for (const path of PUBLIC_CONTENT_PATHS) {
+    const service = (content.services || []).find(
+      (item) => `/${item.slug}` === path,
+    );
+    const lastModified = service?._updatedAt
+      ? new Date(service._updatedAt)
+      : contentLastModified;
+
+    entries.push({
+      url: `${baseUrl}${path}`,
+      ...(lastModified ? { lastModified } : {}),
+      changeFrequency: "monthly",
+      priority: path === "/psicoterapia-en-linea" ? 0.9 : 0.7,
+    });
+  }
 
   if (isPrivacyNoticePublishable(content.privacyNotice)) {
     entries.push({

@@ -59,6 +59,8 @@ responsables correspondientes.
   el retrato principal y documentar titularidad, permiso, alcance y vigencia. Aprobar el
   texto alternativo propuesto en `docs/content/application-copy.md`.
 - [ ] ¿Qué perfiles sociales oficiales se enlazarán?
+- [ ] Revisar y alinear modalidad, servicios, teléfono, dominio y reserva en Doctoralia
+  y cualquier otro directorio profesional administrado.
 
 ## B. Producto, contenido y legal
 
@@ -147,12 +149,17 @@ responsables correspondientes.
   lista permitida y atribución UTM sin `utm_term`, servicio ni datos del formulario.
 - [ ] Configurar IDs reales por ambiente, crear GA4/conversiones, probar con Tag
   Assistant/Pixel Helpers y publicar los contenedores aprobados.
+- [ ] Verificar la propiedad en Bing Webmaster Tools, enviar el sitemap y decidir
+  responsable/almacenamiento seguro para una futura clave de IndexNow.
 - [ ] Designar responsables y suplentes de contenido, leads, DNS, seguridad,
   privacidad, analítica, QA, lanzamiento y rollback.
 - [ ] Definir matriz de campañas, objetivos numéricos y método de calificación de leads
   fuera de la analítica web.
 - [ ] Definir almacenamiento de evidencias sanitizadas y herramienta de escaneo de
   secretos/dependencias.
+- [x] Establecer una línea base local de dependencias: el 10 de agosto de 2026,
+  `yarn audit --groups dependencies` terminó con 0 vulnerabilidades después de
+  actualizar dependencias directas y fijar resoluciones transitivas selectivas.
 
 ## E. QA antes del lanzamiento
 

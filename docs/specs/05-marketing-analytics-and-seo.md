@@ -11,8 +11,10 @@ síntomas ni ningún dato clínico a plataformas publicitarias.
 - Documento con `lang="es-MX"`, título y descripción únicos editables en Sanity.
 - Canonical absoluto construido con `NEXT_PUBLIC_SITE_URL`.
 - Open Graph con imagen aprobada; no usar datos o fotografías de pacientes.
-- `/sitemap.xml` sólo incluye `/` y `/aviso-de-privacidad` publicables.
-- `/robots.txt` permite contenido público y excluye `/admin` y `/api/`.
+- `/sitemap.xml` incluye la portada, perfil, modalidad, servicios, preguntas frecuentes
+  y aviso de privacidad cuando el contenido es publicable.
+- `/robots.txt` permite contenido público y excluye `/admin` y `/api/`. Distingue los
+  rastreadores de búsqueda de los rastreadores de entrenamiento conforme al runbook.
 - `/admin` además usa `noindex, nofollow`; el aviso legal se indexa salvo decisión legal.
 - Redirección permanente hacia una sola variante de dominio y una sola forma de URL.
 - Favicon y manifest/íconos de marca con rutas confirmadas.

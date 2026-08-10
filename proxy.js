@@ -77,6 +77,11 @@ export function isTagAssistantPreview(searchParams) {
   );
 }
 
+export function isPrivateRoute(pathname) {
+  return pathname === "/admin" || pathname.startsWith("/admin/") ||
+    pathname === "/api" || pathname.startsWith("/api/");
+}
+
 export function proxy(request) {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const isAdmin = request.nextUrl.pathname.startsWith("/admin");
@@ -115,6 +120,17 @@ export function proxy(request) {
       : "same-origin",
   );
   response.headers.set("Cross-Origin-Resource-Policy", "same-site");
+
+  if (isPrivateRoute(request.nextUrl.pathname)) {
+    response.headers.set(
+      "X-Robots-Tag",
+      "noindex, nofollow, noarchive, nosnippet",
+    );
+    response.headers.set(
+      "Cache-Control",
+      "private, no-store, max-age=0, must-revalidate",
+    );
+  }
 
   return response;
 }

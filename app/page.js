@@ -12,6 +12,7 @@ import {
   buildHomeStructuredData,
   getSocialImage,
 } from "../lib/seo/home-seo";
+import { isProductionLaunchEnabled } from "../lib/content/publication";
 import { headers } from "next/headers";
 
 export async function generateMetadata() {
@@ -46,7 +47,7 @@ export async function generateMetadata() {
       description: seoSettings.metaDescription,
       images: [socialImage],
     },
-    robots: isPlaceholder
+    robots: !isProductionLaunchEnabled() || isPlaceholder
       ? { index: false, follow: false }
       : {
           index: true,

@@ -1,26 +1,23 @@
-# Landing de consulta psicológica
+# Sitio de consulta psicológica
 
-Landing de una sola página para una profesional de psicología en México. El objetivo es
-facilitar contactos de calidad mediante WhatsApp o correo, con una experiencia serena,
-rápida, accesible y respetuosa de la privacidad.
+Sitio público para una profesional de psicología en México. El objetivo es facilitar
+reservas pagadas mediante Google Calendar y Stripe, o contacto previo por WhatsApp,
+con una experiencia serena, rápida, accesible y respetuosa de la privacidad.
 
 ## Estado
 
-**Fase 2 — candidato técnico de producción.** La aplicación Next.js, la landing, el
-Studio de Sanity, el formulario protegido, metadata social, datos estructurados, SEO,
-consentimiento por categorías y eventos de marketing con lista permitida están
-implementados. Sanity Production ya contiene los tres servicios, horarios, fotografía
-y copy optimizado. La cédula `10630199`, el nombre profesional completo y el aviso de
-privacidad integral `v1.0` aprobado están en Sanity Production. El gate de contenido no
-reporta bloqueos; `SITE_MODE` y `CONTENT_APPROVED` deben habilitarse únicamente sobre el
-deployment aprobado después de completar QA y variables de Production.
+**Fase 2 — candidato técnico de producción.** La aplicación Next.js, el Studio de
+Sanity, la reserva externa con pago, el contacto por WhatsApp, metadata social, páginas
+de servicio, datos estructurados, SEO, consentimiento por categorías y eventos de
+marketing con lista permitida están implementados. El repositorio también publica
+controles para rastreadores de búsqueda y asistentes, un sitemap ampliado y un canal
+estándar de reporte de seguridad.
 
-El flujo de cita permite seleccionar un servicio, modalidad y tres combinaciones de día
-y horario preferidas; envía una solicitud por correo y nunca presenta la cita como confirmada. Los
-CTA de WhatsApp usan el número empresarial confirmado `+52 55 1609 8584`, almacenado
-en Sanity como `525516098584`. El antiguo prefijo móvil mexicano `1` no forma parte del
-enlace `wa.me`. El correo empresarial público confirmado es
-`contacto@psicologamayumikitahara.com`.
+El flujo principal dirige a los horarios reales de Google Calendar, donde el pago con
+Stripe confirma el espacio. La alternativa prepara un mensaje de WhatsApp después de
+solicitar nombre, servicio, motivo de consulta y consentimientos. Los CTA usan el número
+empresarial confirmado `+52 55 1609 8584`, almacenado en Sanity como `525516098584`.
+El correo empresarial público es `contacto@psicologamayumikitahara.com`.
 
 ## Desarrollo local con HTTPS
 
@@ -76,6 +73,7 @@ Abrir `https://localhost:3000`. Para ejecutar verificaciones:
 yarn lint
 yarn test
 yarn build
+yarn audit --groups dependencies
 ```
 
 No cambie `SITE_MODE=production` ni `CONTENT_APPROVED=true` hasta contar con contenido
@@ -515,6 +513,8 @@ Referencias oficiales:
 - [Repositorio de avisos de privacidad](docs/legal/privacy-notices/README.md)
 - [Marketing, analítica y SEO](docs/specs/05-marketing-analytics-and-seo.md)
 - [GA4, Google Ads y Tag Manager](docs/runbooks/google-ads-and-tag-manager.md)
+- [Búsqueda y descubrimiento mediante asistentes de IA](docs/runbooks/search-and-ai-discoverability.md)
+- Canal de reporte de seguridad: `/.well-known/security.txt`
 - [Meta Pixel y TikTok Pixel](docs/runbooks/meta-and-tiktok-pixels.md)
 - [Modelo de contenido](docs/specs/06-content-model.md)
 - [Definition of Done](docs/specs/07-definition-of-done.md)

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowIcon } from "../icons";
 import { TrackedLink } from "../analytics/TrackedLink";
 
@@ -63,6 +64,14 @@ export function Services({ services }) {
                 <p>{service.shortDescription}</p>
                 {service.availabilityNote ? (
                   <p className="service-detail">{service.availabilityNote}</p>
+                ) : null}
+                {service.slug ? (
+                  <Link
+                    className="service-details-link"
+                    href={`/${service.slug}`}
+                  >
+                    Conocer el servicio
+                  </Link>
                 ) : null}
                 {service.bookingUrl ? (
                   <TrackedLink
