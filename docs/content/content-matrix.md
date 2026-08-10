@@ -10,7 +10,7 @@
 | Servicios | 3–4 nombres y descripciones | psicóloga | tres borradores preparados; verificar que el alcance sea real |
 | Servicios | modalidad/duración/honorarios | psicóloga | en línea; duraciones visibles; honorarios configurados pero visibles sólo al reservar |
 | Servicios | imagen editorial | psicóloga + diseño | permiso requerido |
-| Agendar | WhatsApp y motivo | psicóloga | número confirmado `+52 56 3955 1234`; formulario local construye mensaje con nombre, servicio, motivo y consentimiento |
+| Agendar | WhatsApp y motivo | psicóloga | número confirmado `+52 55 1609 8584`; formulario local construye mensaje con nombre, servicio, motivo y consentimiento |
 | Agendar | correo y SLA | operación | infraestructura conservada sólo como contingencia, no visible en la landing |
 | Agendar | agenda y pago | psicóloga + operación | Google Calendar y Stripe configurados; enlaces confirmados; falta verificar campos obligatorios previos al pago en ambos horarios |
 | Agendar | cancelación y reembolso | psicóloga + legal | 48 h sin penalización; sin reprogramación por usuario; tardía e inasistencia sin reembolso; cancelación de la psicóloga ofrece reprogramación |

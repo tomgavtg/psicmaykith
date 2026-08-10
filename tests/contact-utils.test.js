@@ -16,6 +16,7 @@ import {
 import {
   buildWhatsAppInquiryMessage,
   buildWhatsAppUrl,
+  formatWhatsAppNumber,
   normalizeWhatsAppNumber,
 } from "../lib/contact/whatsapp";
 
@@ -27,12 +28,17 @@ describe("buildWhatsAppUrl", () => {
   });
 
   it("elimina el antiguo prefijo móvil 1 de México", () => {
-    expect(normalizeWhatsAppNumber("+52 1 56 3955 1234")).toBe(
-      "525639551234",
+    expect(normalizeWhatsAppNumber("+52 1 55 1609 8584")).toBe(
+      "525516098584",
     );
-    expect(buildWhatsAppUrl("+52 1 56 3955 1234", "Hola")).toBe(
-      "https://wa.me/525639551234?text=Hola",
+    expect(buildWhatsAppUrl("+52 1 55 1609 8584", "Hola")).toBe(
+      "https://wa.me/525516098584?text=Hola",
     );
+  });
+
+  it("presenta el número mexicano en un formato legible", () => {
+    expect(formatWhatsAppNumber("525516098584")).toBe("+52 55 1609 8584");
+    expect(formatWhatsAppNumber("12345")).toBe("");
   });
 
   it("no crea enlace cuando falta el número", () => {

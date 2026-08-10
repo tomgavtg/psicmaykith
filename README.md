@@ -17,8 +17,8 @@ deployment aprobado después de completar QA y variables de Production.
 
 El flujo de cita permite seleccionar un servicio, modalidad y tres combinaciones de día
 y horario preferidas; envía una solicitud por correo y nunca presenta la cita como confirmada. Los
-CTA de WhatsApp usan el número empresarial confirmado `+52 56 3955 1234`, almacenado
-en Sanity como `525639551234`. El antiguo prefijo móvil mexicano `1` no forma parte del
+CTA de WhatsApp usan el número empresarial confirmado `+52 55 1609 8584`, almacenado
+en Sanity como `525516098584`. El antiguo prefijo móvil mexicano `1` no forma parte del
 enlace `wa.me`. El correo empresarial público confirmado es
 `contacto@psicologamayumikitahara.com`.
 

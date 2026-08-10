@@ -12,7 +12,7 @@ del Campestre, León de los Aldama, C.P. 37138, Guanajuato, México, es responsa
 tratamiento de los datos personales descritos en este aviso.
 
 Los canales para ejercer derechos de privacidad son el correo
-contacto@psicologamayumikitahara.com y el WhatsApp empresarial +52 56 3955 1234. El
+contacto@psicologamayumikitahara.com y el WhatsApp empresarial +52 55 1609 8584. El
 sitio oficial es https://www.psicologamayumikitahara.com.
 
 ## Alcance
@@ -114,7 +114,7 @@ La persona titular o su representante puede solicitar acceso, rectificación,
 cancelación u oposición; revocar su consentimiento; o limitar el uso o divulgación de
 sus datos. La solicitud puede enviarse a contacto@psicologamayumikitahara.com con el
 asunto “Solicitud de derechos de datos personales” o al WhatsApp empresarial
-+52 56 3955 1234.
++52 55 1609 8584.
 
 La solicitud debe indicar nombre y medio para recibir respuesta, información suficiente
 para localizar los datos, derecho o petición concreta y, cuando corresponda, elementos

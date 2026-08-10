@@ -47,7 +47,7 @@ preguntas:
 
 Este consentimiento puede revocarse mediante
 `contacto@psicologamayumikitahara.com` o el WhatsApp empresarial
-`+52 56 3955 1234`, siguiendo el procedimiento descrito en el aviso vigente,
+`+52 55 1609 8584`, siguiendo el procedimiento descrito en el aviso vigente,
 sin efectos retroactivos y sujeto a obligaciones legales de conservación/bloqueo.
 
 ## Formalización

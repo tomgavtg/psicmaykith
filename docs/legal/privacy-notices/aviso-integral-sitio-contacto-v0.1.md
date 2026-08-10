@@ -18,7 +18,7 @@ responsable del tratamiento de los datos personales descritos en este aviso.
 
 Canales de privacidad y derechos ARCO:
 `contacto@psicologamayumikitahara.com` y WhatsApp empresarial
-`+52 56 3955 1234`.
+`+52 55 1609 8584`.
 
 Sitio oficial: <https://www.psicologamayumikitahara.com>.
 
@@ -167,7 +167,7 @@ divulgación de sus datos.
 
 La solicitud puede enviarse a `contacto@psicologamayumikitahara.com` con el asunto
 “Solicitud de derechos de datos personales” o por WhatsApp empresarial al
-`+52 56 3955 1234`, e incluir:
+`+52 55 1609 8584`, e incluir:
 
 - nombre y un medio para recibir notificaciones;
 - información suficiente para localizar los datos;
@@ -219,7 +219,7 @@ y Buen Gobierno o la autoridad que resulte competente al momento de la solicitud
 
 Correo empresarial: <contacto@psicologamayumikitahara.com>.
 
-WhatsApp empresarial: `+52 56 3955 1234`.
+WhatsApp empresarial: `+52 55 1609 8584`.
 
 Estos medios no proporcionan atención inmediata ni sustituyen servicios de emergencia
 o intervención en crisis. `[POR DEFINIR: texto y fuentes oficiales de crisis, verificados

@@ -22,7 +22,7 @@ incluso fuera de México, conforme al aviso integral y a la revisión pendiente.
 
 Puedes limitar el uso de tus datos y ejercer acceso, rectificación, cancelación u
 oposición escribiendo a `contacto@psicologamayumikitahara.com` o al WhatsApp
-empresarial `+52 56 3955 1234`. Consulta finalidades,
+empresarial `+52 55 1609 8584`. Consulta finalidades,
 transferencias, conservación, mecanismos y cambios en el
 [Aviso de privacidad integral](https://www.psicologamayumikitahara.com/aviso-de-privacidad).
 

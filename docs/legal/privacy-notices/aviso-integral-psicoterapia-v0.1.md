@@ -14,7 +14,7 @@ Fecha de entrada en vigor: `[POR DEFINIR: fecha]`
 relacionados con la evaluación y prestación de servicios de psicoterapia.
 
 Canales de privacidad y derechos ARCO: `contacto@psicologamayumikitahara.com` y
-WhatsApp empresarial `+52 56 3955 1234`. El domicilio profesional aprobado continúa
+WhatsApp empresarial `+52 55 1609 8584`. El domicilio profesional aprobado continúa
 pendiente de incorporar.
 
 ## 2. Relación con otros documentos
@@ -148,7 +148,7 @@ necesario, documentarse y seguir un protocolo clínico-jurídico
 ## 11. Derechos ARCO, revocación y limitación
 
 Las solicitudes se presentarán en `contacto@psicologamayumikitahara.com` o en el
-WhatsApp empresarial `+52 56 3955 1234` e incluirán nombre, medio de respuesta,
+WhatsApp empresarial `+52 55 1609 8584` e incluirán nombre, medio de respuesta,
 acreditación de identidad/representación, datos involucrados y petición.
 La determinación se comunicará en un máximo de veinte días hábiles y, si procede, se
 hará efectiva dentro de los quince días hábiles siguientes, con la ampliación legal que

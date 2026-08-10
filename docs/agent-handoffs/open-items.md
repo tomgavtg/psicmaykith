@@ -45,8 +45,9 @@ responsables correspondientes.
 - [ ] En ambos horarios de Google Calendar, hacer obligatorios antes del pago: nombre,
   correo, teléfono, tipo de sesión, motivo breve, aceptación del aviso y consentimiento
   expreso para datos sensibles. Probar la evidencia que conserva cada proveedor.
-- [x] Número de WhatsApp Business confirmado: `+52 56 3955 1234`; valor técnico
-  `525639551234`, sin el antiguo prefijo móvil mexicano `1`.
+- [x] Número de WhatsApp Business actualizado el 10 de agosto de 2026:
+  `+52 55 1609 8584`; valor técnico `525516098584`, sin el antiguo prefijo móvil
+  mexicano `1`.
 - [ ] Confirmar titular operativo del número y aprobar el mensaje inicial definitivo.
 - [x] Se creó el buzón empresarial público
   `contacto@psicologamayumikitahara.com` en Namecheap Private Email.
@@ -73,7 +74,7 @@ responsables correspondientes.
   fecha de entrada en vigor del 4 de agosto de 2026.
 - [x] Identidad de la responsable confirmada en Sanity: Marissa Mayumi Kitahara Funes.
 - [x] Canales ARCO confirmados: `contacto@psicologamayumikitahara.com` y WhatsApp
-  empresarial `+52 56 3955 1234`.
+  empresarial `+52 55 1609 8584`.
 - [x] Domicilio profesional aprobado e incorporado al aviso `v1.0`.
 - [x] El 6 de agosto de 2026 se decidió sustituir “Mensaje” por “Motivo de consulta”,
   obligatorio, breve y limitado a 500 caracteres.

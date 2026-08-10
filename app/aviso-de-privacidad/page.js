@@ -6,6 +6,7 @@ import {
   isPrivacyNoticePublishable,
   isProductionLaunchEnabled,
 } from "../../lib/content/publication";
+import { formatWhatsAppNumber } from "../../lib/contact/whatsapp";
 
 export async function generateMetadata() {
   const { privacyNotice } = await getSiteContent();
@@ -115,7 +116,7 @@ export default async function PrivacyNoticePage() {
                   rel="noreferrer"
                   target="_blank"
                 >
-                  +52 56 3955 1234
+                  {formatWhatsAppNumber(privacyNotice.contactWhatsapp)}
                 </a>
               </li>
             ) : null}

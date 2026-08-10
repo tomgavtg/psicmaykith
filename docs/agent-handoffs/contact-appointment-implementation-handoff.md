@@ -8,7 +8,7 @@ sin que la interfaz simule disponibilidad o confirmación automática.
 ## Funcionalidad
 
 - Los enlaces de WhatsApp sólo se generan para números normalizados de 10 a 15 dígitos.
-- El número mexicano confirmado se normaliza a `525639551234`; la implementación
+- El número mexicano confirmado se normaliza a `525516098584`; la implementación
   elimina defensivamente el antiguo prefijo `1` cuando recibe el formato `+52 1 ...`.
 - La selección de una tarjeta de servicio actualiza el formulario mediante un evento
   controlado y anuncia el cambio a tecnologías de asistencia.

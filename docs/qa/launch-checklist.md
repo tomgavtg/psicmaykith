@@ -101,8 +101,8 @@ tokens, cookies, direcciones personales ni payloads de formulario.
 - [ ] CTA fijo/flotante/de error tiene nombre accesible, foco visible y no tapa controles.
 - [ ] Sin número configurado, el CTA no se publica y queda otra vía válida.
 - [ ] Números con menos de 10 o más de 15 dígitos tampoco publican un CTA.
-- [ ] El número visible es `+52 56 3955 1234` y todos los enlaces resuelven a
-  `https://wa.me/525639551234`, sin el antiguo prefijo móvil mexicano `1`.
+- [ ] El número visible es `+52 55 1609 8584` y todos los enlaces resuelven a
+  `https://wa.me/525516098584`, sin el antiguo prefijo móvil mexicano `1`.
 
 ## Privacidad, consentimiento y analítica
 

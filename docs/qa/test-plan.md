@@ -158,7 +158,7 @@ afectar tráfico real. El límite adicional de aplicación queda
 | WA-04 | M | Revisar CTA fijo, flotante y de error | nombre accesible consistente, aviso de datos sensibles cercano y foco visible |
 | WA-05 | M | Probar configuración sin número | CTA no se publica y siguen disponibles formulario/correo conforme a especificación |
 | WA-06 | A | Probar números con menos de 10 o más de 15 dígitos | no se genera ningún enlace ni CTA roto |
-| WA-07 | A | Ingresar `+52 1 56 3955 1234` como valor heredado | se normaliza a `525639551234`; el enlace no conserva el antiguo prefijo móvil `1` |
+| WA-07 | A | Ingresar `+52 1 55 1609 8584` como valor heredado | se normaliza a `525516098584`; el enlace no conserva el antiguo prefijo móvil `1` |
 | MAIL-01 | M | Activar enlace de correo | destino y evento `click_email` son correctos, sin PII en analítica |
 
 ## Casos de privacidad, consentimiento y analítica

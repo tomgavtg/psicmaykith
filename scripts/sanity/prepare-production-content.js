@@ -245,6 +245,8 @@ async function main() {
     .patch("contactSettings", (patch) =>
       patch
         .set({
+          phoneDisplay: "+52 55 1609 8584",
+          whatsappNumber: "525516098584",
           locationName: "Atención en línea",
           serviceAreas: ["Ciudad de México", "Atención en línea"],
           modalities: ["En línea"],
@@ -319,7 +321,7 @@ async function main() {
       controllerAddress:
         "Hacienda del Batán s/n, colonia Balcones del Campestre, León de los Aldama, C.P. 37138, Guanajuato, México",
       contactEmail: "contacto@psicologamayumikitahara.com",
-      contactWhatsapp: "525639551234",
+      contactWhatsapp: "525516098584",
       content: privacyContent,
     }),
   );

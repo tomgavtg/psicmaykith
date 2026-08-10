@@ -6,8 +6,8 @@ Configurar WhatsApp como ruta principal de contacto sin solicitar información c
 ni crear automatizaciones innecesarias. La Fase 2 está autorizada; el alta y vinculación
 requieren aprobación de la titular y accesos nominales.
 
-El número empresarial confirmado es `+52 56 3955 1234`; para enlaces y configuración
-se usa `525639551234`. El titular operativo, nombre comercial y accesos siguen
+El número empresarial confirmado es `+52 55 1609 8584`; para enlaces y configuración
+se usa `525516098584`. El titular operativo, nombre comercial y accesos siguen
 `[POR DEFINIR: confirmar con la psicóloga]`. El correo empresarial aprobado es
 `contacto@psicologamayumikitahara.com`. No se deben registrar aquí códigos de
 verificación, contraseñas, QR ni secretos de recuperación.
@@ -27,7 +27,7 @@ operación.
 
 ## Prerrequisitos
 
-- número confirmado `+52 56 3955 1234`, bajo control legítimo de la profesional o
+- número confirmado `+52 55 1609 8584`, bajo control legítimo de la profesional o
   consultorio `[POR DEFINIR: confirmar titular operativo]`;
 - dispositivo y respaldo gestionados por su responsable;
 - nombre comercial y categoría reales y aprobados;
@@ -95,14 +95,14 @@ Formato esperado del número:
 Para la configuración confirmada:
 
 ```text
-phoneDisplay: +52 56 3955 1234
-whatsappNumber: 525639551234
+phoneDisplay: +52 55 1609 8584
+whatsappNumber: 525516098584
 whatsappMessage: Hola, me gustaría solicitar información para agendar una primera sesión.
 ```
 
 México usa `52` seguido de los 10 dígitos del número nacional. El antiguo prefijo móvil
 internacional `1` no debe almacenarse ni publicarse. Por compatibilidad, la aplicación
-normaliza una entrada como `+52 1 56 3955 1234` a `525639551234` antes de construir el
+normaliza una entrada como `+52 1 55 1609 8584` a `525516098584` antes de construir el
 enlace.
 
 La validación debe aceptar sólo dígitos y una longitud internacional razonable, pero el
