@@ -8,7 +8,7 @@ const expectedDataset = "production";
 const profileUpdate = {
   headline: "Psicoterapia psicoanalítica | Orientación psicológica profunda",
   heroTitle:
-    "Acompañamiento con enfoque psicoanalítico ante procesos de cambio y momentos difíciles. Sesiones en línea.",
+    "Especialista en terapia psicoanalítica y orientación psicológica en situaciones de transformación de vida. Sesiones en línea.",
   shortBio:
     "Un espacio de escucha profesional para explorar lo que estás viviendo, comprender patrones que se repiten y construir nuevas formas de relacionarte contigo y con otras personas.",
   professionalLabel: "Atención profesional",

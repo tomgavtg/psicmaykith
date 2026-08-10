@@ -216,7 +216,7 @@ async function main() {
         fullName: "Psic. Mayumi Kitahara",
         licenseNumber: "10630199",
         heroTitle:
-          "Lo que sientes hoy tiene una historia. Podemos empezar a entenderla.",
+          "Especialista en terapia psicoanalítica y orientación psicológica en situaciones de transformación de vida. Sesiones en línea.",
         headline:
           "Psicoterapia psicoanalítica en línea para adolescentes, adultos y parejas.",
         shortBio:

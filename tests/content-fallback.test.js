@@ -20,6 +20,9 @@ describe("contenido editorial de respaldo", () => {
     expect(headline).toBe(
       "Psicoterapia psicoanalítica | Orientación psicológica profunda",
     );
+    expect(heroTitle).toBe(
+      "Especialista en terapia psicoanalítica y orientación psicológica en situaciones de transformación de vida. Sesiones en línea.",
+    );
     expect(headline.length).toBeLessThanOrEqual(120);
     expect(heroTitle.length).toBeLessThanOrEqual(160);
     expect(shortBio.trim().split(/\s+/).length).toBeLessThanOrEqual(55);

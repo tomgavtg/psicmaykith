@@ -54,6 +54,9 @@ El 10 de agosto de 2026 se sincronizó el dataset `production` con:
 
 - Los nuevos títulos, descripción breve y etiqueta profesional del documento
   `professionalProfile`.
+- El título secundario aprobado: “Especialista en terapia psicoanalítica y
+  orientación psicológica en situaciones de transformación de vida. Sesiones
+  en línea.”
 - Las 26 preguntas frecuentes activas, organizadas en cuatro categorías.
 - La misma referencia de imagen que ya utilizaba el retrato profesional. La
   sincronización no modificó la fotografía.
