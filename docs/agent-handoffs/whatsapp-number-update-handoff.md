@@ -13,6 +13,10 @@ Se actualizaron el fallback de la aplicación, Sanity Production, el aviso de pr
 la documentación operativa y las pruebas. La página del aviso ya no contiene un número
 visible fijo: presenta dinámicamente el valor publicado en Sanity.
 
+La consulta pública incluye una revisión de contenido para invalidar la entrada anterior
+del Data Cache de Vercel. Esto evita que el número sustituido permanezca visible durante
+la ventana normal de revalidación de una hora.
+
 ## Validación
 
 - `yarn test`: 50 pruebas aprobadas.
